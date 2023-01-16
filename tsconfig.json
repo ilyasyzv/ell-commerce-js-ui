@@ -4,14 +4,19 @@
     "declaration": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "lib": ["es5", "es2015", "es2016", "dom", "esnext"],
+    "lib": ["es5", "es2015", "es2016", "dom", "esnext", "dom.iterable"],
     "types": ["node"],
-    "module": "es2015",
+    "module": "esnext",
     "moduleResolution": "node",
     "target": "es6",
     "strict": true,
     "sourceMap": true,
-    "outDir": "dist/esm"
+    "outDir": "dist",
+    "noEmit": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "allowJs": true
   },
   "include": ["src/**/*"]
 }
