@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Cart } from "ell-commerce-sdk";
 
 const StyledShoppingCartIcon = styled.div`
   display: block;
@@ -37,12 +38,30 @@ const StyledShoppingCartIcon = styled.div`
 
 export interface IShoppingCartIconProps {
   togglePopup: (e: React.MouseEvent<HTMLDivElement>) => void;
-  itemsCount: number;
+  cart?: Cart;
 }
 
 export const ShoppingCartIcon: React.FunctionComponent<
   IShoppingCartIconProps
 > = (props: IShoppingCartIconProps) => {
+  const [itemsCount, setItemsCount] = useState(0);
+
+  useEffect(() => {
+    const { cart } = props;
+    if (cart) {
+      let count = 0;
+      cart.lineItems.digitalItems.forEach((item) => {
+        count += item.quantity;
+      });
+      cart.lineItems.physicalItems.forEach((item) => {
+        count += item.quantity;
+      });
+      setItemsCount(count);
+    } else {
+      setItemsCount(0);
+    }
+  }, [props.cart]);
+
   return (
     <StyledShoppingCartIcon onClick={props.togglePopup}>
       <svg
@@ -60,9 +79,9 @@ export const ShoppingCartIcon: React.FunctionComponent<
           fill="#151515"
         />
       </svg>
-      {props.itemsCount > 0 && (
+      {itemsCount > 0 && (
         <span className="total-items">
-          {props.itemsCount > 9 ? "9+" : props.itemsCount}
+          {itemsCount > 9 ? "9+" : itemsCount}
         </span>
       )}
     </StyledShoppingCartIcon>
