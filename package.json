@@ -10,6 +10,7 @@
   "scripts": {
     "init": "npm i && npm link ../ell-commerce-web-app/node_modules/react",
     "dev": "del /q dist && rollup -c -w",
+    "build:rollup": "rollup -c",
     "build": "del /q dist && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module CommonJS --outDir dist/cjs"
