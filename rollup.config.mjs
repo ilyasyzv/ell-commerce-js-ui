@@ -1,5 +1,6 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
+import svgr from '@svgr/rollup'
 import typescript from "rollup-plugin-typescript2";
 import dts from "rollup-plugin-dts";
 import { createFilter } from 'rollup-pluginutils';
@@ -39,6 +40,7 @@ export default [
             peerDepsExternal(),
             resolve(),
             commonjs(),
+            svgr(),
             typescript({ tsconfig: "./tsconfig.json" }),
 
         ],

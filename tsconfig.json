@@ -13,5 +13,5 @@
     "sourceMap": true,
     "outDir": "dist/esm"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "src/custom.d.ts"]
 }
