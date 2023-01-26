@@ -38,7 +38,7 @@
     "typescript": "^4.9.4"
   },
   "peerDependencies": {
-    "ell-commerce-sdk": "^1.0.17",
+    "ell-commerce-sdk": "^1.0.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.6"
