@@ -11,6 +11,8 @@ const StyledShoppingCartIcon = styled.div`
   .cart-icon {
     z-index: 1;
     cursor: pointer;
+    width: 24px;
+    height: 24px;
   }
   .total-items {
     position: absolute;
