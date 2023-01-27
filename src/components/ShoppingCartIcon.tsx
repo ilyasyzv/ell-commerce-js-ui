@@ -23,7 +23,7 @@ const StyledShoppingCartIcon = styled.div`
     font-weight: 400;
     font-size: 10.5px;
     line-height: 16px;
-    background-color: #ffbb1c;
+    background-color: #9E007E;
     color: #ffffff;
     border: 2.25px solid #ffffff;
     border-radius: 50%;
