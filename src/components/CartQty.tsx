@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
+import { TABLET_BREAKPOINTS } from '../commons/constants';
 
 const StyledShoppingCartIcon = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const StyledShoppingCartIcon = styled.div`
     margin-left: 20px;
   }
 
-  @media screen and (max-width: 1024px) and (min-width: 744px) {
+  @media screen and (min-device-width: ${TABLET_BREAKPOINTS.small}px) and (max-device-width: ${TABLET_BREAKPOINTS.large}px) {
     flex-direction: column;
     align-items: flex-start;
 
