@@ -33,7 +33,7 @@ const StyledEmptyCart = styled.div`
 `
 
 interface EmptyCartProps {
-	navigateTo: (to: string) => void;
+	goBack: () => void;
 }
 
 export const EmptyCart: React.FunctionComponent<EmptyCartProps> = (props: EmptyCartProps) => {
@@ -41,7 +41,7 @@ export const EmptyCart: React.FunctionComponent<EmptyCartProps> = (props: EmptyC
 			<StyledEmptyCart>
 				<EmptyCartImage />
 				<p>Your cart is empty. Discover tests to add to your cart</p>
-				<button onClick={() => props.navigateTo("/")}>Browse products</button>
+				<button onClick={() => props.goBack()}>Browse products</button>
 			</StyledEmptyCart>
 	)
 }
