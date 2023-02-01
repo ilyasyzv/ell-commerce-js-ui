@@ -2,7 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 import { TABLET_BREAKPOINTS } from '../commons/constants';
 
-const StyledShoppingCartIcon = styled.div`
+const StyledCartQty = styled.div`
   display: flex;
   align-items: center;
   font-style: normal;
@@ -28,14 +28,15 @@ const StyledShoppingCartIcon = styled.div`
 `;
 
 interface ICartQty {
-  itemsCount: number
+  itemsCount: number;
+  className?: string;
 }
 
-export const CartQty: React.FC<ICartQty> = ({itemsCount}: ICartQty) => {
+export const CartQty: React.FC<ICartQty> = ({itemsCount, className}: ICartQty) => {
   return (
-    <StyledShoppingCartIcon>
+    <StyledCartQty className={className}>
       Your cart 
       {itemsCount !== 0 && (<span>{itemsCount === 1 && '(1 item)'} {itemsCount > 1 && `(${itemsCount} items)`}</span>)}
-    </StyledShoppingCartIcon>
+    </StyledCartQty>
   );
 };
