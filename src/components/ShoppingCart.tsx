@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Cart, CartLineItem } from "ell-commerce-sdk";
+import { Cart, CartItem } from "ell-commerce-sdk";
 import styled from "styled-components";
 
 const StyledShoppingCart = styled.div.attrs(() => ({
@@ -155,8 +155,7 @@ export const ShoppingCart: React.FunctionComponent<IShoppingCartProps> = (
   useEffect(() => {
     if (props.cart) {
       let c = 0;
-      props.cart.lineItems.digitalItems.forEach((i) => (c += i.quantity));
-      props.cart.lineItems.physicalItems.forEach((i) => (c += i.quantity));
+      props.cart.items.forEach((i) => (c += i.quantity));
       setItemsCount(c);
     } else {
       setItemsCount(0);
@@ -214,22 +213,14 @@ export const ShoppingCart: React.FunctionComponent<IShoppingCartProps> = (
                 <i className="far fa-trash"></i>
               </button>
               <div className="items-list-container">
-                {props.cart?.lineItems.digitalItems.map((it: CartLineItem) => {
+                {props.cart?.items.map((it: CartItem) => {
                   return (
                     <div key={it.id}>
                       <span>{`${it.quantity} x ${it.name}`}</span>
                       <span>
                         {props.cart?.currency.symbol}
-                        {it.salePrice}
+                        {it.listPrice}
                       </span>
-                    </div>
-                  );
-                })}
-                {props.cart?.lineItems.physicalItems.map((it: CartLineItem) => {
-                  return (
-                    <div key={it.id}>
-                      <span>{`${it.quantity} x ${it.name}`}</span>
-                      <span>${it.salePrice}</span>
                     </div>
                   );
                 })}

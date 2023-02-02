@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Cart, CartLineItem } from "ell-commerce-sdk";
+import { Cart, CartItem } from "ell-commerce-sdk";
 import CartIcon from "../assets/images/cart-icon.svg"
 
 const StyledShoppingCartIcon = styled.div`
@@ -148,10 +148,7 @@ export const ShoppingCartIcon: React.FunctionComponent<
     const { cart } = props;
     if (cart) {
       let count = 0;
-      cart.lineItems.digitalItems.forEach((item) => {
-        count += item.quantity;
-      });
-      cart.lineItems.physicalItems.forEach((item) => {
+      cart.items.forEach((item) => {
         count += item.quantity;
       });
       setItemsCount(count);
@@ -213,22 +210,14 @@ export const ShoppingCartIcon: React.FunctionComponent<
                 <i className="far fa-trash"></i>
               </button>
               <div className="items-list-container">
-                {props.cart?.lineItems.digitalItems.map((it: CartLineItem) => {
+                {props.cart?.items.map((it: CartItem) => {
                   return (
                     <div key={it.id}>
                       <span>{`${it.quantity} x ${it.name}`}</span>
                       <span>
                         {props.cart?.currency.symbol}
-                        {it.salePrice}
+                        {it.listPrice}
                       </span>
-                    </div>
-                  );
-                })}
-                {props.cart?.lineItems.physicalItems.map((it: CartLineItem) => {
-                  return (
-                    <div key={it.id}>
-                      <span>{`${it.quantity} x ${it.name}`}</span>
-                      <span>${it.salePrice}</span>
                     </div>
                   );
                 })}

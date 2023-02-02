@@ -1,6 +1,6 @@
 import React from "react";
-import styled from 'styled-components';
-import { TABLET_BREAKPOINTS } from '../commons/constants';
+import styled from "styled-components";
+import { TABLET_BREAKPOINTS } from "../commons/constants";
 
 const StyledCartQty = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ const StyledCartQty = styled.div`
     span {
       margin: 5px 0px 0px;
     }
-  }    
+  }
 `;
 
 interface ICartQty {
@@ -32,11 +32,19 @@ interface ICartQty {
   className?: string;
 }
 
-export const CartQty: React.FC<ICartQty> = ({itemsCount, className}: ICartQty) => {
+export const CartQty: React.FC<ICartQty> = ({
+  itemsCount,
+  className,
+}: ICartQty) => {
   return (
     <StyledCartQty className={className}>
-      Your cart 
-      {itemsCount !== 0 && (<span>{itemsCount === 1 && '(1 item)'} {itemsCount > 1 && `(${itemsCount} items)`}</span>)}
+      Your cart
+      {itemsCount !== 0 && (
+        <span>
+          {itemsCount === 1 && "(1 item)"}{" "}
+          {itemsCount > 1 && `(${itemsCount} items)`}
+        </span>
+      )}
     </StyledCartQty>
   );
 };

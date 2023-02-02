@@ -54,12 +54,12 @@ export const CatalogItem: React.FunctionComponent<ICatalogItemProps> = (
           <span className="product-name"> {props.product.name}</span>
           <span>{parse(props.product.description)}</span>
         </div>
-        {props.product.defaultImage && (
-          <img src={props.product.defaultImage.url} alt="" />
+        {props.product.imageUrl && (
+          <img src={props.product.imageUrl} alt="" />
         )}
       </td>
       <td>{props.product.type}</td>
-      <td className="product-price">{`${props.product.prices.price.currencyCode} ${props.product.prices.price.value}`}</td>
+      <td className="product-price">{`${props.product.currency.currencyCode} ${props.product.price}`}</td>
       <td>
         <input
           type="checkbox"
