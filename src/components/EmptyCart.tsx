@@ -4,9 +4,13 @@ import { TABLET_BREAKPOINTS } from '../commons/constants';
 import EmptyCartImage from "../assets/images/empty-cart.svg"
 
 const StyledEmptyCart = styled.div`
+	box-sizing: border-box;
+	grid-area: main;
+	max-height: 379px;
 	background: #FFFFFF;
 	border: 1px solid #EAEAEA;
 	padding: 69px 0 79px 0;
+	margin-right: 57px;
 
 	p {
 		margin: 38px 0;
@@ -30,6 +34,11 @@ const StyledEmptyCart = styled.div`
 	@media screen and (max-width: ${TABLET_BREAKPOINTS.small}px) {
 		padding: 69px 20px 79px 20px;
 	}
+
+	@media screen and (max-width: ${TABLET_BREAKPOINTS.large}px) {
+        margin-right: 0;
+		margin-bottom: 30px;
+    }
 `
 
 interface EmptyCartProps {
@@ -40,7 +49,7 @@ export const EmptyCart: React.FunctionComponent<EmptyCartProps> = (props: EmptyC
 	return (
 			<StyledEmptyCart>
 				<EmptyCartImage />
-				<p>Your cart is empty. Discover tests to add to your cart</p>
+				<p>Your cart is empty. Discover products to add to your cart</p>
 				<button onClick={() => props.onBackButtonClick()}>Browse products</button>
 			</StyledEmptyCart>
 	)
