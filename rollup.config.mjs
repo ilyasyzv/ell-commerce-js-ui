@@ -1,6 +1,7 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import svgr from '@svgr/rollup'
+import image from 'rollup-plugin-img';
 import typescript from "rollup-plugin-typescript2";
 import dts from "rollup-plugin-dts";
 import { createFilter } from 'rollup-pluginutils';
@@ -41,6 +42,10 @@ export default [
             resolve(),
             commonjs(),
             svgr(),
+            image({
+                limit: 10000,
+                extensions: /\.(png|jpg|jpeg|gif)$/,
+              }),
             typescript({ tsconfig: "./tsconfig.json" }),
 
         ],

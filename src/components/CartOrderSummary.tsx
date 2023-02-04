@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { MAIN_COLOR } from '../commons/colors';
-import { DESKTOP_BREAKPOINTS, MOBILE_BREAKPOINTS, TABLET_BREAKPOINTS } from '../commons/constants';
+import { breakpoints } from '../commons/constants';
 
 const StyledCartOrderSummary = styled.div`
     padding: 47px 40px;
@@ -82,19 +82,19 @@ const StyledCartOrderSummary = styled.div`
     }
 
     // Mobile
-    @media only screen and (min-device-width: ${MOBILE_BREAKPOINTS.small}px) and (max-device-width: ${MOBILE_BREAKPOINTS.medium}px) {
+    @media only screen and (min-device-width: ${breakpoints.mobileSm}px) and (max-device-width: ${breakpoints.mobileMd}px) {
         h3 {
             font-size: 14px;
         }
     }
 
     // Tablet
-    @media only screen and (min-width: ${TABLET_BREAKPOINTS.large}px) {
+    @media only screen and (min-width: ${breakpoints.tabletLg}px) {
         max-width: 373px;
     }
 
     // Desktop
-    @media only screen and (min-width: ${DESKTOP_BREAKPOINTS.large}px) {
+    @media only screen and (min-width: ${breakpoints.desktopMd}px) {
         max-width: 429px;
     }
 

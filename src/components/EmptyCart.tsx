@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { TABLET_BREAKPOINTS } from '../commons/constants';
+import { breakpoints } from '../commons/constants';
 import EmptyCartImage from "../assets/images/empty-cart.svg"
 
 const StyledEmptyCart = styled.div`
@@ -31,11 +31,11 @@ const StyledEmptyCart = styled.div`
 		border-radius: 40px;
 	}
 
-	@media screen and (max-width: ${TABLET_BREAKPOINTS.small}px) {
+	@media screen and (max-width: ${breakpoints.tabletSm}px) {
 		padding: 69px 20px 79px 20px;
 	}
 
-	@media screen and (max-width: ${TABLET_BREAKPOINTS.large}px) {
+	@media screen and (max-width: ${breakpoints.desktopLg}px) {
         margin-right: 0;
 		margin-bottom: 30px;
     }

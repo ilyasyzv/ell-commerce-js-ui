@@ -31,6 +31,7 @@
     "axios": "^1.2.2",
     "rollup": "^3.10.0",
     "rollup-plugin-dts": "^5.1.1",
+    "rollup-plugin-img": "^1.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-typescript2": "^0.34.1",
     "rollup-pluginutils": "^2.8.2",

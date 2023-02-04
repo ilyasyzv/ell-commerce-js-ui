@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { TABLET_BREAKPOINTS } from "../commons/constants";
+import { breakpoints } from "../commons/constants";
 
 const StyledCartQty = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ const StyledCartQty = styled.div`
     margin-left: 20px;
   }
 
-  @media screen and (min-device-width: ${TABLET_BREAKPOINTS.small}px) and (max-device-width: ${TABLET_BREAKPOINTS.large}px) {
+  @media screen and (min-device-width: ${breakpoints.tabletSm}px) and (max-device-width: ${breakpoints.tabletLg}px) {
     flex-direction: column;
     align-items: flex-start;
 

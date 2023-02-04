@@ -4,3 +4,6 @@ export * from "./ShoppingCartIcon";
 export * from "./CartQty";
 export * from "./CartOrderSummary";
 export * from "./EmptyCart";
+export * from "./CartProduct"
+export * from "./CartProductHeader"
+
