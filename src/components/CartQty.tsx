@@ -10,7 +10,11 @@ const StyledCartQty = styled.div`
   font-size: 30px;
   color: #333333;
 
-  span {
+  span.text-wrapper {
+    font-family: "OpenSansBold";
+  }
+
+  span.items-wrapper {
     color: #000000;
     font-weight: 400;
     font-size: 16px;
@@ -38,13 +42,8 @@ export const CartQty: React.FC<ICartQty> = ({
 }: ICartQty) => {
   return (
     <StyledCartQty className={className}>
-      Your cart
-      {itemsCount !== 0 && (
-        <span>
-          {itemsCount === 1 && "(1 item)"}{" "}
-          {itemsCount > 1 && `(${itemsCount} items)`}
-        </span>
-      )}
+      <span className='text-wrapper'>Your Cart</span>
+      {itemsCount !== 0 && (<span className='items-wrapper'>{itemsCount === 1 && '(1 item)'} {itemsCount > 1 && `(${itemsCount} items)`}</span>)}
     </StyledCartQty>
   );
 };
