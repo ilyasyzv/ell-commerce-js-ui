@@ -34,7 +34,7 @@ const StyledShoppingCart = styled.div.attrs(() => ({
     padding: 16px;
     color: #000;
     border-radius: 16px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "OpenSans", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;

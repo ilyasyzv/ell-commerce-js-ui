@@ -19,18 +19,21 @@ const StyledShoppingCartIcon = styled.div`
     padding: 1.5px;
     top: -10px;
     right: -6px;
-    z-index: 2;
     font-weight: 400;
-    font-size: 10.5px;
-    line-height: 16px;
+    font-size: 0.75rem;
+    line-height: 14px;
     background-color: #9E007E;
     color: #ffffff;
     border: 2.25px solid #ffffff;
     border-radius: 50%;
-    height: 15px;
-    min-width: 15px;
-    display: inline-block;
+    height: 21px;
+    min-width: 21px;
+    display: block;
     text-align: center;
+  }
+  
+  .more-nine {
+    font-size: 0.7rem;
   }
 
   @media screen and (max-width: 640px) {
@@ -53,7 +56,7 @@ const StyledShoppingCartIcon = styled.div`
     padding: 16px;
     color: #000;
     border-radius: 16px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "OpenSans", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,90 +144,28 @@ export interface IShoppingCartIconProps {
 export const ShoppingCartIcon: React.FunctionComponent<
   IShoppingCartIconProps
 > = (props: IShoppingCartIconProps) => {
-  const [itemsCount, setItemsCount] = useState(0);
-  const [showPopup, setShowPopup] = useState(false);
-
-  useEffect(() => {
-    const { cart } = props;
-    if (cart) {
-      let count = 0;
-      cart.items.forEach((item) => {
-        count += item.quantity;
-      });
-      setItemsCount(count);
-    } else {
-      setItemsCount(0);
-    }
-  }, [props.cart]);
-
+  const count = props.cart?.items.reduce((sum, item) => {
+    sum += item.quantity;
+    return sum
+  }, 0) ?? 0;
   const togglePopup = async (e: React.MouseEvent<HTMLDivElement>) => {
-    if (props.features?.disablePopup) {
-      await props.onOpenCart("cartpage");
-    } else {
-      if (!showPopup) {
-        await props.onOpenCart(props.cart?.id);
-      }
-      setShowPopup(!showPopup);
-    }
-
+    await props.onOpenCart("cartpage");
     e.stopPropagation();
   };
+  
+  let classNameCounter = "total-items"
+  if (count > 9) {
+    classNameCounter+= " more-nine"
+  }
 
-  const onClearCart = (e: React.MouseEvent<HTMLButtonElement>) => {
-    props.onClearCart(props.cart?.id as string);
-    e.stopPropagation();
-  };
-
-  const onCheckout = (e: React.MouseEvent<HTMLButtonElement>) => {
-    props.onCheckout(props.cart?.id as string);
-    setShowPopup(false);
-    e.stopPropagation();
-  };
-
+  
   return (
     <StyledShoppingCartIcon onClick={togglePopup}>
       <CartIcon className="cart-icon" />
-      {itemsCount > 0 && (
-        <span className="total-items">
-          {itemsCount > 9 ? "9+" : itemsCount}
+      {count > 0 && (
+        <span className={classNameCounter}>
+          {count > 9 ? "9+" : count}
         </span>
-      )}
-      {showPopup && !props.features?.disablePopup && (
-        <div className="items-popup">
-          {itemsCount === 0 && <span>Your cart is empty</span>}
-          {itemsCount > 0 && (
-            <div className="item-popup-container">
-              <div className="checkout-row">
-                <span>
-                  Total ({props.cart?.currency.currencyCode}){" "}
-                  {props.cart?.currency.symbol}
-                  {props.cart?.cartAmount}
-                </span>
-                <button onClick={onCheckout}>
-                  Checkout&nbsp;&nbsp;
-                  <i className="far fa-cash-register"></i>
-                </button>
-              </div>
-              <button className="clear-cart-button" onClick={onClearCart}>
-                Clear cart&nbsp;&nbsp;
-                <i className="far fa-trash"></i>
-              </button>
-              <div className="items-list-container">
-                {props.cart?.items.map((it: CartItem) => {
-                  return (
-                    <div key={it.id}>
-                      <span>{`${it.quantity} x ${it.name}`}</span>
-                      <span>
-                        {props.cart?.currency.symbol}
-                        {it.listPrice}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </div>
       )}
     </StyledShoppingCartIcon>
   );

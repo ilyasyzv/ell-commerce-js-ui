@@ -4,29 +4,26 @@ import { breakpoints } from "../commons/constants";
 
 const StyledCartQty = styled.div`
   display: flex;
-  align-items: center;
+  font-family: "OpenSans";
+  align-items: end;
   font-style: normal;
   font-weight: 700;
   font-size: 30px;
+  line-height: 26px;
   color: #333333;
-
-  span.text-wrapper {
-    font-family: "OpenSansBold";
-  }
-
-  span.items-wrapper {
-    color: #000000;
+  
+  .items-wrapper {
     font-weight: 400;
     font-size: 16px;
     margin-left: 20px;
+    line-height: 20px;
   }
 
   @media screen and (min-device-width: ${breakpoints.tabletSm}px) and (max-device-width: ${breakpoints.tabletLg}px) {
     flex-direction: column;
     align-items: flex-start;
-
-    span {
-      margin: 5px 0px 0px;
+    .items-wrapper {
+      margin-left: 0;
     }
   }
 `;

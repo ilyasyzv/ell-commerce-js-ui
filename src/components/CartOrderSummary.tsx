@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {MouseEventHandler, useState } from 'react'
 import styled from 'styled-components';
 import { MAIN_COLOR } from '../commons/colors';
 import { breakpoints } from '../commons/constants';
@@ -9,7 +9,7 @@ const StyledCartOrderSummary = styled.div`
     border: 1px solid #EAEAEA;
     border-radius: 6px;
     max-width: 100%;
-
+    font-family: "OpenSans";
     h2 {
         font-weight: 700;
         font-size: 20px;
@@ -32,6 +32,8 @@ const StyledCartOrderSummary = styled.div`
     }
 
     h3 {
+        margin: 0;
+        padding-top: 25px;
         font-weight: 600;
         font-size: 16px;
         line-height: 20px;
@@ -95,7 +97,7 @@ const StyledCartOrderSummary = styled.div`
 
     // Desktop
     @media only screen and (min-width: ${breakpoints.desktopMd}px) {
-        max-width: 429px;
+        min-width: 429px;
     }
 
 
@@ -104,9 +106,10 @@ const StyledCartOrderSummary = styled.div`
 interface ICartOrderSummary {
     className?: string;
     price: string;
+    onCheckoutClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const CartOrderSummary: React.FC<ICartOrderSummary> = ({className, price = ''}: ICartOrderSummary) => {
+export const CartOrderSummary: React.FC<ICartOrderSummary> = ({className, price = '', onCheckoutClick}: ICartOrderSummary) => {
     const [disabled, setDisabled] = useState<boolean>(false);
 
     const toogleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -129,7 +132,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({className, price 
                 />
                 <span>I agree to Pearson’s <a><b>Privacy Policy, Refund Policy and Terms of Use</b></a></span>
             </div>
-            <button aria-disabled={!disabled}>Checkout</button>
+            <button aria-disabled={!disabled} onClick={onCheckoutClick}>Checkout</button>
         </StyledCartOrderSummary>
     );
 }

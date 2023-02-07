@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { breakpoints } from '../../commons/constants';
 
 export const StyledContainer = styled.div`
+    font-family: "OpenSans";
     width: 100%;
     max-width: 100%;
     min-width: calc(${breakpoints.mobileSm}px - 40px);
@@ -16,11 +17,10 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledHeader = styled.div`
-    padding: 0 20px;
+    padding:0 20px 20px 20px;
     margin: 0;
-    padding-bottom: 20px;
     display: flex;
-    flex-wrap: no-wrap;
+    flex-wrap: nowrap;
     flex-direction: row;
     width: 100%;
     max-width: 100%;

@@ -1,1 +1,1 @@
-export const HEADER_TITLES = ["Product", " Qty", "Price"]
+export const HEADER_TITLES = ["Product", "Qty", "Price"]

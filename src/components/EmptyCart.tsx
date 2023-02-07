@@ -5,22 +5,32 @@ import EmptyCartImage from "../assets/images/empty-cart.svg"
 
 const StyledEmptyCart = styled.div`
 	box-sizing: border-box;
-	grid-area: main;
 	max-height: 379px;
+	max-width: 1025px;
+	width: 100%;
 	background: #FFFFFF;
 	border: 1px solid #EAEAEA;
-	padding: 69px 0 79px 0;
-	margin-right: 57px;
+	padding: 69px 20px 79px 20px;
+	min-width: 335px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	
+	.cart-image {
+		min-width: 148px;
+		min-height: 88px;
+	}
 
-	p {
+	.text {
 		margin: 38px 0;
 		color: #151515;
 		font-weight: 400;
 		font-size: 18px;
 		line-height: 104.5%;
+		text-align: center;
 	}
 
-	button {
+	.button {
 		cursor: pointer;
 		padding: 12px 20px;
 		color: #FEFEFE;
@@ -43,14 +53,15 @@ const StyledEmptyCart = styled.div`
 
 interface EmptyCartProps {
 	onBackButtonClick: () => void;
+	className?: string
 }
 
 export const EmptyCart: React.FunctionComponent<EmptyCartProps> = (props: EmptyCartProps) => {
 	return (
-			<StyledEmptyCart>
-				<EmptyCartImage />
-				<p>Your cart is empty. Discover products to add to your cart</p>
-				<button onClick={() => props.onBackButtonClick()}>Browse products</button>
+			<StyledEmptyCart className={props.className}>
+				<EmptyCartImage className="cart-image" />
+				<p className="text">Your cart is empty. Discover products to add to your cart</p>
+				<button className="button" onClick={() => props.onBackButtonClick()}>Browse products</button>
 			</StyledEmptyCart>
 	)
 }

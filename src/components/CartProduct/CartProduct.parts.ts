@@ -2,10 +2,11 @@ import styled from 'styled-components';
 import { breakpoints } from '../../commons/constants';
 
 export const StyledCartProduct = styled.li`
+  font-family: "OpenSans";
   width: 100%;
   max-width: 100%;
   display: flex;
-  flex-wrap: no-wrap;
+  flex-wrap: nowrap;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
@@ -38,7 +39,7 @@ export const StyledProductInfo = styled.div`
     padding: 0;
     flex: 1;
     display: flex;
-    flex-wrap: no-wrap;
+    flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-between;
     align-self: stretch;
@@ -67,7 +68,7 @@ export const StyledProductInfo = styled.div`
 
 export const StyledProductNameContainer = styled.div`
     display: flex;
-    flex-wrap: no-wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: flex-start;
     flex: 1;
@@ -97,7 +98,7 @@ export const StyledProductNameContainer = styled.div`
 
 export const StyledProductName = styled.p`
     color: #151515;
-    font-family: "Open Sans", sans-serif;
+    font-family: "OpenSans", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
