@@ -54,8 +54,8 @@ export const CatalogItem: React.FunctionComponent<ICatalogItemProps> = (
           <span className="product-name"> {props.product.name}</span>
           <span>{parse(props.product.description)}</span>
         </div>
-        {props.product.imageUrl && (
-          <img src={props.product.imageUrl} alt="" />
+        {props.product.images && props.product.images.length > 0 && (
+          <img src={props.product.images[0].imageUrl} alt="" />
         )}
       </td>
       <td>{props.product.type}</td>
