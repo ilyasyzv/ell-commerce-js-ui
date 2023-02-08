@@ -1,6 +1,6 @@
 import React, {PropsWithChildren} from 'react'
-import {StyledContainer, StyledHeader, StyledProductList, StyledTitle} from './CartProductHeader.parts'
-import {HEADER_TITLES} from './constants';
+import {StyledContainer, StyledHeader, StyledProductList, StyledLeftColumnTitle, StyledCenterColumnTitle, StyledRightColumnTitle} from './CartProductHeader.parts'
+import {StyledLeftFlexBlock, StyledRightFlexBlock} from '../CartProduct/CartProduct.parts'
 
 export const CartProductHeader: React.FC<PropsWithChildren> = ({
     children
@@ -8,13 +8,22 @@ export const CartProductHeader: React.FC<PropsWithChildren> = ({
     return (
         <StyledContainer>
             <StyledHeader>
-                {HEADER_TITLES.map((title) => (
-                                <StyledTitle
-                                    key={title}
-                                >
-                                    {title}
-                                </StyledTitle>
-                            ))}</StyledHeader>
+                <StyledLeftFlexBlock>
+                    <StyledLeftColumnTitle>
+                        <p>{"Product"}<span>(s)</span></p>
+                    </StyledLeftColumnTitle>
+                </StyledLeftFlexBlock>
+                
+                <StyledRightFlexBlock>
+                    <StyledCenterColumnTitle>
+                        <p>{"Qty"}</p>
+                    </StyledCenterColumnTitle>
+                    <StyledRightColumnTitle>
+                        <p>{"Price"}</p>
+                    </StyledRightColumnTitle>
+                </StyledRightFlexBlock>
+                            
+            </StyledHeader>
             <StyledProductList>
                 {children}
             </StyledProductList>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { CartItem } from "ell-commerce-sdk"
 import {StyledCartProduct, StyledImage, StyledProductInfo, StyledProductNameContainer,
-    StyledProductName, StyledSelect, StyledProductPriceContainer, StyledProductPrice, StyledButton} from './CartProduct.parts'
+    StyledProductName, StyledSelect, StyledProductPriceContainer, StyledProductPrice, StyledButton, StyledLeftFlexBlock, StyledRightFlexBlock} from './CartProduct.parts'
 import BucketIcon from "../../assets/images/bucket.svg"
 import noImageSrc from "../../assets/images/no-image.png"
 import {MAX_PRODUCT_NAME_DISLPAY_LENGTH} from './constants'   
@@ -21,12 +21,16 @@ export const CartProduct: React.FC<Props> = ({
   }) => {  
     return (
         <StyledCartProduct key={item.id}>
-        <StyledImage
-            role="presentation"
-            src={item.imageUrl || noImageSrc}
-            alt=""
-        />
-        <StyledProductInfo>
+            <StyledLeftFlexBlock>
+                <StyledImage
+                    role="presentation"
+                    src={item.imageUrl || noImageSrc}
+                    alt=""
+                />
+            </StyledLeftFlexBlock>
+
+            <StyledRightFlexBlock>
+            <StyledProductInfo>
             <StyledProductNameContainer>
                 <StyledProductName>
                     {item.name.length <= MAX_PRODUCT_NAME_DISLPAY_LENGTH
@@ -67,6 +71,9 @@ export const CartProduct: React.FC<Props> = ({
                 </StyledButton>
             </StyledProductPriceContainer>
         </StyledProductInfo>
+            </StyledRightFlexBlock>
+       
+        
         </StyledCartProduct>
     );
   };

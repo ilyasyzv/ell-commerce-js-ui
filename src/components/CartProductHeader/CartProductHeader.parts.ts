@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { breakpoints } from '../../commons/constants';
 
 export const StyledContainer = styled.div`
-    font-family: "OpenSans";
+    font-family: "OpenSans";    
     width: 100%;
     max-width: 100%;
     min-width: calc(${breakpoints.mobileSm}px - 40px);
@@ -17,7 +17,8 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledHeader = styled.div`
-    padding:0 20px 20px 20px;
+    padding:20px;
+    padding-top: 0;
     margin: 0;
     display: flex;
     flex-wrap: nowrap;
@@ -25,12 +26,12 @@ export const StyledHeader = styled.div`
     width: 100%;
     max-width: 100%;
 
-    @media screen and (max-width: ${breakpoints.mobileMd}px) {
+    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
       padding: 15px;
     }
 `;
 
-export const StyledTitle = styled.p`
+export const StyledTitle = styled.div`
     text-transform: uppercase;
     font-weight: 700;
     font-size: 16px;
@@ -39,51 +40,115 @@ export const StyledTitle = styled.p`
     margin: 0;
     padding: 0;
 
-    &:nth-of-type(1) {
-        width: 112px;
-        margin-right: 15px;
-        align-self: flex-start;
-        text-align: left;
-    
-        @media screen and (max-width: ${breakpoints.mobileMd}px) {
-            margin-right: 10px;
-        }
-    }
-  
-    &:nth-of-type(2) {
-      flex: 1;
-      margin-right: 20px;
-      text-align: right;
-      padding-right: 40px;
-
-      @media screen and (max-width: ${breakpoints.desktopSm}px) {
-        padding-right: 20px;
-      }
-
-      @media screen and (max-width: ${breakpoints.tabletLg}px) {
-         font-size: 0;
-      }
-      
-      @media screen and (max-width: ${breakpoints.tabletMd}px) {
-          font-size: 16px;
-      }
-
-      @media screen and (max-width: ${breakpoints.tabletSm}px) {
-          font-size: 0;
-      }
-    }
-  
-    &:nth-of-type(3) {
-      min-width: 20%;
+    p {
+      width: 100%;
+      max-width: 100%;
       margin: 0;
       padding: 0;
-      text-align: right;
-
-      @media screen and (max-width: 385px) {
-          font-size: 0;
-      }
     }
 `;
+
+
+export const StyledLeftColumnTitle = styled(StyledTitle)`
+      width: 100%;
+      max-width: 100%;
+      text-align: left;
+
+      p {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+      }
+      span {
+        display: none;
+      }
+
+      @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
+        span {
+          display: inline-block;
+        }
+      }
+`
+
+export const StyledCenterColumnTitle = styled(StyledTitle)`
+    flex: 1;
+    fisplay: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+    padding-right: 15px;
+    text-align: right;
+
+
+    p {
+      width: 96px;
+      margin-left: auto;
+      text-align: left;
+    }
+
+    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
+      font-size: 0;
+      padding-right: 10px;
+    }
+   
+    @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {         
+       font-size: 16px;
+    }
+
+ 
+    @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
+      padding-right: 0;
+      margin-right: 0;
+    }
+
+    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
+        font-size: 0;
+    }
+`
+
+export const StyledRightColumnTitle = styled(StyledTitle)`
+    min-width: 20%;
+    max-width: calc(80px + 20px);
+    margin: 0;
+    padding: 0 10px;
+    text-align: right;
+
+    p {
+      padding-right: 10px;
+
+      @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
+        min-width: 80px;
+        padding-right: 0;
+      }
+
+      @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
+        min-width: 100%;
+      }
+    }
+
+    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
+      padding-right: 15px;
+    }
+
+    @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
+      padding-right: 10px;
+    }
+
+    @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
+        min-width: 10%;
+    }
+
+    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
+        min-width: 15%;
+    }
+   
+    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
+      font-size: 0;
+    }
+`
+
+
 
 export const StyledProductList = styled.ul`
     font-size: 18px;

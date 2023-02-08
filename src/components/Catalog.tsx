@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const StyledCatalog = styled.div`
   padding: 24px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "OpenSans";  
   display: flex;
   justify-content: center;
   table {
