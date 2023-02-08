@@ -56,7 +56,7 @@ const StyledCartOrderSummary = styled.div`
             text-align: left;
             line-height: 21px;
     
-            a {
+            b {
                 text-decoration: underline;
             }
         } 
@@ -91,6 +91,12 @@ const StyledCartOrderSummary = styled.div`
     }
 
     // Tablet
+    @media only screen and (max-width: ${breakpoints.tabletMd + 1}px) {
+        .agreement-wrapper {
+            justify-content: center;
+        }
+    }
+
     @media only screen and (min-width: ${breakpoints.tabletLg}px) {
         max-width: 373px;
     }
@@ -130,7 +136,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({className, price 
                     type="checkbox" 
                     onChange={toogleCheckbox}
                 />
-                <span>I agree to Pearson’s <a><b>Privacy Policy, Refund Policy and Terms of Use</b></a></span>
+                <span>I agree to Pearson’s <a><b>Privacy Policy, Refund Policy</b> and <b>Terms of Use</b></a></span>
             </div>
             <button aria-disabled={!disabled} onClick={onCheckoutClick}>Checkout</button>
         </StyledCartOrderSummary>
