@@ -22,6 +22,7 @@ const StyledEmptyCart = styled.div`
 	}
 
 	.text {
+		font-family: "OpenSans";
 		margin: 38px 0;
 		color: #151515;
 		font-weight: 400;
@@ -31,6 +32,7 @@ const StyledEmptyCart = styled.div`
 	}
 
 	.button {
+		font-family: "OpenSans";
 		cursor: pointer;
 		padding: 12px 20px;
 		color: #FEFEFE;
@@ -39,6 +41,7 @@ const StyledEmptyCart = styled.div`
 		line-height: 150%;
 		background: #151515;
 		border-radius: 40px;
+		border: none;
 	}
 
 	@media screen and (max-width: ${breakpoints.tabletSm}px) {
