@@ -232,6 +232,38 @@ export const StyledProductPrice = styled.p`
     }
 `
 
+export const StyledDisabledProductPrice = styled.p`
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: auto;
+    text-align: right;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: auto;
+    padding-right: 10px;
+    color: #e6e6e6;
+    text-decoration: line-through;
+
+    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
+        padding-right: 0;
+    }
+
+    @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
+        font-size: 16px;
+    }
+
+    @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
+        font-size: 14px;
+    }
+ 
+    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
+        text-align: left;
+    }
+`
+
 export const StyledButton = styled.button`
     display: flex;
     align-items: flex-end;
