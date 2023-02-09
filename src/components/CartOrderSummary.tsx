@@ -77,7 +77,7 @@ const StyledCartOrderSummary = styled.div`
         background: #151515;
         color: #FEFEFE;
 
-        &[aria-disabled='true'] {
+        &[disabled] {
             background: #E6E6E6;
             color: #919191;
         }
@@ -116,11 +116,11 @@ interface ICartOrderSummary {
 }
 
 export const CartOrderSummary: React.FC<ICartOrderSummary> = ({className, price = '', onCheckoutClick}: ICartOrderSummary) => {
-    const [disabled, setDisabled] = useState<boolean>(false);
+    const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
     const toogleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
         const isChecked = e.target.checked;
-        setDisabled(isChecked);
+        setIsDisabled(isChecked);
     }
 
     return (
@@ -138,7 +138,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({className, price 
                 />
                 <span>I agree to Pearson’s <a><b>Privacy Policy, Refund Policy</b> and <b>Terms of Use</b></a></span>
             </div>
-            <button aria-disabled={!disabled} onClick={onCheckoutClick}>Checkout</button>
+            <button disabled={!isDisabled} onClick={onCheckoutClick}>Checkout</button>
         </StyledCartOrderSummary>
     );
 }
