@@ -142,16 +142,52 @@ export const StyledProductName = styled.p`
     }
    
 `
-
-export const StyledSelect = styled.select`
-    width: 96px;
-    min-width: 96px;
-    height: 48px;
-    text-align: center;
-    align-self: flex-start;
-
+export const StyledInput = styled.div`
+    position: relative;
     margin-right: 10%;
 
+    .cart-product-input {
+        box-sizing: border-box;
+        width: 96px;
+        height: 48px;
+        color: #333333;
+        background: #FFFFFF;
+        border: 1px solid #919191;
+        border-radius: 4px;
+        padding: 12px 13px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        align-self: flex-start;
+        margin-bottom: 5px;
+
+        &:hover {
+            border: 1px solid #151515;
+        }
+    
+        &:disabled {
+            background: #F5F5F5;
+            border: 1px solid #919191;
+            color: #919191;
+        }
+    
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {  
+            height: 24px;
+            opacity: 1;
+        }
+    }
+
+    .message {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 150%;
+        color: #151515;
+        
+        p {
+            margin: 0;
+        }
+    }
 
     @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
         margin-bottom: 10px;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CartItem, Currency } from "ell-commerce-sdk";
 import {
   StyledCartProduct,
@@ -6,7 +6,7 @@ import {
   StyledProductInfo,
   StyledProductNameContainer,
   StyledProductName,
-  StyledSelect,
+  StyledInput,
   StyledProductPriceContainer,
   StyledProductPrice,
   StyledButton,
@@ -21,9 +21,25 @@ import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./constants";
 type Props = {
   item: CartItem;
   currency: Currency;
-  onChange: (ev: React.ChangeEvent<HTMLSelectElement>, item: CartItem) => void;
+  onChange: (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => void;
   onDelete: (e: React.MouseEvent<HTMLSpanElement>, itemId: string) => void;
 };
+
+type MessageProps = {
+	text: string;
+	type: string;
+}
+
+const Message: React.FC<MessageProps> = ({
+	text,
+	type
+}) => {
+	return (
+		<div className="message">
+			<p style={type === "Error" ? {color: "#D30018"} : {color: "#008638"}}>{text}</p>
+		</div>
+	)
+}
 
 export const CartProduct: React.FC<Props> = ({
   item,
@@ -31,6 +47,37 @@ export const CartProduct: React.FC<Props> = ({
   onChange,
   onDelete,
 }) => {
+	const [value, setValue] = useState(item.quantity)
+	const [temporaryValue, setTemporaryValue] = useState(item.quantity)
+	const [message, setMessage] = useState({text: "", type: ""})
+
+	const minPurchaseQuantity = item.minPurchaseQuantity
+	const maxPurchaseQuantity = item.maxPurchaseQuantity
+
+	const onInputDebounce = (debounce: number) => {
+		const timeout = setTimeout(() => {
+			setValue(temporaryValue);
+		}, debounce);
+
+		return () => clearTimeout(timeout);
+	}
+
+	useEffect(() => onInputDebounce(250), [temporaryValue])
+
+	const onInputChange = (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => {
+		const numValue = +ev.target.value
+		
+		if (numValue >= minPurchaseQuantity && numValue <= maxPurchaseQuantity) {
+			setTemporaryValue(numValue)
+			setMessage({text: "", type: ""})
+			onChange(ev, item)
+		} else if (numValue < minPurchaseQuantity) {
+			setMessage({text: `Min qty is ${minPurchaseQuantity}`, type: "Error"})
+		} else if (numValue > maxPurchaseQuantity) {
+			setMessage({text: `Max qty is ${maxPurchaseQuantity}`, type: "Error"})
+		}
+	}
+
   return (
     <StyledCartProduct key={item.id}>
       <StyledLeftFlexBlock>
@@ -49,14 +96,18 @@ export const CartProduct: React.FC<Props> = ({
                 ? item.name
                 : `${item.name.slice(0, MAX_PRODUCT_NAME_DISLPAY_LENGTH)}...`}
             </StyledProductName>
-            <StyledSelect
-              value={item.quantity}
-              onChange={(ev) => onChange(ev, item)}
-            >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </StyledSelect>
+            <StyledInput>
+							<input
+								type={"number"}
+								className="cart-product-input"
+								disabled={maxPurchaseQuantity === 1 ? true : false}
+								defaultValue={value}
+								min={minPurchaseQuantity}
+								max={maxPurchaseQuantity}
+								onChange={(ev) => onInputChange(ev, item)}
+							/>
+							<Message text={message.text} type={message.type} />
+						</StyledInput>
           </StyledProductNameContainer>
           <StyledProductPriceContainer>
             {item.originalPrice === item.salePrice && (
