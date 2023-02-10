@@ -4,7 +4,7 @@ import { breakpoints } from "../commons/constants";
 
 const StyledCartQty = styled.div`
   display: flex;
-  font-family: "OpenSans";
+  font-family: "OpenSans", sans-serif;
   align-items: end;
   font-style: normal;
   font-weight: 700;

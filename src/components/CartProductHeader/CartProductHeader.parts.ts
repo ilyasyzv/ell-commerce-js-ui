@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { breakpoints } from '../../commons/constants';
 
 export const StyledContainer = styled.div`
-    font-family: "OpenSans";    
+    font-family: "OpenSans", sans-serif;    
     width: 100%;
     max-width: 100%;
     min-width: calc(${breakpoints.mobileSm}px - 40px);

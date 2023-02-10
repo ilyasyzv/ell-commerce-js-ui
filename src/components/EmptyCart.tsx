@@ -22,7 +22,7 @@ const StyledEmptyCart = styled.div`
 	}
 
 	.text {
-		font-family: "OpenSans";
+		font-family: "OpenSans", sans-serif;
 		margin: 38px 0;
 		color: #151515;
 		font-weight: 400;
@@ -32,7 +32,7 @@ const StyledEmptyCart = styled.div`
 	}
 
 	.button {
-		font-family: "OpenSans";
+		font-family: "OpenSans", sans-serif;
 		cursor: pointer;
 		padding: 12px 20px;
 		color: #FEFEFE;

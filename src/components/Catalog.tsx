@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const StyledCatalog = styled.div`
   padding: 24px;
-  font-family: "OpenSans";  
+  font-family: "OpenSans", sans-serif;  
   display: flex;
   justify-content: center;
   box-sizing: border-box;

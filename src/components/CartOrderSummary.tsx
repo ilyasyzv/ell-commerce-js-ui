@@ -10,7 +10,7 @@ const StyledCartOrderSummary = styled.div`
     border: 1px solid #eaeaea;
     border-radius: 6px;
     max-width: 100%;
-    font-family: "OpenSans";
+    font-family: "OpenSans", sans-serif;
     h2 {
         font-weight: 700;
         font-size: 20px;
