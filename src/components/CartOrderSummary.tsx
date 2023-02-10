@@ -1,5 +1,5 @@
 import { Cart } from "ell-commerce-sdk";
-import React, { MouseEventHandler, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { MAIN_COLOR } from "../commons/colors";
 import { breakpoints } from "../commons/constants";
@@ -54,7 +54,7 @@ const StyledCartOrderSummary = styled.div`
         padding-bottom: 50px;
     }
 
-    h3 {
+    p.calculations {
         margin: 0;
         padding-top: 25px;
         font-weight: 600;
@@ -185,7 +185,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                 </div>
             )}
 
-            <h3>*All final calculations will be made at checkout.</h3>
+            <p className="calculations">*All final calculations will be made at checkout.</p>
             <div className="agreement-wrapper">
                 <input type="checkbox" onChange={toogleCheckbox} />
                 <span>

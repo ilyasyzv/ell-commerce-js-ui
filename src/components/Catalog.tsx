@@ -8,6 +8,8 @@ const StyledCatalog = styled.div`
   font-family: "OpenSans";  
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
+
   table {
     border-collapse: collapse;
     margin-right: 120px;

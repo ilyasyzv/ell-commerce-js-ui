@@ -28,6 +28,7 @@ export const StyledLeftFlexBlock = styled.div`
     margin: 0;
     padding: 0;
     display: flex;
+    box-sizing: border-box;
 
     @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
         width: 98px;
@@ -53,6 +54,7 @@ export const StyledRightFlexBlock = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-self: stretch;
+    box-sizing: border-box;
 `
 
 
@@ -61,6 +63,7 @@ export const StyledProductInfo = styled.div`
     padding: 0;
     width: 100%;
     max-width: 100%;
+    box-sizing: border-box;
     
     display: flex;
     flex-wrap: nowrap;
@@ -81,6 +84,7 @@ export const StyledProductNameContainer = styled.div`
     flex: 1;
     align-self: stretch;
     padding: 10px 15px;
+    box-sizing: border-box;
 
 
     @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
@@ -121,6 +125,7 @@ export const StyledProductName = styled.p`
     align-self: flex-start;
     max-width: 60%;
     text-align: left;
+    box-sizing: border-box;
 
     @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
        margin-bottom: 40px;
@@ -145,6 +150,7 @@ export const StyledProductName = styled.p`
 export const StyledInput = styled.div`
     position: relative;
     margin-right: 10%;
+    box-sizing: border-box;
 
     .cart-product-input {
         box-sizing: border-box;
@@ -208,6 +214,7 @@ export const StyledProductPriceContainer = styled.div`
     justify-content: space-between;
     flex-wrap: wrap;
     align-self: stretch;
+    box-sizing: border-box;
 
     position: relative;
 
@@ -250,6 +257,7 @@ export const StyledProductPrice = styled.p`
     white-space: nowrap;
     overflow: auto;
     padding-right: 10px;
+    box-sizing: border-box;
 
 
     @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
@@ -320,6 +328,7 @@ export const StyledButton = styled.button`
     min-height: 44px;
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
     
     position: absolute;
     right: 0;

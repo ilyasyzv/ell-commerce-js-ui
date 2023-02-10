@@ -8,6 +8,7 @@ const StyledShoppingCart = styled.div.attrs(() => ({
   position: absolute;
   font-size: 36px;
   cursor: pointer;
+  box-sizing: border-box;
 
   .total-items {
     background-color: #0075a3;

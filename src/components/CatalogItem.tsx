@@ -4,6 +4,8 @@ import { Product } from "ell-commerce-sdk";
 import styled from "styled-components";
 
 const StyledCatalogItem = styled.tr`
+  box-sizing: border-box;
+
   .product-price {
     white-space: nowrap;
     text-align: right;

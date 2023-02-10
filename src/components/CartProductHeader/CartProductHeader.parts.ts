@@ -25,6 +25,7 @@ export const StyledHeader = styled.div`
     flex-direction: row;
     width: 100%;
     max-width: 100%;
+    box-sizing: border-box;
 
     @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
       padding: 15px;
@@ -39,6 +40,7 @@ export const StyledTitle = styled.div`
     color: #505759;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 
     p {
       width: 100%;

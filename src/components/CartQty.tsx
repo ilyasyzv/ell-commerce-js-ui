@@ -11,6 +11,7 @@ const StyledCartQty = styled.div`
   font-size: 30px;
   line-height: 26px;
   color: #333333;
+  box-sizing: border-box;
   
   .items-wrapper {
     font-weight: 400;

@@ -1,0 +1,1 @@
+export {ShoppingCartIcon} from "./ShoppingCartIcon"

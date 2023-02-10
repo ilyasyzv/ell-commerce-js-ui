@@ -44,6 +44,7 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "ell-commerce-ui": "file:",
     "html-react-parser": "^3.0.4",
     "styled-components": "^5.3.6"
   }
