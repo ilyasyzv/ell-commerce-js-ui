@@ -1,6 +1,6 @@
 {
   "name": "ell-commerce-ui",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "ELL eCommerce components library for react",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -44,7 +44,6 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "ell-commerce-ui": "file:",
     "html-react-parser": "^3.0.4",
     "styled-components": "^5.3.6"
   }
