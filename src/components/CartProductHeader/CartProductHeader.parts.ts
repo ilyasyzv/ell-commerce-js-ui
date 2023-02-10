@@ -76,15 +76,16 @@ export const StyledCenterColumnTitle = styled(StyledTitle)`
     flex: 1;
     fisplay: flex;
     justify-content: flex-end;
-    margin-right: 20px;
     padding-right: 15px;
     text-align: right;
 
-
     p {
       width: 96px;
+      min-width: 96px;
       margin-left: auto;
       text-align: left;
+
+      margin-right: 10%;
     }
 
     @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
@@ -103,8 +104,13 @@ export const StyledCenterColumnTitle = styled(StyledTitle)`
     }
 
     @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        font-size: 0;
+      font-size: 0;
     }
+
+    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
+      display: none;
+    }
+
 `
 
 export const StyledRightColumnTitle = styled(StyledTitle)`
@@ -112,27 +118,25 @@ export const StyledRightColumnTitle = styled(StyledTitle)`
     max-width: calc(80px + 20px);
     margin: 0;
     padding: 0 10px;
+    padding-right: 20px;
     text-align: right;
 
     p {
       padding-right: 10px;
+      width: 100%;
+      max-width: 100%;
 
       @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-        min-width: 80px;
         padding-right: 0;
-      }
-
-      @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        min-width: 100%;
       }
     }
 
     @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-      padding-right: 15px;
+        padding: 0 10px;
     }
 
     @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
-      padding-right: 10px;
+        padding: 0 10px;
     }
 
     @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
@@ -144,7 +148,7 @@ export const StyledRightColumnTitle = styled(StyledTitle)`
     }
    
     @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-      font-size: 0;
+        display: none;
     }
 `
 
