@@ -256,12 +256,10 @@ export const StyledProductPrice = styled.p`
     max-width: 100%;
     white-space: nowrap;
     overflow: auto;
-    padding-right: 10px;
     box-sizing: border-box;
 
 
     @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-        padding-right: 0;
         font-size: 16px;
     }
 
