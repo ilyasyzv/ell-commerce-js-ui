@@ -14,9 +14,9 @@ import {
   StyledRightFlexBlock,
   StyledDisabledProductPrice,
 } from "./CartProduct.parts";
-import BucketIcon from "../../assets/images/bucket.svg";
 import noImageSrc from "../../assets/images/no-image.png";
 import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./constants";
+import { BucketSvg } from "../../commons/svgs";
 
 type Props = {
   item: CartItem;
@@ -133,7 +133,7 @@ export const CartProduct: React.FC<Props> = ({
               onClick={(ev) => onDelete(ev, item.id)}
             >
               <i>
-                <BucketIcon />
+                <BucketSvg />
               </i>
               Remove
             </StyledButton>

@@ -7,6 +7,7 @@ import dts from "rollup-plugin-dts";
 import { createFilter } from 'rollup-pluginutils';
 
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import ignore from 'rollup-plugin-ignore';
 
 import packageJson from "./package.json" assert { type: "json" };
 
@@ -47,6 +48,9 @@ export default [
                 extensions: /\.(png|jpg|jpeg|gif)$/,
               }),
             typescript({ tsconfig: "./tsconfig.json" }),
+            ignore([
+                'src/stories/**/*'
+            ])
 
         ],
     },

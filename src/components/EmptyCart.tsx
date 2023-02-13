@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { breakpoints } from '../commons/constants';
-import EmptyCartImage from "../assets/images/empty-cart.svg"
+import {EmptyCartSvg} from "../commons/svgs";
 
 const StyledEmptyCart = styled.div`
 	box-sizing: border-box;
@@ -62,7 +62,7 @@ interface EmptyCartProps {
 export const EmptyCart: React.FunctionComponent<EmptyCartProps> = (props: EmptyCartProps) => {
 	return (
 			<StyledEmptyCart className={props.className}>
-				<EmptyCartImage className="cart-image" />
+				<EmptyCartSvg className="cart-image" />
 				<p className="text">Your cart is empty. Discover products to add to your cart</p>
 				<button className="button" onClick={() => props.onBackButtonClick()}>Browse products</button>
 			</StyledEmptyCart>
