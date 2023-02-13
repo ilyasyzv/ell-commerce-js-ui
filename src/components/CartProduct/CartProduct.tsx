@@ -15,6 +15,7 @@ import {
   StyledDisabledProductPrice,
 } from "./CartProduct.parts";
 import noImageSrc from "../../assets/images/no-image.png";
+import {formatPrice, mockConfig} from "../../utils"
 import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./constants";
 import { BucketSvg } from "../../commons/svgs";
 
@@ -112,19 +113,16 @@ export const CartProduct: React.FC<Props> = ({
           <StyledProductPriceContainer>
             {item.originalPrice === item.salePrice && (
               <StyledProductPrice>
-                {currency.symbol}
-                {item.originalPrice}
+                {formatPrice(mockConfig, currency.symbol, item.originalPrice)}
               </StyledProductPrice>
             )}
             {item.originalPrice !== item.salePrice && (
               <div>
                 <StyledDisabledProductPrice>
-                  {currency.symbol}
-                  {item.originalPrice}
+                  {formatPrice(mockConfig, currency.symbol, item.originalPrice)}
                 </StyledDisabledProductPrice>
                 <StyledProductPrice>
-                  {currency.symbol}
-                  {item.salePrice}
+                  {formatPrice(mockConfig, currency.symbol, item.salePrice)}
                 </StyledProductPrice>
               </div>
             )}
