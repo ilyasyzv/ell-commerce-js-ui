@@ -153,6 +153,7 @@ export const StyledInput = styled.div`
     box-sizing: border-box;
 
     .cart-product-input {
+        outline: none;
         box-sizing: border-box;
         width: 96px;
         height: 48px;
@@ -170,6 +171,10 @@ export const StyledInput = styled.div`
         &:hover {
             border: 1px solid #151515;
         }
+
+        &:focus {
+            border-width: 2px;
+        }
     
         &:disabled {
             background: #F5F5F5;
@@ -181,6 +186,10 @@ export const StyledInput = styled.div`
         &::-webkit-outer-spin-button {  
             height: 24px;
             opacity: 1;
+        }
+
+        &.error {
+            border: 2px solid #D30018;
         }
     }
 

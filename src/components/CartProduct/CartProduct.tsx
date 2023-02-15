@@ -100,7 +100,7 @@ export const CartProduct: React.FC<Props> = ({
             <StyledInput>
 							<input
 								type={"number"}
-								className="cart-product-input"
+								className={message.type === "Error" ? "cart-product-input error" : "cart-product-input"}
 								disabled={maxPurchaseQuantity === 1 ? true : false}
 								defaultValue={value}
 								min={minPurchaseQuantity}
