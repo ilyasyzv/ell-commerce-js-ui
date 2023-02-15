@@ -44,7 +44,7 @@ export const CartQty: React.FC<ICartQty> = ({
     <StyledCartQty className={className}>
       <span className='text-wrapper'>{t("your_cart")}</span>
       {itemsCount !== 0 && (
-          <span className='items-wrapper'>{itemsCount === 1 && `(1 ${t('item')}})`}
+          <span className='items-wrapper'>{itemsCount === 1 && `(1 ${t('item')})`}
             {itemsCount > 1 && `(${itemsCount} ${t('items')})`}</span>)}
     </StyledCartQty>
   );
