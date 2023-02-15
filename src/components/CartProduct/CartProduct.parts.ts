@@ -206,7 +206,6 @@ export const StyledProductPriceContainer = styled.div`
     max-width: calc(80px + 20px);
     margin: 0;
     padding: 10px;
-    padding-right: 20px;
     padding-bottom: 0;
     display: flex;
     flex-direction: column;
@@ -222,22 +221,19 @@ export const StyledProductPriceContainer = styled.div`
         padding: 0 10px;
     }
 
-    @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
-        padding: 0 10px;
-    }
-
     @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
         min-width: 10%;
     }
 
     @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
         min-width: 15%;
+        padding-right: 5px;
     }
 
     @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
         width: 100%;
         max-width: 100%;
-        padding: 10px;
+        padding: 5px 10px;
         flex-direction: row;
         flex-wrap: nowrap;
     }
@@ -249,6 +245,7 @@ export const StyledProductPrice = styled.p`
     font-weight: 600;
     font-size: 16px;
     padding: 0;
+    padding-right: 20px;
     margin: 0;
     margin-bottom: auto;
     text-align: right;
@@ -261,19 +258,19 @@ export const StyledProductPrice = styled.p`
 
     @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
         font-size: 16px;
+        padding-right: 0;
     }
 
     @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
         font-size: 16px;
     }
-
+    
     @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
         font-size: 14px;
     }
-    
 
     @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-        font-size: 16px;
+        font-size: 18px;
         text-align: left;
     }
 `
@@ -292,6 +289,7 @@ export const StyledDisabledProductPrice = styled.p`
     padding-right: 10px;
     color: #e6e6e6;
     text-decoration: line-through;
+    box-sizing: border-box;
 
     @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
         padding-right: 0;
@@ -313,23 +311,25 @@ export const StyledDisabledProductPrice = styled.p`
 export const StyledButton = styled.button`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
+    text-align: right;
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
     background-color: transparent;
     border: none;
     box-shadow: none;
-    width: 100%;
+    width: calc(100% - 20px);
     max-width: 100%;
     min-width: 44px;
     min-height: 44px;
     padding: 0;
+    padding-right: 20px;
     margin: 0;
     box-sizing: border-box;
     
     position: absolute;
-    right: 0;
+    right: 10px;
     bottom: -15px;
 
     i {
@@ -338,13 +338,26 @@ export const StyledButton = styled.button`
         margin-right: 6px;
     }
 
+    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
+        right: -10px;
+    }
+
     @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
-        min-width: 80px;
-        max-width: 80px;
+        min-width: 100px;
+        max-width: 100px;
+    }
+
+    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
+        min-width: 90px;
+        max-width: 90px;
+        right: -5px;
+        bottom: 0;
+        padding-right: 10px;
     }
 
     @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-        bottom: -2px;
+        min-height: 48px;
+        bottom: -25%;
     }
 `
 

@@ -42,10 +42,7 @@ export const formatPrice = (config: Config, currencySymbol: string,  price?: num
 
     const parts = price.toFixed(config.decimalPlaces).split(".")
     const formattedFirstPart = addThousandToken(parts[0], config.thousandToken);
-    const formattedPrice =
-        parts[1] === "00"
-            ? formattedFirstPart
-            : `${formattedFirstPart}${config.decimalToken}${parts[1]}`
+    const formattedPrice = `${formattedFirstPart}${config.decimalToken}${parts[1]}`
 
     return config.position === CurrencySymbolPosition.Right
         ? `${formattedPrice}${currencySymbol}`

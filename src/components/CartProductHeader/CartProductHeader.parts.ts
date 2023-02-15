@@ -17,7 +17,7 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledHeader = styled.div`
-    padding:20px;
+    padding: 20px;
     padding-top: 0;
     margin: 0;
     display: flex;
@@ -47,6 +47,7 @@ export const StyledTitle = styled.div`
       max-width: 100%;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 `;
 
@@ -86,6 +87,7 @@ export const StyledCenterColumnTitle = styled(StyledTitle)`
       min-width: 96px;
       margin-left: auto;
       text-align: left;
+      padding-left: 2px;
 
       margin-right: 10%;
     }
@@ -120,11 +122,10 @@ export const StyledRightColumnTitle = styled(StyledTitle)`
     max-width: calc(80px + 20px);
     margin: 0;
     padding: 0 10px;
-    padding-right: 20px;
     text-align: right;
 
     p {
-      padding-right: 10px;
+      padding-right: 20px;
       width: 100%;
       max-width: 100%;
 
@@ -133,20 +134,14 @@ export const StyledRightColumnTitle = styled(StyledTitle)`
       }
     }
 
-    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-        padding: 0 10px;
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
-        padding: 0 10px;
-    }
-
+   
     @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
         min-width: 10%;
     }
 
     @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
         min-width: 15%;
+        padding-right: 5px;
     }
    
     @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {

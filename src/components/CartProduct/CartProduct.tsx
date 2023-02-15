@@ -23,7 +23,7 @@ type Props = {
   item: CartItem;
   currency: Currency;
   onChange: (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => void;
-  onDelete: (e: React.MouseEvent<HTMLSpanElement>, itemId: string) => void;
+  onDelete: (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>, itemId: string) => void;
 };
 
 type MessageProps = {
