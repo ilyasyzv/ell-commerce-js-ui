@@ -36,6 +36,4 @@ export const WithHeaders = Template.bind({});
 WithHeaders.args = {
     items: mock.items,
     currency: mock.currency,
-    onChange: () => null,
-    onDelete: () => null,
 };

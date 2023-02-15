@@ -21,6 +21,8 @@
   "license": "MIT",
   "types": "dist/esm/index.d.ts",
   "devDependencies": {
+    "i18next": "^22.4.9",
+    "react-i18next": "^12.1.5",
     "@babel/core": "^7.20.12",
     "@rollup/plugin-commonjs": "^24.0.0",
     "@rollup/plugin-image": "^3.0.1",
@@ -57,7 +59,9 @@
   "peerDependencies": {
     "ell-commerce-sdk": "^1.1.8",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "i18next": "^22.4.9",
+    "react-i18next": "^12.1.5"
   },
   "dependencies": {
     "ell-commerce-ui": "file:",

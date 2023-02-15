@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { breakpoints } from "../commons/constants";
+import { useTranslation } from 'react-i18next'
 
 const StyledCartQty = styled.div`
   display: flex;
@@ -38,10 +39,13 @@ export const CartQty: React.FC<ICartQty> = ({
   itemsCount,
   className,
 }: ICartQty) => {
+  const{t} =useTranslation()
   return (
     <StyledCartQty className={className}>
-      <span className='text-wrapper'>Your Cart</span>
-      {itemsCount !== 0 && (<span className='items-wrapper'>{itemsCount === 1 && '(1 item)'} {itemsCount > 1 && `(${itemsCount} items)`}</span>)}
+      <span className='text-wrapper'>{t("your_cart")}</span>
+      {itemsCount !== 0 && (
+          <span className='items-wrapper'>{itemsCount === 1 && `(1 ${t('item')}})`}
+            {itemsCount > 1 && `(${itemsCount} ${t('items')})`}</span>)}
     </StyledCartQty>
   );
 };

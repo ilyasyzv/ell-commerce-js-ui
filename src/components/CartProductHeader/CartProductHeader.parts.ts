@@ -64,13 +64,16 @@ export const StyledLeftColumnTitle = styled(StyledTitle)`
         padding: 0;
         white-space: nowrap;
       }
-      span {
+      .mobile {
         display: none;
       }
 
       @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-        span {
+        .mobile {
           display: inline-block;
+        }
+        .fullscreen {
+          display: none;
         }
       }
 `

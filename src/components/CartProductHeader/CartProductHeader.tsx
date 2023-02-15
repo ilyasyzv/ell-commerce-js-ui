@@ -1,25 +1,27 @@
 import React, {PropsWithChildren} from 'react'
 import {StyledContainer, StyledHeader, StyledProductList, StyledLeftColumnTitle, StyledCenterColumnTitle, StyledRightColumnTitle} from './CartProductHeader.parts'
 import {StyledLeftFlexBlock, StyledRightFlexBlock} from '../CartProduct/CartProduct.parts'
+import {useTranslation} from "react-i18next";
 
 export const CartProductHeader: React.FC<PropsWithChildren> = ({
     children
-  }) => {  
+  }) => {
+    const {t} = useTranslation()
     return (
         <StyledContainer>
             <StyledHeader>
                 <StyledLeftFlexBlock>
                     <StyledLeftColumnTitle>
-                        <p>{"Product"}<span>(s)</span></p>
+                        <span className="mobile">{t("products")}</span>
+                        <span className="fullscreen">{t("product")}</span>
                     </StyledLeftColumnTitle>
                 </StyledLeftFlexBlock>
-                
                 <StyledRightFlexBlock>
                     <StyledCenterColumnTitle>
-                        <p>{"Qty"}</p>
+                        <p>{t("qty")}</p>
                     </StyledCenterColumnTitle>
                     <StyledRightColumnTitle>
-                        <p>{"Price"}</p>
+                        <p>{t("price")}</p>
                     </StyledRightColumnTitle>
                 </StyledRightFlexBlock>
                             

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { MAIN_COLOR } from "../commons/colors";
 import { breakpoints } from "../commons/constants";
 import {formatPrice, mockConfig} from "../utils"
+import {Trans, useTranslation} from "react-i18next";
 
 const StyledCartOrderSummary = styled.div`
     padding: 47px 40px;
@@ -145,6 +146,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
     onCheckoutClick,
 }: ICartOrderSummary) => {
     const [isDisabled, setIsDisabled] = useState<boolean>(false);
+    const{t} =useTranslation()
 
     const toogleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
         const isChecked = e.target.checked;
@@ -157,17 +159,17 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
 
     return (
         <StyledCartOrderSummary className={className}>
-            <h2>Order summary</h2>
+            <h2>{t("order_summary")}</h2>
             <div className="price_wrapper">
                 <div>
-                    <span>Subtotal</span>
+                    <span>{t("subtotal")}</span>
                     <span className="price">
                         {formatPrice(mockConfig, cart.currency.symbol, cart.baseAmount)}
                     </span>
                 </div>
                 {cart?.discountAmount > 0 && (
                     <div>
-                    <span>Discount</span>
+                    <span>{t("discount")}</span>
                     <span className="price">
                         -{formatPrice(mockConfig, cart.currency.symbol, cart.discountAmount)}
                     </span>
@@ -176,25 +178,25 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
             </div>
             {cart?.discountAmount > 0 && (
                 <div className="total_wrapper">
-                    <span>Total</span>
+                    <span>{t('total')}</span>
                     <span>
                         {formatPrice(mockConfig, cart.currency.symbol, cart.baseAmount - cart.discountAmount)}
                     </span>
                 </div>
             )}
 
-            <p className="calculations">*All final calculations will be made at checkout.</p>
+            <p className="calculations">{t("final_calculation")}</p>
             <div className="agreement-wrapper">
                 <input type="checkbox" onChange={toogleCheckbox} />
                 <span>
-                    I agree to Pearson’s{" "}
+                    {t("i_agree")}{" "}
                     <a>
-                        <b>Privacy Policy, Refund Policy</b> and <b>Terms of Use</b>
+                        <Trans i18nKey={"privacy_policy"} components={{b: <b/>}} />
                     </a>
                 </span>
             </div>
             <button disabled={!isDisabled} onClick={onCheckoutClick}>
-                Checkout
+                {t("checkout")}
             </button>
         </StyledCartOrderSummary>
     );

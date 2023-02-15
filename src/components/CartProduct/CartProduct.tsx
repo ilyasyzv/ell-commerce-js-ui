@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import { CartItem, Currency } from "ell-commerce-sdk";
 import {
   StyledCartProduct,
@@ -18,6 +18,7 @@ import noImageSrc from "../../assets/images/no-image.png";
 import {formatPrice, mockConfig} from "../../utils"
 import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./constants";
 import { BucketSvg } from "../../commons/svgs";
+import {useTranslation} from "react-i18next";
 
 type Props = {
   item: CartItem;
@@ -51,6 +52,7 @@ export const CartProduct: React.FC<Props> = ({
 	const [value, setValue] = useState(item.quantity)
 	const [temporaryValue, setTemporaryValue] = useState(item.quantity)
 	const [message, setMessage] = useState({text: "", type: ""})
+    const { t } = useTranslation()
 
 	const minPurchaseQuantity = item.minPurchaseQuantity
 	const maxPurchaseQuantity = item.maxPurchaseQuantity
@@ -133,7 +135,7 @@ export const CartProduct: React.FC<Props> = ({
               <i>
                 <BucketSvg />
               </i>
-              Remove
+                {t('remove')}
             </StyledButton>
           </StyledProductPriceContainer>
         </StyledProductInfo>
