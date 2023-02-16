@@ -173,7 +173,7 @@ export const StyledInput = styled.div`
         }
 
         &:focus {
-            border-width: 2px;
+            border: 2px solid #151515;
         }
     
         &:disabled {
