@@ -17,10 +17,14 @@ export default {
 } as ComponentMeta<typeof ShoppingCartIcon>;
 
 //👇 We create a “template” of how args map to rendering
-const Template: ComponentStory<typeof ShoppingCartIcon> = (args) => <ShoppingCartIcon {...args} />;
+const Template: ComponentStory<typeof ShoppingCartIcon> = (args) =>{
+
+    const cart = {items: [{quantity: args.count}]}
+    return <ShoppingCartIcon cart={cart}></ShoppingCartIcon>
+}
 
 export const FirstStory = Template.bind({});
 
 FirstStory.args = {
-    cart: getDefaultMocks()
+    count: 1
 };

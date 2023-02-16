@@ -41,10 +41,7 @@ box-sizing: border-box;
 }
 
 @media screen and (max-width: 640px) {
-  .cart-icon {
-    width: 18px;
-    height: 18px;
-  }
+  transform: scale(75%);
 }
 
 .items-popup {
