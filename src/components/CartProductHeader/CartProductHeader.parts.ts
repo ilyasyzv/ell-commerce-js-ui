@@ -121,8 +121,8 @@ export const StyledCenterColumnTitle = styled(StyledTitle)`
 `
 
 export const StyledRightColumnTitle = styled(StyledTitle)`
-    min-width: 20%;
-    max-width: calc(80px + 20px);
+    max-width: calc(120px + 20px);
+    width: calc(120px + 20px);
     margin: 0;
     padding: 0 10px;
     text-align: right;
@@ -139,11 +139,11 @@ export const StyledRightColumnTitle = styled(StyledTitle)`
 
    
     @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
-        min-width: 10%;
+        max-width: calc(90px + 20px);
+        width: calc(90px + 20px);
     }
 
     @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        min-width: 15%;
         padding-right: 5px;
     }
    
@@ -154,11 +154,10 @@ export const StyledRightColumnTitle = styled(StyledTitle)`
 
 
 
-export const StyledProductList = styled.ul`
+export const StyledProductList = styled.div`
     font-size: 18px;
     margin: 0;
     padding: 0;
-    list-style: none;
     width: 100%;
     max-width: 100%;
 `;

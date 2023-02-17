@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { breakpoints } from '../../commons/constants';
 
-export const StyledCartProduct = styled.li`
+export const StyledCartProduct = styled.div`
   font-family: "OpenSans", sans-serif;  
   width: 100%;
   max-width: 100%;
+  min-width: calc(${breakpoints.mobileSm}px - 40px);
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: flex-start;
   margin: 0;
@@ -14,9 +15,9 @@ export const StyledCartProduct = styled.li`
   padding: 27px 20px;
   box-sizing: border-box;
 
-   background: #ffffff;
-   border: 1px solid #eaeaea;
-   border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 6px;
 
     @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
         padding: 15px;
@@ -25,13 +26,16 @@ export const StyledCartProduct = styled.li`
 
 export const StyledLeftFlexBlock = styled.div`
     width: 112px;
+    min-width: 112px;
     margin: 0;
     padding: 0;
     display: flex;
+    flex-wrap: wrap;
     box-sizing: border-box;
 
     @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
         width: 98px;
+        min-width: 98px;
     }
 `
 
@@ -211,8 +215,8 @@ export const StyledInput = styled.div`
 `
 
 export const StyledProductPriceContainer = styled.div`
-    min-width: 20%;
-    max-width: calc(80px + 20px);
+    max-width: calc(120px + 20px);
+    width: calc(120px + 20px);
     margin: 0;
     padding: 10px;
     padding-bottom: 0;
@@ -231,11 +235,11 @@ export const StyledProductPriceContainer = styled.div`
     }
 
     @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
-        min-width: 10%;
+        max-width: calc(90px + 20px);
+        width: calc(90px + 20px);
     }
 
     @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        min-width: 15%;
         padding-right: 5px;
     }
 
@@ -263,7 +267,6 @@ export const StyledProductPrice = styled.p`
     white-space: nowrap;
     overflow: auto;
     box-sizing: border-box;
-
 
     @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
         font-size: 16px;
@@ -328,18 +331,35 @@ export const StyledButton = styled.button`
     background-color: transparent;
     border: none;
     box-shadow: none;
-    width: calc(100% - 20px);
+    width: auto;
     max-width: 100%;
     min-width: 44px;
     min-height: 44px;
-    padding: 0;
-    padding-right: 20px;
+    padding: 0 20px;
     margin: 0;
     box-sizing: border-box;
     
     position: absolute;
     right: 10px;
     bottom: -15px;
+
+    color: #007FA3;
+    svg path {
+        fill: #007FA3;
+    }
+    &:hover {
+        color: #376A86;
+        text-decoration: underline;
+        svg path {
+            fill: #376A86;
+        }
+    }
+    &:focus {
+        outline: 4px solid #77C2F9;
+    }
+    &:active {
+        color: #235C60;
+    }
 
     i {
         width: 16px;
@@ -361,7 +381,7 @@ export const StyledButton = styled.button`
         max-width: 90px;
         right: -5px;
         bottom: 0;
-        padding-right: 10px;
+        padding: 0 10px;
     }
 
     @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {

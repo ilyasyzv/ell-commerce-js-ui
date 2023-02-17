@@ -12,6 +12,9 @@ const StyledCartOrderSummary = styled.div`
     border: 1px solid #eaeaea;
     border-radius: 6px;
     max-width: 100%;
+    box-sizing: border-box;
+    min-width: calc(${breakpoints.mobileSm}px - 40px);
+    
     font-family: "OpenSans", sans-serif;
     h2 {
         font-weight: 700;
