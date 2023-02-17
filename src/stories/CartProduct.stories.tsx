@@ -22,7 +22,16 @@ const Template: ComponentStory<typeof CartProduct> = (args) =>
                 key={item.id}
                 item={item}
                 currency= {args.currency}
-                onChange={args.onChange}
+                onChange={(e, item)=> {
+                    console.log(e.target.value);
+                    setProducts((prevState) => prevState.map((stateItem) => {
+                        if(stateItem.id === item.id) {
+                            stateItem.originalPrice = stateItem.listPrice * Number(e.target.value)
+                            stateItem.salePrice = stateItem.listPrice * Number(e.target.value)
+                        }
+                        return stateItem
+                    }))
+                }}
                 onDelete={(e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>, itemId:string) => {
                     setProducts((prevState) => prevState.filter((item) => item.id !== itemId))
                 }}

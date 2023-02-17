@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 const StyledCartQty = styled.div`
   display: flex;
   font-family: "OpenSans", sans-serif;
+  flex-wrap: wrap;
   align-items: end;
   font-style: normal;
   font-weight: 700;
@@ -13,21 +14,16 @@ const StyledCartQty = styled.div`
   line-height: 26px;
   color: #333333;
   box-sizing: border-box;
-  
+  .text-wrapper {
+    padding-right: 20px;
+  }
   .items-wrapper {
     font-weight: 400;
     font-size: 16px;
-    margin-left: 20px;
     line-height: 20px;
   }
 
-  @media screen and (min-device-width: ${breakpoints.tabletSm}px) and (max-device-width: ${breakpoints.tabletLg}px) {
-    flex-direction: column;
-    align-items: flex-start;
-    .items-wrapper {
-      margin-left: 0;
-    }
-  }
+
 `;
 
 interface ICartQty {
