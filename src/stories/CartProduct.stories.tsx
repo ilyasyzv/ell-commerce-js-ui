@@ -35,6 +35,7 @@ const Template: ComponentStory<typeof CartProduct> = (args) =>
                 onDelete={(e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>, itemId:string) => {
                     setProducts((prevState) => prevState.filter((item) => item.id !== itemId))
                 }}
+                hasDescription={args.hasDescription}
             />
         ))}
     </CartProductHeader>
@@ -45,4 +46,5 @@ export const WithHeaders = Template.bind({});
 WithHeaders.args = {
     items: mock.items,
     currency: mock.currency,
+    hasDescription: false
 };

@@ -13,11 +13,14 @@ import {
   StyledLeftFlexBlock,
   StyledRightFlexBlock,
   StyledDisabledProductPrice,
+  StyledProductTitle,
+  StyledProductDescription
 } from "./CartProduct.parts";
 import noImageSrc from "../../assets/images/no-image.png";
 import {formatPrice, mockConfig} from "../../utils"
 import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./constants";
 import { BucketSvg } from "../../commons/svgs";
+import parse from 'html-react-parser';
 import {useTranslation} from "react-i18next";
 
 type Props = {
@@ -25,6 +28,7 @@ type Props = {
   currency: Currency;
   onChange: (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => void;
   onDelete: (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>, itemId: string) => void;
+  hasDescription: boolean;
 };
 
 type MessageProps = {
@@ -43,16 +47,18 @@ const Message: React.FC<MessageProps> = ({
 	)
 }
 
+
 export const CartProduct: React.FC<Props> = ({
   item,
   currency,
   onChange,
   onDelete,
+  hasDescription = false
 }) => {
 	const [value, setValue] = useState(item.quantity)
 	const [temporaryValue, setTemporaryValue] = useState(item.quantity)
 	const [message, setMessage] = useState({text: "", type: ""})
-    const { t } = useTranslation()
+  const { t } = useTranslation()
 
 	const minPurchaseQuantity = item.minPurchaseQuantity
 	const maxPurchaseQuantity = item.maxPurchaseQuantity
@@ -81,6 +87,7 @@ export const CartProduct: React.FC<Props> = ({
 		}
 	}
 
+
   return (
     <StyledCartProduct key={item.id}>
       <StyledLeftFlexBlock>
@@ -95,9 +102,11 @@ export const CartProduct: React.FC<Props> = ({
         <StyledProductInfo>
           <StyledProductNameContainer>
             <StyledProductName>
-              {item.name.length <= MAX_PRODUCT_NAME_DISLPAY_LENGTH
+              <StyledProductTitle>{item.name.length <= MAX_PRODUCT_NAME_DISLPAY_LENGTH
                 ? item.name
-                : `${item.name.slice(0, MAX_PRODUCT_NAME_DISLPAY_LENGTH)}...`}
+                : `${item.name.slice(0, MAX_PRODUCT_NAME_DISLPAY_LENGTH)}...`}</StyledProductTitle>
+
+              {hasDescription && item.shortDescription && <StyledProductDescription>{parse(item.description)}</StyledProductDescription>}   
             </StyledProductName>
             <StyledInput>
 							<input

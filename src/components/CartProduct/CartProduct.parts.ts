@@ -116,7 +116,7 @@ export const StyledProductNameContainer = styled.div`
     }
 `
 
-export const StyledProductName = styled.p`
+export const StyledProductName = styled.div`
     color: #151515;
     font-family: "OpenSans", sans-serif;
     font-style: normal;
@@ -130,10 +130,14 @@ export const StyledProductName = styled.p`
     max-width: 60%;
     text-align: left;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 
     @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
        margin-bottom: 40px;
        max-width: 65%;
+
+       padding-right: 50px;
     }
 
     @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
@@ -143,14 +147,37 @@ export const StyledProductName = styled.p`
     }
 
     @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
+        padding-right: 10px;
         margin-bottom: 35px;
     }
 
     @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
         margin-bottom: 40px;
     }
-   
 `
+
+export const StyledProductTitle = styled.p`
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0;
+    box-sizing: border-box;
+`
+
+export const StyledProductDescription = styled.div`
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
+        display: none;
+    }
+    
+`
+
 export const StyledInput = styled.div`
     position: relative;
     margin-right: 10%;
@@ -338,11 +365,15 @@ export const StyledButton = styled.button`
     padding: 0 20px;
     margin: 0;
     box-sizing: border-box;
-    
+
     position: absolute;
     right: 10px;
     bottom: -15px;
 
+    &:disabled {
+        opacity: 0.6;
+    }
+    
     color: #007FA3;
     svg path {
         fill: #007FA3;
@@ -354,7 +385,7 @@ export const StyledButton = styled.button`
             fill: #376A86;
         }
     }
-    &:focus {
+    &:focus-visible {
         outline: 4px solid #77C2F9;
     }
     &:active {
