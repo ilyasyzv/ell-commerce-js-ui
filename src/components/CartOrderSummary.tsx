@@ -183,7 +183,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                 <div className="total_wrapper">
                     <span>{t('total')}</span>
                     <span>
-                        {formatPrice(mockConfig, cart.currency.symbol, cart.baseAmount - cart.discountAmount)}
+                        {formatPrice(mockConfig, cart.currency.symbol, cart.preTaxCartAmount)}
                     </span>
                 </div>
             )}

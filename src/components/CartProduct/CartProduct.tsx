@@ -144,16 +144,16 @@ export const CartProduct: React.FC<Props> = ({
           <StyledProductPriceContainer>
             {item.originalPrice === item.salePrice && (
               <StyledProductPrice>
-                {formatPrice(mockConfig, currency.symbol, item.originalPrice)}
+                {formatPrice(mockConfig, currency.symbol, item.totalOriginalPrice)}
               </StyledProductPrice>
             )}
             {item.originalPrice !== item.salePrice && (
               <StyledDiscountWrapper>
                 <StyledProductPrice className='discount-price-container'>
-                  {formatPrice(mockConfig, currency.symbol, item.salePrice)}
+                  {formatPrice(mockConfig, currency.symbol, item.totalSalePrice)}
                 </StyledProductPrice>
                 <StyledDisabledProductPrice className='discount-price-container'>
-                  {formatPrice(mockConfig, currency.symbol, item.originalPrice)}
+                  {formatPrice(mockConfig, currency.symbol, item.totalOriginalPrice)}
                 </StyledDisabledProductPrice>
               </StyledDiscountWrapper>
             )}

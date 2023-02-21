@@ -220,7 +220,7 @@ export const ShoppingCart: React.FunctionComponent<IShoppingCartProps> = (
                       <span>{`${it.quantity} x ${it.name}`}</span>
                       <span>
                         {props.cart?.currency.symbol}
-                        {it.listPrice}
+                        {it.originalPrice}
                       </span>
                     </div>
                   );
