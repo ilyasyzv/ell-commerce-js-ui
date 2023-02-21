@@ -277,8 +277,6 @@ export const StyledProductPriceContainer = styled.div`
         flex-direction: row;
         flex-wrap: nowrap;
     }
-
-   
 `
 
 export const StyledProductPrice = styled.p`
@@ -303,10 +301,6 @@ export const StyledProductPrice = styled.p`
     @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
         font-size: 16px;
     }
-    
-    @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
-        font-size: 14px;
-    }
 
     @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
         font-size: 18px;
@@ -315,8 +309,8 @@ export const StyledProductPrice = styled.p`
 `
 
 export const StyledDisabledProductPrice = styled.p`
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 400;
+    font-size: 14px;
     padding: 0;
     margin: 0;
     margin-bottom: auto;
@@ -326,20 +320,11 @@ export const StyledDisabledProductPrice = styled.p`
     white-space: nowrap;
     overflow: auto;
     padding-right: 10px;
-    color: #e6e6e6;
     text-decoration: line-through;
     box-sizing: border-box;
 
     @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
         padding-right: 0;
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
-        font-size: 16px;
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
-        font-size: 14px;
     }
  
     @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
@@ -421,4 +406,33 @@ export const StyledButton = styled.button`
     }
 `
 
+export const StyledDiscountWrapper = styled.div`
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    right: 10px;
+    padding-right: 20px;
+    .discount-price-container {
+        padding: 0;
+        margin: 0;
+    }
+    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
+        right: -10px;
+    }
 
+    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
+        right: -5px;
+        padding-right: 10px;
+    }
+
+    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
+        position: static;
+        padding: 0;
+        margin: 0;
+        .discount-price-container {
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+    }
+`;

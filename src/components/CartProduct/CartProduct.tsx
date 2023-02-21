@@ -14,7 +14,8 @@ import {
   StyledRightFlexBlock,
   StyledDisabledProductPrice,
   StyledProductTitle,
-  StyledProductDescription
+  StyledProductDescription,
+  StyledDiscountWrapper,
 } from "./CartProduct.parts";
 import noImageSrc from "../../assets/images/no-image.png";
 import {formatPrice, mockConfig} from "../../utils"
@@ -147,14 +148,14 @@ export const CartProduct: React.FC<Props> = ({
               </StyledProductPrice>
             )}
             {item.originalPrice !== item.salePrice && (
-              <div>
-                <StyledDisabledProductPrice>
-                  {formatPrice(mockConfig, currency.symbol, item.originalPrice)}
-                </StyledDisabledProductPrice>
-                <StyledProductPrice>
+              <StyledDiscountWrapper>
+                <StyledProductPrice className='discount-price-container'>
                   {formatPrice(mockConfig, currency.symbol, item.salePrice)}
                 </StyledProductPrice>
-              </div>
+                <StyledDisabledProductPrice className='discount-price-container'>
+                  {formatPrice(mockConfig, currency.symbol, item.originalPrice)}
+                </StyledDisabledProductPrice>
+              </StyledDiscountWrapper>
             )}
             <StyledButton
               aria-label={`Remove ${item.name}`}
