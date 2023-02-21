@@ -26,7 +26,7 @@ import {useTranslation} from "react-i18next";
 type Props = {
   item: CartItem;
   currency: Currency;
-  onChange: (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => void;
+  onChange: (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => void | Promise<void>;
   onDelete: (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>, itemId: string) => void;
   hasDescription: boolean;
 };
@@ -55,18 +55,21 @@ export const CartProduct: React.FC<Props> = ({
   onDelete,
   hasDescription = false
 }) => {
+  const minPurchaseQuantity = item.minPurchaseQuantity || 1
+	const maxPurchaseQuantity = item.maxPurchaseQuantity
+
 	const [value, setValue] = useState(item.quantity)
+  const [disabled, setDisabled] = useState(maxPurchaseQuantity === 1)
 	const [temporaryValue, setTemporaryValue] = useState(item.quantity)
 	const [message, setMessage] = useState({text: "", type: ""})
   const { t } = useTranslation()
 
-	const minPurchaseQuantity = item.minPurchaseQuantity
-	const maxPurchaseQuantity = item.maxPurchaseQuantity
+	
 
 	const onInputDebounce = (debounce: number) => {
 		const timeout = setTimeout(() => {
 			setValue(temporaryValue);
-		}, debounce);
+    }, debounce);
 
 		return () => clearTimeout(timeout);
 	}
@@ -74,12 +77,28 @@ export const CartProduct: React.FC<Props> = ({
 	useEffect(() => onInputDebounce(250), [temporaryValue])
 
 	const onInputChange = (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => {
+    ev.preventDefault();
 		const numValue = +ev.target.value
-		
-		if (numValue >= minPurchaseQuantity && numValue <= maxPurchaseQuantity) {
-			setTemporaryValue(numValue)
+		if (numValue >= minPurchaseQuantity && (numValue <= maxPurchaseQuantity || !maxPurchaseQuantity)) {
 			setMessage({text: "", type: ""})
-			onChange(ev, item)
+      setDisabled(true)
+      let res = onChange(ev, item)
+     
+      if(res as any instanceof Promise) {
+       res = res as Promise<void>
+       res
+        .then(() => {
+          setTemporaryValue(numValue)
+        })
+        .catch((err) => {
+          console.log(err)
+          return
+        })
+        .finally (() => setDisabled(false))
+      } else {
+        setTemporaryValue(numValue)
+        setDisabled(false)
+      }
 		} else if (numValue < minPurchaseQuantity) {
 			setMessage({text: `Min qty is ${minPurchaseQuantity}`, type: "Error"})
 		} else if (numValue > maxPurchaseQuantity) {
@@ -112,8 +131,8 @@ export const CartProduct: React.FC<Props> = ({
 							<input
 								type={"number"}
 								className={message.type === "Error" ? "cart-product-input error" : "cart-product-input"}
-								disabled={maxPurchaseQuantity === 1 ? true : false}
-								defaultValue={value}
+                disabled={disabled}
+								value={value}
 								min={minPurchaseQuantity}
 								max={maxPurchaseQuantity}
 								onChange={(ev) => onInputChange(ev, item)}
