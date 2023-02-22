@@ -48,3 +48,14 @@ export const formatPrice = (config: Config, currencySymbol: string,  price?: num
         ? `${formattedPrice}${currencySymbol}`
         : `${currencySymbol}${formattedPrice}`
 }
+
+export const onInputDebounce = <F extends ((...args: any) => any)>(inputFunction: F, debounceChangeQty: number) => {
+    let timeout: number = 0
+
+    const debounced = (...args: any) => {
+        clearTimeout(timeout)
+        setTimeout(() => inputFunction(...args), debounceChangeQty)
+    }
+    
+    return debounced as (...args: Parameters<F>) => ReturnType<F>
+}

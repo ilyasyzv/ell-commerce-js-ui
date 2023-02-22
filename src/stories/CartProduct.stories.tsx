@@ -21,7 +21,8 @@ const Template: ComponentStory<typeof CartProduct> = (args) =>
             <CartProduct
                 key={item.id}
                 item={item}
-                currency= {args.currency}
+                currency={args.currency}
+                debounceChangeQty={args.debounceChangeQty}
                 onChange={(e, item)=> {
                     console.log(e.target.value);
                     setProducts((prevState) => prevState.map((stateItem) => {
@@ -46,5 +47,6 @@ export const WithHeaders = Template.bind({});
 WithHeaders.args = {
     items: mock.items,
     currency: mock.currency,
+    debounceChangeQty: 250,
     hasDescription: false
 };

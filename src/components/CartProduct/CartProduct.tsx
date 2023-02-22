@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import { CartItem, Currency } from "ell-commerce-sdk";
 import {
   StyledCartProduct,
@@ -18,7 +18,7 @@ import {
   StyledDiscountWrapper,
 } from "./CartProduct.parts";
 import noImageSrc from "../../assets/images/no-image.png";
-import {formatPrice, mockConfig} from "../../utils"
+import {formatPrice, mockConfig, onInputDebounce} from "../../utils"
 import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./constants";
 import { BucketSvg } from "../../commons/svgs";
 import parse from 'html-react-parser';
@@ -29,7 +29,8 @@ type Props = {
   currency: Currency;
   onChange: (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => void | Promise<void>;
   onDelete: (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>, itemId: string) => void;
-  hasDescription: boolean;
+  hasDescription?: boolean;
+  debounceChangeQty?: number;
 };
 
 type MessageProps = {
@@ -54,28 +55,16 @@ export const CartProduct: React.FC<Props> = ({
   currency,
   onChange,
   onDelete,
-  hasDescription = false
+  hasDescription = false,
+  debounceChangeQty = 250
 }) => {
   const minPurchaseQuantity = item.minPurchaseQuantity || 1
 	const maxPurchaseQuantity = item.maxPurchaseQuantity
 
 	const [value, setValue] = useState(item.quantity)
   const [disabled, setDisabled] = useState(maxPurchaseQuantity === 1)
-	const [temporaryValue, setTemporaryValue] = useState(item.quantity)
 	const [message, setMessage] = useState({text: "", type: ""})
   const { t } = useTranslation()
-
-	
-
-	const onInputDebounce = (debounce: number) => {
-		const timeout = setTimeout(() => {
-			setValue(temporaryValue);
-    }, debounce);
-
-		return () => clearTimeout(timeout);
-	}
-
-	useEffect(() => onInputDebounce(250), [temporaryValue])
 
 	const onInputChange = (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => {
     ev.preventDefault();
@@ -89,7 +78,7 @@ export const CartProduct: React.FC<Props> = ({
        res = res as Promise<void>
        res
         .then(() => {
-          setTemporaryValue(numValue)
+          setValue(numValue)
         })
         .catch((err) => {
           console.log(err)
@@ -97,7 +86,7 @@ export const CartProduct: React.FC<Props> = ({
         })
         .finally (() => setDisabled(false))
       } else {
-        setTemporaryValue(numValue)
+        setValue(numValue)
         setDisabled(false)
       }
 		} else if (numValue < minPurchaseQuantity) {
@@ -107,6 +96,7 @@ export const CartProduct: React.FC<Props> = ({
 		}
 	}
 
+  const onInputDebounceChange = useCallback(onInputDebounce(onInputChange, debounceChangeQty), [onInputChange]);
 
   return (
     <StyledCartProduct key={item.id}>
@@ -133,10 +123,10 @@ export const CartProduct: React.FC<Props> = ({
 								type={"number"}
 								className={message.type === "Error" ? "cart-product-input error" : "cart-product-input"}
                 disabled={disabled}
-								value={value}
+								defaultValue={value}
 								min={minPurchaseQuantity}
 								max={maxPurchaseQuantity}
-								onChange={(ev) => onInputChange(ev, item)}
+								onChange={(ev) => onInputDebounceChange(ev, item)}
 							/>
 							<Message text={message.text} type={message.type} />
 						</StyledInput>
