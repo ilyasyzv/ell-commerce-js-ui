@@ -62,7 +62,6 @@ export const CartProduct: React.FC<Props> = ({
 	const maxPurchaseQuantity = item.maxPurchaseQuantity
 
 	const [value, setValue] = useState(item.quantity)
-  const [disabled, setDisabled] = useState(maxPurchaseQuantity === 1)
 	const [message, setMessage] = useState({text: "", type: ""})
   const { t } = useTranslation()
 
@@ -71,24 +70,8 @@ export const CartProduct: React.FC<Props> = ({
 		const numValue = +ev.target.value
 		if (numValue >= minPurchaseQuantity && (numValue <= maxPurchaseQuantity || !maxPurchaseQuantity)) {
 			setMessage({text: "", type: ""})
-      setDisabled(true)
-      let res = onChange(ev, item)
-     
-      if(res as any instanceof Promise) {
-       res = res as Promise<void>
-       res
-        .then(() => {
-          setValue(numValue)
-        })
-        .catch((err) => {
-          console.log(err)
-          return
-        })
-        .finally (() => setDisabled(false))
-      } else {
-        setValue(numValue)
-        setDisabled(false)
-      }
+      onChange(ev, item)
+      setValue(numValue)
 		} else if (numValue < minPurchaseQuantity) {
 			setMessage({text: `Min qty is ${minPurchaseQuantity}`, type: "Error"})
 		} else if (numValue > maxPurchaseQuantity) {
@@ -122,7 +105,7 @@ export const CartProduct: React.FC<Props> = ({
 							<input
 								type={"number"}
 								className={message.type === "Error" ? "cart-product-input error" : "cart-product-input"}
-                disabled={disabled}
+                disabled={maxPurchaseQuantity === 1}
 								defaultValue={value}
 								min={minPurchaseQuantity}
 								max={maxPurchaseQuantity}
