@@ -1,8 +1,5 @@
-
 import React from 'react';
-
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
 import { CartOrderSummary } from '../components/CartOrderSummary';
 
 export default {
@@ -20,6 +17,7 @@ FirstStory.args = {
         currency: {symbol: "$"},
         baseAmount: 500,
         discountAmount: 200,
+        preTaxCartAmount: 300,
         onCheckoutClick: ()=> {alert("click")}
     }
 };
