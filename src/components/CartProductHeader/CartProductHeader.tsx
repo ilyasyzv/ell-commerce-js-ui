@@ -12,7 +12,7 @@ export const CartProductHeader: React.FC<PropsWithChildren> = ({
             <StyledHeader>
                 <StyledLeftFlexBlock>
                     <StyledLeftColumnTitle>
-                        <span className="mobile">{t("products")}</span>
+                        <span className="mobile">{t("product(s)")}</span>
                         <span className="fullscreen">{t("product")}</span>
                     </StyledLeftColumnTitle>
                 </StyledLeftFlexBlock>

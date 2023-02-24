@@ -281,7 +281,7 @@ export const StyledProductPriceContainer = styled.div`
 
 export const StyledProductPrice = styled.p`
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
     padding: 0;
     padding-right: 20px;
     margin: 0;
@@ -293,17 +293,16 @@ export const StyledProductPrice = styled.p`
     overflow: auto;
     box-sizing: border-box;
 
-    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-        font-size: 16px;
-        padding-right: 0;
-    }
-
     @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
         font-size: 16px;
     }
 
+    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
+        padding-right: 0;
+    }
+
     @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-        font-size: 18px;
+        font-size: 20px;
         text-align: left;
     }
 `

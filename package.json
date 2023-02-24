@@ -43,9 +43,12 @@
     "babel-loader": "^8.3.0",
     "ell-commerce-sdk": "^1.1.17",
     "i18next": "^22.4.9",
+    "mobx": "^6.7.0",
+    "mobx-react": "^7.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.1.5",
+    "react-loader-spinner": "^5.3.4",
     "rollup": "^3.10.0",
     "rollup-plugin-dts": "^5.1.1",
     "rollup-plugin-ignore": "^1.0.10",
@@ -57,7 +60,7 @@
     "typescript": "^4.9.4"
   },
   "peerDependencies": {
-    "ell-commerce-sdk": "^1.1.11",
+    "ell-commerce-sdk": "^1.1.17",
     "i18next": "^22.4.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
