@@ -14,16 +14,16 @@ import {
   StyledRightFlexBlock,
   StyledDisabledProductPrice,
   StyledProductTitle,
-  StyledProductDescription,
   StyledDiscountWrapper,
-} from "./CartProduct.parts";
-import noImageSrc from "../../assets/images/no-image.png";
-import {cutText, formatPrice, mockConfig, onInputDebounce} from "../../utils";
-import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./constants";
-import { BucketSvg } from "../../commons/svgs";
+  StyledProductHTMLDescription,
+} from "./CartProduct/CartProduct.parts";
+import noImageSrc from "../assets/images/no-image.png";
+import {cutText, formatPrice, mockConfig, onInputDebounce} from "../utils";
+import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./CartProduct/constants";
+import { BucketSvg } from "../commons/svgs";
 import parse from 'html-react-parser';
 import {useTranslation} from "react-i18next";
-import { useBreakpoints } from "../../commons/hooks";
+import { useBreakpoints } from "../commons/hooks";
 
 export enum EnumStyledCartProductBreakPoints {
   zero = 0,
@@ -40,7 +40,7 @@ type Props = {
   currency: Currency;
   onChange: (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => void | Promise<void>;
   onDelete: (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>, itemId: string) => void;
-  hasDescription?: boolean;
+  htmlDescription: string;
   debounceChangeQty?: number;
 };
 
@@ -60,12 +60,12 @@ const Message: React.FC<MessageProps> = ({
 	)
 }
 
-export const CartProduct: React.FC<Props> = ({
+export const HTMLCartProduct: React.FC<Props> = ({
   item,
   currency,
   onChange,
   onDelete,
-  hasDescription = false,
+  htmlDescription,
   debounceChangeQty = 250
 }) => {
   const minPurchaseQuantity = item.minPurchaseQuantity || 1
@@ -118,7 +118,9 @@ export const CartProduct: React.FC<Props> = ({
           <StyledProductNameContainer className={"productNameContainer"}>
             <StyledProductName className={"productName"}>
               <StyledProductTitle>{cutText(item.name, MAX_PRODUCT_NAME_DISLPAY_LENGTH)}</StyledProductTitle>
-              {hasDescription && item.shortDescription && <StyledProductDescription>{parse(item.description)}</StyledProductDescription>}   
+              <StyledProductHTMLDescription>
+                {parse(htmlDescription)}
+              </StyledProductHTMLDescription>
             </StyledProductName>
             <StyledInput className={"input"}>
 							<input

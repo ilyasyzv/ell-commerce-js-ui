@@ -1,27 +1,334 @@
 import styled from 'styled-components';
 import { breakpoints } from '../../commons/constants';
+import { EnumStyledCartProductBreakPoints } from './CartProduct';
 
-export const StyledCartProduct = styled.div`
-  font-family: "OpenSans", sans-serif;  
-  width: 100%;
-  max-width: 100%;
-  min-width: calc(${breakpoints.mobileSm}px - 40px);
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: flex-start;
-  margin: 0;
-  margin-bottom: 20px;
-  padding: 27px 20px;
-  box-sizing: border-box;
+interface StyledCartProductProps {
+    readonly breakpoint: EnumStyledCartProductBreakPoints | undefined
+}
 
-  background: #ffffff;
-  border: 1px solid #eaeaea;
-  border-radius: 6px;
+export const StyledCartProduct = styled.div<StyledCartProductProps>`
+    font-family: "OpenSans", sans-serif;  
+    width: 100%;
+    max-width: 100%;
+    min-width: calc(${breakpoints.mobileSm}px - 40px);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 27px 20px;
+    box-sizing: border-box;
 
-    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        padding: 15px;
+    background: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 6px;
+
+    .leftFlexBlock {
+        ${props => {
+            if (
+                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+            ) {
+                return `
+                    width: 98px;
+                    min-width: 98px;
+                `
+            }
+        }}
     }
+
+    .image {
+        ${props => {
+            if (
+                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+            ) { return `height: 94px;`}
+        }}
+    }
+
+    .productInfo {
+        ${props => {
+            if (
+                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileSm
+            ) { return `flex-direction: column;` }
+        }}
+    }
+
+    .productNameContainer {
+        ${props => {
+            switch (props.breakpoint) {
+                case EnumStyledCartProductBreakPoints.tabletLg:
+                    return `
+                        flex-direction: column;
+                        padding: 0 10px;
+                        padding-left: 15px;
+                    `
+                case EnumStyledCartProductBreakPoints.tabletMd:
+                    return `
+                        padding: 0 10px;
+                        padding-left: 15px;
+                        flex-direction: row;
+                    `
+                case EnumStyledCartProductBreakPoints.tabletSm:
+                    return `
+                        padding: 0 10px;
+                        padding-left: 15px;
+                        flex-direction: row;
+                        padding-right: 0;
+                    `
+                case EnumStyledCartProductBreakPoints.mobileMd:
+                    return `
+                        padding: 0 10px;
+                        padding-left: 15px;
+                        padding-right: 0;
+                        flex-direction: column;
+                    `
+                case EnumStyledCartProductBreakPoints.mobileSm:
+                    return `
+                        padding: 0 10px;
+                        padding-left: 15px;
+                        padding-right: 0;
+                        flex-direction: column;
+                        width: 100%;
+                        max-width: 100%;
+                    `
+                case EnumStyledCartProductBreakPoints.zero:
+                    return `
+                        padding: 0 10px;
+                        padding-left: 15px;
+                        padding-right: 0;
+                        flex-direction: column;
+                        width: 100%;
+                        max-width: 100%;
+                    `
+            }
+        }}
+    }
+
+    .productName {
+        ${props => {
+            switch (props.breakpoint) {
+                case EnumStyledCartProductBreakPoints.tabletLg:
+                    return `
+                        margin-bottom: 40px;
+                        max-width: 65%;
+                        padding-right: 50px;
+                    `
+                case EnumStyledCartProductBreakPoints.tabletMd:
+                    return `
+                        margin-bottom: 40px;
+                        padding-right: 50px;
+                        font-size: 16px;
+                        width: 100%;
+                        max-width: 100%;
+                    `
+                case EnumStyledCartProductBreakPoints.tabletSm:
+                    return `
+                        margin-bottom: 40px;
+                        padding-right: 50px;
+                        font-size: 16px;
+                        width: 100%;
+                        max-width: 100%;
+                    `
+                case EnumStyledCartProductBreakPoints.mobileMd:
+                    return `
+                        font-size: 16px;
+                        width: 100%;
+                        max-width: 100%;
+                        padding-right: 10px;
+                        margin-bottom: 35px;
+                    `
+                case EnumStyledCartProductBreakPoints.mobileSm:
+                    return `
+                        font-size: 16px;
+                        width: 100%;
+                        max-width: 100%;
+                        padding-right: 10px;
+                        margin-bottom: 40px;
+                    `
+                case EnumStyledCartProductBreakPoints.zero:
+                    return `
+                        font-size: 16px;
+                        width: 100%;
+                        max-width: 100%;
+                        padding-right: 10px;
+                        margin-bottom: 40px;
+                    `
+            }
+        }}
+    }
+
+    .productDescription {
+        ${props => {
+            if (
+                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+            ) { return `display: none;` }
+        }}
+    }
+
+    .input {
+        ${props => {
+            if (
+                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+            ) {
+                return `
+                    margin-bottom: 10px;
+                    margin-right: 10px;
+                `
+            }
+        }}
+    }
+
+    .productPriceContainer {
+        padding: 0 10px;
+        ${props => {
+            switch (props.breakpoint) {
+                case EnumStyledCartProductBreakPoints.tabletSm:
+                    return `
+                        max-width: calc(90px + 20px);
+                        width: calc(90px + 20px);
+                    `
+                case EnumStyledCartProductBreakPoints.mobileMd:
+                    return `
+                        max-width: calc(90px + 20px);
+                        width: calc(90px + 20px);
+                        padding-right: 5px;
+                    `
+                case EnumStyledCartProductBreakPoints.mobileSm:
+                    return `
+                        width: 100%;
+                        max-width: 100%;
+                        padding: 5px 10px;
+                        flex-direction: row;
+                        flex-wrap: nowrap;
+                    `
+                case EnumStyledCartProductBreakPoints.zero:
+                    return `
+                        width: 100%;
+                        max-width: 100%;
+                        padding: 5px 10px;
+                        flex-direction: row;
+                        flex-wrap: nowrap;
+                    `
+            }
+        }}
+    }
+
+    .productPrice {
+     padding-right: 0;
+        ${props => {
+            switch (props.breakpoint) {
+                case EnumStyledCartProductBreakPoints.tabletMd:
+                    return `font-size: 16px;`
+                case EnumStyledCartProductBreakPoints.tabletSm:
+                    return `font-size: 16px;`
+                case EnumStyledCartProductBreakPoints.mobileMd:
+                    return `font-size: 16px;`
+                case EnumStyledCartProductBreakPoints.mobileSm:
+                    return `
+                        font-size: 20px;
+                        text-align: left;
+                    `
+                case EnumStyledCartProductBreakPoints.zero:
+                    return `
+                        font-size: 20px;
+                        text-align: left;
+                    `
+            }
+        }}
+    }
+
+    .disabledProductPrice {
+        padding-right: 0;
+        ${props => {
+            if (
+                props.breakpoint! === EnumStyledCartProductBreakPoints.mobileSm ||
+                props.breakpoint! === EnumStyledCartProductBreakPoints.zero
+            ) { return `text-align: left;` }
+        }}
+    }
+
+    .button {
+        right: -10px;
+        ${props => {
+            switch (props.breakpoint) {
+                case EnumStyledCartProductBreakPoints.tabletMd:
+                    return `
+                        min-width: 100px;
+                        max-width: 100px;
+                    `
+                case EnumStyledCartProductBreakPoints.tabletSm:
+                    return `
+                        min-width: 100px;
+                        max-width: 100px;
+                    `
+                case EnumStyledCartProductBreakPoints.mobileMd:
+                    return `
+                        min-width: 90px;
+                        max-width: 90px;
+                        right: -5px;
+                        bottom: 0;
+                        padding: 0 10px;
+                    `
+                case EnumStyledCartProductBreakPoints.mobileSm:
+                    return `
+                        min-width: 90px;
+                        max-width: 90px;
+                        right: -5px;
+                        padding: 0 10px;
+                        min-height: 48px;
+                        bottom: -25%;
+                    `
+                case EnumStyledCartProductBreakPoints.zero:
+                    return `
+                        min-width: 90px;
+                        max-width: 90px;
+                        right: -5px;
+                        padding: 0 10px;
+                        min-height: 48px;
+                        bottom: -25%;
+                    `
+            }
+        }}
+    }
+
+    .discountWrapper {
+        right: -10px;
+        ${props => {
+            switch (props.breakpoint) {
+                case EnumStyledCartProductBreakPoints.mobileMd:
+                    return `
+                        right: -5px;
+                        padding-right: 10px;
+                    `
+                case EnumStyledCartProductBreakPoints.mobileSm:
+                    return `
+                        right: -5px;
+                        padding-right: 10px;
+                        position: static;
+                        padding: 0;
+                        margin: 0;
+                        .discount-price-container {
+                            padding: 0;
+                            margin: 0;
+                            text-align: left;
+                        }
+                    `
+                case EnumStyledCartProductBreakPoints.zero:
+                    return `
+                        padding-right: 10px;
+                        position: static;
+                        padding: 0;
+                        margin: 0;
+                        .discount-price-container {
+                            padding: 0;
+                            margin: 0;
+                            text-align: left;
+                        }
+                    `
+            }
+        }}
+    }
+
 `
 
 export const StyledLeftFlexBlock = styled.div`
@@ -32,21 +339,12 @@ export const StyledLeftFlexBlock = styled.div`
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
-
-    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        width: 98px;
-        min-width: 98px;
-    }
 `
 
 export const StyledImage = styled.img`
     width: 100%;
     max-width: 100%;
     height: 108px;
-   
-    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        height: 94px;
-    }
 `
 
 export const StyledRightFlexBlock = styled.div`
@@ -73,11 +371,6 @@ export const StyledProductInfo = styled.div`
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-between;
-    
-
-    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-        flex-direction: column;
-    }
 `
 
 export const StyledProductNameContainer = styled.div`
@@ -89,31 +382,6 @@ export const StyledProductNameContainer = styled.div`
     align-self: stretch;
     padding: 10px 15px;
     box-sizing: border-box;
-
-
-    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-        flex-direction: column;
-        padding: 0 10px;
-        padding-left: 15px;
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
-        flex-direction: row;
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
-        padding-right: 0;
-    }
-   
-    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        flex-direction: column;
-        padding: 0 10px;
-    }
-
-    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-        width: 100%;
-        max-width: 100%;
-    }
 `
 
 export const StyledProductName = styled.div`
@@ -132,28 +400,6 @@ export const StyledProductName = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-
-    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-       margin-bottom: 40px;
-       max-width: 65%;
-
-       padding-right: 50px;
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
-        font-size: 16px;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        padding-right: 10px;
-        margin-bottom: 35px;
-    }
-
-    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-        margin-bottom: 40px;
-    }
 `
 
 export const StyledProductTitle = styled.p`
@@ -171,11 +417,14 @@ export const StyledProductDescription = styled.div`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+`
 
-    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        display: none;
-    }
-    
+export const StyledProductHTMLDescription = styled.div`
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 `
 
 export const StyledInput = styled.div`
@@ -234,11 +483,6 @@ export const StyledInput = styled.div`
             margin: 0;
         }
     }
-
-    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        margin-bottom: 10px;
-        margin-right: 10px;
-    }
 `
 
 export const StyledProductPriceContainer = styled.div`
@@ -254,29 +498,7 @@ export const StyledProductPriceContainer = styled.div`
     flex-wrap: wrap;
     align-self: stretch;
     box-sizing: border-box;
-
     position: relative;
-
-    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-        padding: 0 10px;
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
-        max-width: calc(90px + 20px);
-        width: calc(90px + 20px);
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        padding-right: 5px;
-    }
-
-    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-        width: 100%;
-        max-width: 100%;
-        padding: 5px 10px;
-        flex-direction: row;
-        flex-wrap: nowrap;
-    }
 `
 
 export const StyledProductPrice = styled.p`
@@ -292,19 +514,6 @@ export const StyledProductPrice = styled.p`
     white-space: nowrap;
     overflow: auto;
     box-sizing: border-box;
-
-    @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
-        font-size: 16px;
-    }
-
-    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-        padding-right: 0;
-    }
-
-    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-        font-size: 20px;
-        text-align: left;
-    }
 `
 
 export const StyledDisabledProductPrice = styled.p`
@@ -321,14 +530,6 @@ export const StyledDisabledProductPrice = styled.p`
     padding-right: 10px;
     text-decoration: line-through;
     box-sizing: border-box;
-
-    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-        padding-right: 0;
-    }
- 
-    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-        text-align: left;
-    }
 `
 
 export const StyledButton = styled.button`
@@ -381,28 +582,6 @@ export const StyledButton = styled.button`
         height: 18px;
         margin-right: 6px;
     }
-
-    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-        right: -10px;
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {
-        min-width: 100px;
-        max-width: 100px;
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        min-width: 90px;
-        max-width: 90px;
-        right: -5px;
-        bottom: 0;
-        padding: 0 10px;
-    }
-
-    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-        min-height: 48px;
-        bottom: -25%;
-    }
 `
 
 export const StyledDiscountWrapper = styled.div`
@@ -414,24 +593,5 @@ export const StyledDiscountWrapper = styled.div`
     .discount-price-container {
         padding: 0;
         margin: 0;
-    }
-    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-        right: -10px;
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        right: -5px;
-        padding-right: 10px;
-    }
-
-    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-        position: static;
-        padding: 0;
-        margin: 0;
-        .discount-price-container {
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
     }
 `;
