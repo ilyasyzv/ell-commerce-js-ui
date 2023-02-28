@@ -59,3 +59,7 @@ export const onInputDebounce = <F extends ((...args: any) => any)>(inputFunction
     
     return debounced as (...args: Parameters<F>) => ReturnType<F>
 }
+
+export const cutText = (text: string, maxLength: number) => {
+    return text.length <= maxLength ? text : `${text.slice(0, maxLength)}...`;
+}

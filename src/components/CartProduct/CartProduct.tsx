@@ -18,7 +18,7 @@ import {
   StyledDiscountWrapper,
 } from "./CartProduct.parts";
 import noImageSrc from "../../assets/images/no-image.png";
-import {formatPrice, mockConfig, onInputDebounce} from "../../utils"
+import {cutText, formatPrice, mockConfig, onInputDebounce} from "../../utils";
 import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./constants";
 import { BucketSvg } from "../../commons/svgs";
 import parse from 'html-react-parser';
@@ -95,10 +95,7 @@ export const CartProduct: React.FC<Props> = ({
         <StyledProductInfo>
           <StyledProductNameContainer>
             <StyledProductName>
-              <StyledProductTitle>{item.name.length <= MAX_PRODUCT_NAME_DISLPAY_LENGTH
-                ? item.name
-                : `${item.name.slice(0, MAX_PRODUCT_NAME_DISLPAY_LENGTH)}...`}</StyledProductTitle>
-
+              <StyledProductTitle>{cutText(item.name, MAX_PRODUCT_NAME_DISLPAY_LENGTH)}</StyledProductTitle>
               {hasDescription && item.shortDescription && <StyledProductDescription>{parse(item.description)}</StyledProductDescription>}   
             </StyledProductName>
             <StyledInput>
