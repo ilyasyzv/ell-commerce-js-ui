@@ -5,6 +5,10 @@ interface StyledContainerProps {
     readonly breakpoint: RecommendedBundleComponentBreakPoints | undefined
 }
 
+interface StyledHeaderProps {
+    readonly backgroundImageUrl: string
+}
+
 const getHeight = (breakpoint: number | undefined) => {
     switch (breakpoint) {
         case RecommendedBundleComponentBreakPoints.small:
@@ -47,7 +51,7 @@ export const StyledContainer = styled.div<StyledContainerProps>`
     }
 `;
 
-export const StyledHeader = styled.div`
+export const StyledHeader = styled.div<StyledHeaderProps>`
     padding: 0;
     margin: 0;
     background-image: url(${props => props.backgroundImageUrl || "" });
