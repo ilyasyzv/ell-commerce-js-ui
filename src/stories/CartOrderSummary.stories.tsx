@@ -4,8 +4,7 @@ import { CartOrderSummary } from '../components/CartOrderSummary';
 
 export default {
     title: 'CartOrderSummary',
-    component: CartOrderSummary,
-} as ComponentMeta<typeof CartOrderSummary>;
+};
 
 //👇 We create a “template” of how args map to rendering
 const Template: ComponentStory<typeof CartOrderSummary> = (args) => <CartOrderSummary {...args}/>;
@@ -18,6 +17,6 @@ FirstStory.args = {
         baseAmount: 500,
         discountAmount: 200,
         preTaxCartAmount: 300,
-        onCheckoutClick: ()=> {alert("click")}
-    }
+    },
+    onCheckoutClick: ()=> {alert("click")}
 };

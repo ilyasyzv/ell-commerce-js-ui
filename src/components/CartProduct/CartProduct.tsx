@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from "react";
+import React, { useCallback, useRef, useState} from "react";
 import { CartItem, Currency } from "ell-commerce-sdk";
 import {
   StyledCartProduct,
@@ -60,6 +60,8 @@ const Message: React.FC<MessageProps> = ({
 	)
 }
 
+const allowedKeys = ['Backspace','Delete','ArrowLeft','ArrowRight']
+
 export const CartProduct: React.FC<Props> = ({
   item,
   currency,
@@ -74,7 +76,14 @@ export const CartProduct: React.FC<Props> = ({
   const ref = useRef(null)
 	const [value, setValue] = useState(item.quantity)
 	const [message, setMessage] = useState({text: "", type: ""})
-  const { t } = useTranslation()
+    const { t } = useTranslation()
+
+    const onKeydown = useCallback((event:  React.KeyboardEvent<HTMLInputElement>)=> {
+        if(!allowedKeys.includes(event.code) &&
+            isNaN(Number(event.key))) {
+            event.preventDefault()
+        }
+    },[])
 
 	const onInputChange = (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => {
     ev.preventDefault();
@@ -122,9 +131,10 @@ export const CartProduct: React.FC<Props> = ({
             </StyledProductName>
             <StyledInput className={"input"}>
 							<input
+                                onKeyDown={onKeydown}
 								type={"number"}
 								className={message.type === "Error" ? "cart-product-input error" : "cart-product-input"}
-                disabled={maxPurchaseQuantity === 1}
+                                disabled={maxPurchaseQuantity === 1}
 								defaultValue={value}
 								min={minPurchaseQuantity}
 								max={maxPurchaseQuantity}

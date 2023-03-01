@@ -126,7 +126,7 @@ export const HTMLCartProduct: React.FC<Props> = ({
 							<input
 								type={"number"}
 								className={message.type === "Error" ? "cart-product-input error" : "cart-product-input"}
-                disabled={maxPurchaseQuantity === 1}
+                                disabled={maxPurchaseQuantity === 1}
 								defaultValue={value}
 								min={minPurchaseQuantity}
 								max={maxPurchaseQuantity}

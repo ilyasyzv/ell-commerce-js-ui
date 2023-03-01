@@ -137,7 +137,7 @@ const StyledCartOrderSummary = styled.div`
     }
 `;
 
-interface ICartOrderSummary {
+export interface ICartOrderSummary {
     className?: string;
     cart: Cart;
     onCheckoutClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;

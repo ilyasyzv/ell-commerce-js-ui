@@ -13,7 +13,6 @@ export default {
     * to learn how to generate automatic titles
     */
     title: 'ShoppingCartIcon',
-    component: ShoppingCartIcon,
 } as ComponentMeta<typeof ShoppingCartIcon>;
 
 //👇 We create a “template” of how args map to rendering

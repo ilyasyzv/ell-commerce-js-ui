@@ -12,7 +12,6 @@ export default {
     * to learn how to generate automatic titles
     */
     title: 'CartQty',
-    component: CartQty,
 } as ComponentMeta<typeof CartQty>;
 
 //👇 We create a “template” of how args map to rendering
