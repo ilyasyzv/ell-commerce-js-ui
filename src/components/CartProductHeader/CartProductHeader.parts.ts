@@ -80,7 +80,7 @@ export const StyledLeftColumnTitle = styled(StyledTitle)`
 
 export const StyledCenterColumnTitle = styled(StyledTitle)`
     flex: 1;
-    fisplay: flex;
+    display: flex;
     justify-content: flex-end;
     padding-right: 15px;
     text-align: right;
@@ -94,17 +94,11 @@ export const StyledCenterColumnTitle = styled(StyledTitle)`
 
       margin-right: 10%;
     }
-
-    @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-      font-size: 0;
-      padding-right: 10px;
-    }
    
     @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {         
        font-size: 16px;
     }
 
- 
     @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
       padding-right: 0;
       margin-right: 0;

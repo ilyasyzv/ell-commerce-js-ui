@@ -56,12 +56,6 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
     .productNameContainer {
         ${props => {
             switch (props.breakpoint) {
-                case EnumStyledCartProductBreakPoints.tabletLg:
-                    return `
-                        flex-direction: column;
-                        padding: 0 10px;
-                        padding-left: 15px;
-                    `
                 case EnumStyledCartProductBreakPoints.tabletMd:
                     return `
                         padding: 0 10px;
