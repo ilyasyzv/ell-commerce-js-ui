@@ -65,6 +65,10 @@ export const StyledImgContainer = styled.div`
     position: absolute;
     left: 30px;
     top: 90px;
+
+    img {
+        max-width: 100px;
+    }
 `;
 
 export const StyledProductInfoContainer = styled.div`

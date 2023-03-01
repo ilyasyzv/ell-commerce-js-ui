@@ -36,13 +36,17 @@ export const RecommendedBundle: React.FC<IRecommendedBundle> = (props: IRecommen
         RecommendedBundleComponentBreakPoints.large
     ]);
 
+    const thumbNail = data.images ? data.images.find((i) => i.isThumbnail) : null;
+    const background = (!backgroundImageUrl || backgroundImageUrl === "") && data.images ?
+        data.images.find((i) => i.isDefault) : null;
+
     return (
         <StyledContainer ref={ref} breakpoint={breakpoint}>
-            <StyledHeader className='header' backgroundImageUrl={backgroundImageUrl}/>
+            <StyledHeader className='header' backgroundImageUrl={background ? background.imageUrl : backgroundImageUrl}/>
             <StyledImgContainer className='image-container'>
                 {
-                    (data.images && data.images.length > 0) ? 
-                    (<img src={data?.images[0].imageUrl || noImageSrc} alt={data?.images[0].altText} />) : 
+                    thumbNail ? 
+                    (<img src={thumbNail.imageUrl} alt={thumbNail.altText} />) : 
                     (<img src={noImageSrc} alt={"imageAlt"} />)
                 }
             </StyledImgContainer>
