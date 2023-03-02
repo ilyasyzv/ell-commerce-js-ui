@@ -3,14 +3,15 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { CartProduct } from '../components/CartProduct';
 import { CartProductHeader } from '../components/CartProductHeader/CartProductHeader';
-import {getDefaultMocks} from "./mocks";
 import {DEBOUNCE_INTERVAL} from "../commons/constants"
+import {getDefaultMocks, getModifiedDefaultMocks} from "./mocks";
 
 export default {
     title: 'CartProduct',
 } as ComponentMeta<typeof CartProduct>;
 
 const mock = getDefaultMocks()
+const testImageHeightMock = getModifiedDefaultMocks()
 //👇 We create a “template” of how args map to rendering
 const Template: ComponentStory<typeof CartProduct> = (args) =>
 {
@@ -42,10 +43,18 @@ const Template: ComponentStory<typeof CartProduct> = (args) =>
 }
 
 export const WithHeaders = Template.bind({});
+export const TestImageHeightStory = Template.bind({});
 
 WithHeaders.args = {
     items: mock.items,
     currency: mock.currency,
     debounceChangeQty: DEBOUNCE_INTERVAL,
+    hasDescription: false
+};
+
+TestImageHeightStory.args = {
+    items: testImageHeightMock.items,
+    currency: mock.currency,
+    debounceChangeQty: 250,
     hasDescription: false
 };

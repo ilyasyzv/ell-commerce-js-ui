@@ -41,7 +41,7 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
         ${props => {
             if (
                 props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
-            ) { return `height: 94px;`}
+            ) { return `max-height: 150px;`}
         }}
     }
 
@@ -284,9 +284,8 @@ export const StyledLeftFlexBlock = styled.div`
 `
 
 export const StyledImage = styled.img`
-    width: 100%;
     max-width: 100%;
-    height: 108px;
+    height: auto;
 `
 
 export const StyledRightFlexBlock = styled.div`

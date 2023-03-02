@@ -165,3 +165,19 @@ export const getRecommendedProductMocks = () => {
          "email": "ddd.ddd@ddd.ddd"
      }
  }
+
+export const getModifiedDefaultMocks = () => {
+    const data = getDefaultMocks();
+    const images = [
+        "https://dictionary.cambridge.org/images/thumb/oblong_noun_002_25303.jpg?version=5.0.297",
+        "https://useruploads.socratic.org/INNT6RHNTaYMwuI1yWA4_rectangle.png",
+        "https://i0.wp.com/classbasic.com/wp-content/uploads/2022/04/images-4-e1650825139296.png?resize=196%2C200&ssl=1"
+    ]
+    return {
+        ...data,
+        items: data.items.map((item, idx) => ({
+            ...item,
+            imageUrl: images[idx]
+        }))
+    }
+}
