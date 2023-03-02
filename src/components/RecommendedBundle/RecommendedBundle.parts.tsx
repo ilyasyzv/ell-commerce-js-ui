@@ -67,7 +67,7 @@ export const StyledImgContainer = styled.div`
     top: 90px;
 
     img {
-        max-width: 100px;
+        max-width: 88px;
     }
 `;
 
