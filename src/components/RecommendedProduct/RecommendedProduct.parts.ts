@@ -193,6 +193,19 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
            }}
     }
 
+    .showMore {
+        ${props => {
+            if (
+                props.breakpoint! <= EnumStyledCartProductBreakPoints.tabletLg
+            ) {
+                return `
+                 width: calc(100% - 50px);
+                 max-width: calc(100% - 50px);
+                `
+            }
+       }}
+    }
+
     .showMore,
     .description {
         ${props => {
@@ -290,7 +303,6 @@ export const StyledProductName = styled.div`
     font-size: 18px;
     line-height: 110%;
     padding: 12px 0;
-    padding-right: 10px;
     margin: 0;
     align-self: flex-start;
     max-width: 60%;
@@ -318,6 +330,7 @@ export const StyledProductDescription = styled.div`
     margin: 0;
     margin-bottom: 10px;
     padding: 0;
+    padding-bottom: 20px;
     box-sizing: border-box;
 `
 
@@ -349,10 +362,16 @@ export const StyledShowMoreBtn = styled.button`
 
     &:hover {
         color: #376A86;
-
+        text-decoration: underline;
         svg path {
             fill: #376A86;
         }
+    }
+    &:focus-visible {
+        outline: 4px solid #77C2F9;
+    }
+    &:active {
+        color: #235C60;
     }
     
 

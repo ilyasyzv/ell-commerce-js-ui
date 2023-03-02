@@ -3,7 +3,10 @@ export const en = {
   "product": "Product",
   "qty": "QTY",
   "price": "Price",
-  'remove': "Remove",
+  "remove": "Remove",
+  "add_to_cart": "Add to cart",
+  "show_more": "Show more",
+  "show_less": "Show less",
 
   "order_summary":"Order summary",
   "your_cart": "Your Cart",

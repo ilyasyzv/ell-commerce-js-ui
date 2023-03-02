@@ -1,10 +1,6 @@
-
 import React from 'react';
-
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
 import { ShoppingCartIcon } from '../components/ShoppingCartIcon';
-import { getDefaultMocks } from "./mocks";
 
 //👇 This default export determines where your story goes in the story list
 export default {

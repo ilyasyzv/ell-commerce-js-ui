@@ -6,8 +6,7 @@ import { CartProductHeader } from '../components/CartProductHeader/CartProductHe
 import {getDefaultMocks} from "./mocks";
 
 export default {
-    title: 'HTMLCartProduct',
-    component: HTMLCartProduct,
+    title: 'HTMLCartProduct'
 } as ComponentMeta<typeof HTMLCartProduct>;
 
 const mock = getDefaultMocks()

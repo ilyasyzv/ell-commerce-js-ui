@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState} from "react";
+import React, { useCallback, useRef, useState, useMemo} from "react";
 import { CartItem, Currency } from "ell-commerce-sdk";
 import {
   StyledCartProduct,
@@ -55,20 +55,21 @@ export const CartProduct: React.FC<Props> = ({
   hasDescription = false,
   debounceChangeQty = DEBOUNCE_INTERVAL
 }) => {
-  const minPurchaseQuantity = item.minPurchaseQuantity || 1
-	const maxPurchaseQuantity = item.maxPurchaseQuantity
+  const minPurchaseQuantity = item.minPurchaseQuantity || 1;
+	const maxPurchaseQuantity = item.maxPurchaseQuantity;
+  const parsedShortDescription = useMemo(() => parse(item.shortDescription), [item.shortDescription]);
 
   const ref = useRef(null)
 	const [value, setValue] = useState(item.quantity)
 	const [message, setMessage] = useState({text: "", type: ""})
-    const { t } = useTranslation()
+  const { t } = useTranslation()
 
-    const onKeydown = useCallback((event:  React.KeyboardEvent<HTMLInputElement>)=> {
-        if(!allowedKeys.includes(event.code) &&
-            isNaN(Number(event.key))) {
-            event.preventDefault()
-        }
-    },[])
+  const onKeydown = useCallback((event:  React.KeyboardEvent<HTMLInputElement>)=> {
+      if(!allowedKeys.includes(event.code) &&
+          isNaN(Number(event.key))) {
+          event.preventDefault()
+      }
+  },[])
 
 	const onInputChange = (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => {
     ev.preventDefault();
@@ -111,18 +112,19 @@ export const CartProduct: React.FC<Props> = ({
           <StyledProductNameContainer className={"productNameContainer"}>
             <StyledProductName className={"productName"}>
               <StyledProductTitle>{cutText(item.name, MAX_PRODUCT_NAME_DISLPAY_LENGTH)}</StyledProductTitle>
-              {hasDescription && item.shortDescription && <StyledProductDescription>{parse(item.description)}</StyledProductDescription>}   
+              {hasDescription && item.shortDescription && <StyledProductDescription>{parsedShortDescription}</StyledProductDescription>}   
             </StyledProductName>
             <StyledInput className={"input"}>
 							<input
+								type="number"
                 onKeyDown={onKeydown}
-								type={"number"}
 								className={message.type === "Error" ? "cart-product-input error" : "cart-product-input"}
                 disabled={maxPurchaseQuantity === 1}
 								defaultValue={value}
 								min={minPurchaseQuantity}
 								max={maxPurchaseQuantity}
 								onChange={(ev) => onInputDebounceChange(ev, item)}
+                aria-label="Quantity of product"
 							/>
 							<Message text={message.text} type={message.type} />
 						</StyledInput>
@@ -145,7 +147,7 @@ export const CartProduct: React.FC<Props> = ({
             )}
             <StyledButton
               className={"button"}
-              aria-label={`Remove ${item.name}`}
+              aria-label={`${t('remove')} ${item.name}`}
               onClick={(ev) => onDelete(ev, item.id)}
             >
               <i>

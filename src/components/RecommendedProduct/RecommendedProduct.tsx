@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useMemo} from "react";
 import { Product,Variant } from "ell-commerce-sdk";
 import {
   StyledCartProduct,
@@ -45,9 +45,11 @@ export const RecommendedProduct: React.FC<Props> = ({
   product,
   onAddToCart,
 }) => {
-  const {id, name, price, shortDescription, maxPurchaseQuantity, images, currency} = product;
+  const {id, name, price, description, shortDescription, maxPurchaseQuantity, images, currency} = product;
   const image = images.find((img) => img.isThumbnail);
-  const minPurchaseQuantity = product.minPurchaseQuantity || 1
+  const minPurchaseQuantity = product.minPurchaseQuantity || 1;
+  const parsedDescription = useMemo(() => parse(description), [description]);
+  const parsedShortDescription = useMemo(() => parse(shortDescription), [shortDescription]);
 
   const ref = useRef<HTMLDivElement | null>(null)
 	const [quantity, setQuantity] = useState(minPurchaseQuantity)
@@ -97,10 +99,9 @@ export const RecommendedProduct: React.FC<Props> = ({
               <StyledProductPrice className="productPriceMobile">
                   {formatPrice(mockConfig, currency.symbol, price)}
               </StyledProductPrice>
-              {shortDescription && 
-              <StyledProductDescription className="description" id="description-block">{parse(shortDescription)}</StyledProductDescription>}   
+              <StyledProductDescription className="description" id="description-block">{expanded ? parsedDescription : parsedShortDescription}</StyledProductDescription>   
               <StyledShowMoreBtn className="showMore" onClick={() => setExpanded((prevState) => !prevState)} aria-expanded={expanded} aria-controls="description-block">
-                <span>{expanded ? 'Show less' : 'Show more'}
+                <span>{expanded ? t("show_less") : t("show_more")}
                   <i>{expanded ? <ArrowControlsUp aria-hidden={true}/> : <ArrowControlsDown aria-hidden={true}/>}</i>
                 </span>
               </StyledShowMoreBtn>
@@ -115,6 +116,7 @@ export const RecommendedProduct: React.FC<Props> = ({
 								min={minPurchaseQuantity}
 								max={maxPurchaseQuantity}
 								onChange={(ev) => onInputChange(ev)}
+                aria-label="Quantity of product"
 							/>
 							<Message text={message.text} type={message.type} />
 						</StyledInput>
@@ -125,10 +127,10 @@ export const RecommendedProduct: React.FC<Props> = ({
             </StyledProductPrice>
             <StyledButton
               className="button"
-              aria-label={`Add to cart ${product.name}`}
+              aria-label={`${t('add_to_cart')} ${product.name}`}
               onClick={(ev) => onAddToCart(ev, product, quantity)}
             >
-               Add to cart
+               {t('add_to_cart')}
             </StyledButton>
           </StyledProductPriceContainer>
         </StyledProductInfo>

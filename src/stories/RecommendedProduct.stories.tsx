@@ -6,7 +6,6 @@ import {getRecommendedProductMocks} from "./mocks";
 
 export default {
     title: 'RecommendedProduct',
-    component: RecommendedProduct,
 } as ComponentMeta<typeof RecommendedProduct>;
 
 const mock = getRecommendedProductMocks()

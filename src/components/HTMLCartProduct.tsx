@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from "react";
+import React, {useCallback, useRef, useState, useMemo} from "react";
 import { CartItem, Currency } from "ell-commerce-sdk";
 import {
   StyledCartProduct,
@@ -22,6 +22,7 @@ import {cutText, formatPrice, mockConfig, onInputDebounce} from "../utils";
 import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./CartProduct/constants";
 import {DEBOUNCE_INTERVAL} from "../commons/constants";
 import { BucketSvg } from "../commons/svgs";
+import {Message} from "./Message";
 import parse from 'html-react-parser';
 import {useTranslation} from "react-i18next";
 import { useBreakpoints } from "../commons/hooks";
@@ -44,22 +45,6 @@ type Props = {
   debounceChangeQty?: number;
 };
 
-type MessageProps = {
-	text: string;
-	type: string;
-}
-
-const Message: React.FC<MessageProps> = ({
-	text,
-	type
-}) => {
-	return (
-		<div className="message">
-			<p style={type === "Error" ? {color: "#D30018"} : {color: "#008638"}}>{text}</p>
-		</div>
-	)
-}
-
 export const HTMLCartProduct: React.FC<Props> = ({
   item,
   currency,
@@ -70,6 +55,7 @@ export const HTMLCartProduct: React.FC<Props> = ({
 }) => {
   const minPurchaseQuantity = item.minPurchaseQuantity || 1
 	const maxPurchaseQuantity = item.maxPurchaseQuantity
+  const parsedDescription = useMemo(() => parse(htmlDescription), [htmlDescription]);
 
   const ref = useRef(null)
 	const [value, setValue] = useState(item.quantity)
@@ -118,18 +104,19 @@ export const HTMLCartProduct: React.FC<Props> = ({
             <StyledProductName className={"productName"}>
               <StyledProductTitle>{cutText(item.name, MAX_PRODUCT_NAME_DISLPAY_LENGTH)}</StyledProductTitle>
               <StyledProductHTMLDescription>
-                {parse(htmlDescription)}
+                {parsedDescription}
               </StyledProductHTMLDescription>
             </StyledProductName>
             <StyledInput className={"input"}>
 							<input
-								type={"number"}
+								type="number"
 								className={message.type === "Error" ? "cart-product-input error" : "cart-product-input"}
-                                disabled={maxPurchaseQuantity === 1}
+                disabled={maxPurchaseQuantity === 1}
 								defaultValue={value}
 								min={minPurchaseQuantity}
 								max={maxPurchaseQuantity}
 								onChange={(ev) => onInputDebounceChange(ev, item)}
+                aria-label="Quantity of product"
 							/>
 							<Message text={message.text} type={message.type} />
 						</StyledInput>
@@ -152,11 +139,11 @@ export const HTMLCartProduct: React.FC<Props> = ({
             )}
             <StyledButton
               className={"button"}
-              aria-label={`Remove ${item.name}`}
+              aria-label={`${t('remove')} ${item.name}`}
               onClick={(ev) => onDelete(ev, item.id)}
             >
               <i>
-                <BucketSvg />
+                <BucketSvg aria-hidden={true} />
               </i>
                 {t('remove')}
             </StyledButton>
