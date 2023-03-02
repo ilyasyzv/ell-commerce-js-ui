@@ -20,13 +20,13 @@ import {
 import noImageSrc from "../assets/images/no-image.png";
 import {cutText, formatPrice, mockConfig, onInputDebounce} from "../utils";
 import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./CartProduct/constants";
+import {DEBOUNCE_INTERVAL} from "../commons/constants";
 import { BucketSvg } from "../commons/svgs";
 import parse from 'html-react-parser';
 import {useTranslation} from "react-i18next";
 import { useBreakpoints } from "../commons/hooks";
 
 export enum EnumStyledCartProductBreakPoints {
-  zero = 0,
   mobileSm = 300,
   mobileMd = 353,
   tabletSm = 669,
@@ -66,7 +66,7 @@ export const HTMLCartProduct: React.FC<Props> = ({
   onChange,
   onDelete,
   htmlDescription,
-  debounceChangeQty = 250
+  debounceChangeQty = DEBOUNCE_INTERVAL
 }) => {
   const minPurchaseQuantity = item.minPurchaseQuantity || 1
 	const maxPurchaseQuantity = item.maxPurchaseQuantity
@@ -93,7 +93,6 @@ export const HTMLCartProduct: React.FC<Props> = ({
   const onInputDebounceChange = useCallback(onInputDebounce(onInputChange, debounceChangeQty), [onInputChange]);
 
   const breakpoint = useBreakpoints<EnumStyledCartProductBreakPoints>(ref, [
-    EnumStyledCartProductBreakPoints.zero,
     EnumStyledCartProductBreakPoints.mobileSm,
     EnumStyledCartProductBreakPoints.mobileMd,
     EnumStyledCartProductBreakPoints.tabletSm,

@@ -20,13 +20,14 @@ import {
 import noImageSrc from "../../assets/images/no-image.png";
 import {cutText, formatPrice, mockConfig, onInputDebounce} from "../../utils";
 import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./constants";
+import {DEBOUNCE_INTERVAL} from "../../commons/constants"
 import { BucketSvg } from "../../commons/svgs";
+import {Message} from "../Message";
 import parse from 'html-react-parser';
 import {useTranslation} from "react-i18next";
 import { useBreakpoints } from "../../commons/hooks";
 
 export enum EnumStyledCartProductBreakPoints {
-  zero = 0,
   mobileSm = 300,
   mobileMd = 353,
   tabletSm = 669,
@@ -44,22 +45,6 @@ type Props = {
   debounceChangeQty?: number;
 };
 
-type MessageProps = {
-	text: string;
-	type: string;
-}
-
-const Message: React.FC<MessageProps> = ({
-	text,
-	type
-}) => {
-	return (
-		<div className="message">
-			<p style={type === "Error" ? {color: "#D30018"} : {color: "#008638"}}>{text}</p>
-		</div>
-	)
-}
-
 const allowedKeys = ['Backspace','Delete','ArrowLeft','ArrowRight']
 
 export const CartProduct: React.FC<Props> = ({
@@ -68,7 +53,7 @@ export const CartProduct: React.FC<Props> = ({
   onChange,
   onDelete,
   hasDescription = false,
-  debounceChangeQty = 250
+  debounceChangeQty = DEBOUNCE_INTERVAL
 }) => {
   const minPurchaseQuantity = item.minPurchaseQuantity || 1
 	const maxPurchaseQuantity = item.maxPurchaseQuantity
@@ -102,7 +87,6 @@ export const CartProduct: React.FC<Props> = ({
   const onInputDebounceChange = useCallback(onInputDebounce(onInputChange, debounceChangeQty), [onInputChange]);
 
   const breakpoint = useBreakpoints<EnumStyledCartProductBreakPoints>(ref, [
-    EnumStyledCartProductBreakPoints.zero,
     EnumStyledCartProductBreakPoints.mobileSm,
     EnumStyledCartProductBreakPoints.mobileMd,
     EnumStyledCartProductBreakPoints.tabletSm,
@@ -131,10 +115,10 @@ export const CartProduct: React.FC<Props> = ({
             </StyledProductName>
             <StyledInput className={"input"}>
 							<input
-                                onKeyDown={onKeydown}
+                onKeyDown={onKeydown}
 								type={"number"}
 								className={message.type === "Error" ? "cart-product-input error" : "cart-product-input"}
-                                disabled={maxPurchaseQuantity === 1}
+                disabled={maxPurchaseQuantity === 1}
 								defaultValue={value}
 								min={minPurchaseQuantity}
 								max={maxPurchaseQuantity}
@@ -165,7 +149,7 @@ export const CartProduct: React.FC<Props> = ({
               onClick={(ev) => onDelete(ev, item.id)}
             >
               <i>
-                <BucketSvg />
+                <BucketSvg aria-hidden={true} />
               </i>
                 {t('remove')}
             </StyledButton>

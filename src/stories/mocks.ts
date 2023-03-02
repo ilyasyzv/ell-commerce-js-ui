@@ -1,4 +1,4 @@
-export const getDefaultMocks = ()=> {
+export const getDefaultMocks = () => {
    return  {
        "id": "f67f73cb-7170-47cc-9091-70293391da81",
        "createdTime": "2023-02-28T06:46:39+00:00",
@@ -78,3 +78,90 @@ export const getDefaultMocks = ()=> {
        "email": "ddd.ddd@ddd.ddd"
    }
 }
+
+export const getRecommendedProductMocks = () => {
+    return  {
+         "items": [
+         {
+             "images": [
+                { 
+                    "imageUrl": "https://cdn11.bigcommerce.com/s-12tro8kxte/products/121/images/380/logo__49359__42513.1667493278.386.513.jpg?c=1&_gl=1*1l5ngse*_ga*NDkyNDgxODE3LjE2NzUwOTAzMTY.*_ga_WS2VZYPC6G*MTY3NzIzNDEwMC4xMy4xLjE2NzcyMzQ1MjAuNDIuMC4w&_ga=2.175560929.2118956873.1677234101-492481817.1675090316",
+                    "isDefault": false,
+                    "isThumbnail": true,
+                    "altText": "",
+                }
+             ],
+             "currency": {
+                "isoCode": null,
+                    "currencyCode": "EUR",
+                    "symbol": "€",
+                    "symbolPosition": 0
+              },
+             "basePrice": 47,
+             "salePrice": 47,
+             "price": 47,
+             "id": 141,
+             "name": "Scored Practice Test",
+             "shortDescription": "<p style='color:black;font-size:12px; line-height: 1.1;margin: 0; padding: 0;'>Find out whether you’re ready for PTE Academic with our Official Scored Practice Tests. </p>",
+             "description": "<p><span style=\"font-size: 14pt;\">Measures your English proficiency on the following skills:</span></p>\n<p><span style=\"font-size: 12pt;\"><span style=\"background-color: #ffcc00; padding: 2px 8px; border-radius: 12px;\">1</span> Reading</span></p>\n<p><span style=\"font-size: 12pt;\"><span style=\"background-color: #ffcc00; padding: 2px 8px; border-radius: 12px;\">2</span> Writing</span></p>",
+             "sku": "",
+             "minPurchaseQuantity": 1,
+             "maxPurchaseQuantity": 3,
+         },
+         {
+             "images": [
+                { 
+                    "imageUrl": "https://cdn11.bigcommerce.com/s-12tro8kxte/products/111/images/371/smithjournal1.1654040855.220.290.jpg?c=1",
+                    "isDefault": false,
+                    "isThumbnail": true,
+                    "altText": "",
+                }
+             ],
+             "currency": {
+                "isoCode": null,
+                    "currencyCode": "EUR",
+                    "symbol": "€",
+                    "symbolPosition": 0
+              },
+             "basePrice": 53.23,
+             "salePrice": 53.23,
+             "price": 53.23,
+             "id": 121,
+             "name": "The Official Guide to PTE Academic",
+             "shortDescription": "<p style='color:black;font-size:12px; line-height: 1.1;margin: 0; padding: 0;'>Our Official Guide supports you through every step of your journey as you prepare for your PTE Academic test. Find out...</p>",
+             "description": "<p><span style=\"font-size: 10pt;\">Get a personalized Barracuda English 4 Skills Full Test certificate and a Credly badge to add onto your LinkedIn profile</span></p>\n<p><span style=\"font-size: 14pt;\">Measures your English proficiency on the following skills:</span></p>\n<p><span style=\"font-size: 12pt;\"><span style=\"background-color: #ffcc00; padding: 2px 8px; border-radius: 12px;\">1</span> Speaking</span></p>\n<p><span style=\"font-size: 12pt;\"><span style=\"background-color: #ffcc00; padding: 2px 8px; border-radius: 12px;\">2</span> Listening</span></p>\n<p><span style=\"font-size: 12pt;\"><span style=\"background-color: #ffcc00; padding: 2px 8px; border-radius: 12px;\">3</span> Reading</span></p>\n<p><span style=\"font-size: 12pt;\"><span style=\"background-color: #ffcc00; padding: 2px 8px; border-radius: 12px;\">4</span> Writing</span></p>",
+             "sku": "",
+             "minPurchaseQuantity": 1,
+             "maxPurchaseQuantity": 15,
+         },
+         {
+             "images": [
+                { 
+                    "imageUrl": "https://cdn11.bigcommerce.com/s-12tro8kxte/products/121/images/380/logo__49359__42513.1667493278.386.513.jpg?c=1&_gl=1*1l5ngse*_ga*NDkyNDgxODE3LjE2NzUwOTAzMTY.*_ga_WS2VZYPC6G*MTY3NzIzNDEwMC4xMy4xLjE2NzcyMzQ1MjAuNDIuMC4w&_ga=2.175560929.2118956873.1677234101-492481817.1675090316",
+                    "isDefault": false,
+                    "isThumbnail": true,
+                    "altText": "",
+                }
+             ],
+             "currency": {
+                "isoCode": null,
+                    "currencyCode": "EUR",
+                    "symbol": "€",
+                    "symbolPosition": 0
+              },
+             "basePrice": 26.12,
+             "salePrice": 26.12,
+             "price": 26.12,
+             "id": 120,
+             "name": "PTE Academic Question Bank",
+             "shortDescription": "<p style='color:black;font-size:12px; line-height: 1.1;margin: 0; padding: 0;'>The Question Bank helps you build your confidence and develop your English skills.</p>",
+             "description": "<p><span style=\"font-size: 14pt;\">Measures your English proficiency on the following skills:</span></p>\n<p><span style=\"font-size: 12pt;\"><span style=\"background-color: #ffcc00; padding: 2px 8px; border-radius: 12px;\">1</span> Reading</span></p>\n<p><span style=\"font-size: 12pt;\"><span style=\"background-color: #ffcc00; padding: 2px 8px; border-radius: 12px;\">2</span> Writing</span></p>",
+             "sku": "",
+             "minPurchaseQuantity": 1,
+             "maxPurchaseQuantity": 3,
+         }
+     ],
+         "locale": "en-US",
+         "email": "ddd.ddd@ddd.ddd"
+     }
+ }

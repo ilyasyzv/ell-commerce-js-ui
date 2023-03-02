@@ -85,15 +85,6 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
                         width: 100%;
                         max-width: 100%;
                     `
-                case EnumStyledCartProductBreakPoints.zero:
-                    return `
-                        padding: 0 10px;
-                        padding-left: 15px;
-                        padding-right: 0;
-                        flex-direction: column;
-                        width: 100%;
-                        max-width: 100%;
-                    `
             }
         }}
     }
@@ -132,14 +123,6 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
                         margin-bottom: 35px;
                     `
                 case EnumStyledCartProductBreakPoints.mobileSm:
-                    return `
-                        font-size: 16px;
-                        width: 100%;
-                        max-width: 100%;
-                        padding-right: 10px;
-                        margin-bottom: 40px;
-                    `
-                case EnumStyledCartProductBreakPoints.zero:
                     return `
                         font-size: 16px;
                         width: 100%;
@@ -195,14 +178,6 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
                         flex-direction: row;
                         flex-wrap: nowrap;
                     `
-                case EnumStyledCartProductBreakPoints.zero:
-                    return `
-                        width: 100%;
-                        max-width: 100%;
-                        padding: 5px 10px;
-                        flex-direction: row;
-                        flex-wrap: nowrap;
-                    `
             }
         }}
     }
@@ -222,11 +197,6 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
                         font-size: 20px;
                         text-align: left;
                     `
-                case EnumStyledCartProductBreakPoints.zero:
-                    return `
-                        font-size: 20px;
-                        text-align: left;
-                    `
             }
         }}
     }
@@ -235,8 +205,7 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
         padding-right: 0;
         ${props => {
             if (
-                props.breakpoint! === EnumStyledCartProductBreakPoints.mobileSm ||
-                props.breakpoint! === EnumStyledCartProductBreakPoints.zero
+                props.breakpoint! === EnumStyledCartProductBreakPoints.mobileSm
             ) { return `text-align: left;` }
         }}
     }
@@ -272,15 +241,6 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
                         min-height: 48px;
                         bottom: -25%;
                     `
-                case EnumStyledCartProductBreakPoints.zero:
-                    return `
-                        min-width: 90px;
-                        max-width: 90px;
-                        right: -5px;
-                        padding: 0 10px;
-                        min-height: 48px;
-                        bottom: -25%;
-                    `
             }
         }}
     }
@@ -297,18 +257,6 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
                 case EnumStyledCartProductBreakPoints.mobileSm:
                     return `
                         right: -5px;
-                        padding-right: 10px;
-                        position: static;
-                        padding: 0;
-                        margin: 0;
-                        .discount-price-container {
-                            padding: 0;
-                            margin: 0;
-                            text-align: left;
-                        }
-                    `
-                case EnumStyledCartProductBreakPoints.zero:
-                    return `
                         padding-right: 10px;
                         position: static;
                         padding: 0;
@@ -374,7 +322,7 @@ export const StyledProductNameContainer = styled.div`
     align-items: flex-start;
     flex: 1;
     align-self: stretch;
-    padding: 10px 15px;
+    padding: 0 15px;
     box-sizing: border-box;
 `
 
@@ -385,7 +333,7 @@ export const StyledProductName = styled.div`
     font-weight: 600;
     font-size: 18px;
     line-height: 110%;
-    padding: 2px 0;
+    padding: 12px 0;
     padding-right: 10px;
     margin: 0;
     align-self: flex-start;

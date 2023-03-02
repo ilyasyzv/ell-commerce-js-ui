@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { CartProduct } from '../components/CartProduct';
 import { CartProductHeader } from '../components/CartProductHeader/CartProductHeader';
 import {getDefaultMocks} from "./mocks";
+import {DEBOUNCE_INTERVAL} from "../commons/constants"
 
 export default {
     title: 'CartProduct',
@@ -23,7 +24,6 @@ const Template: ComponentStory<typeof CartProduct> = (args) =>
                 currency={args.currency}
                 debounceChangeQty={args.debounceChangeQty}
                 onChange={(e, item)=> {
-                    console.log(e.target.value);
                     setProducts((prevState) => prevState.map((stateItem) => {
                         if(stateItem.id === item.id) {
                             stateItem.originalPrice = stateItem.listPrice * Number(e.target.value)
@@ -46,6 +46,6 @@ export const WithHeaders = Template.bind({});
 WithHeaders.args = {
     items: mock.items,
     currency: mock.currency,
-    debounceChangeQty: 250,
+    debounceChangeQty: DEBOUNCE_INTERVAL,
     hasDescription: false
 };

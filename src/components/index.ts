@@ -7,5 +7,6 @@ export * from "./CartOrderSummary";
 export * from "./EmptyCart";
 export * from "./CartProduct";
 export * from "./CartProductHeader";
+export * from "./RecommendedProduct";
 export * from "./HTMLCartProduct";
 export * from "./RecommendedBundle";

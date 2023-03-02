@@ -10,3 +10,5 @@ export const breakpoints = {
     desktopLg: 1728,
     desktopXl: 1920
 }
+
+export const DEBOUNCE_INTERVAL = 250
