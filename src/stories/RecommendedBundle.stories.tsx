@@ -13,10 +13,10 @@ export const FirstStory = Template.bind({});
 
 FirstStory.args = {
     data: {
-        images: {
+        images: [{
             imageUrl: "",
             altText: ""
-        },
+        }],
         name: "Gold Package",
         price: "130.00",
         currency: {
