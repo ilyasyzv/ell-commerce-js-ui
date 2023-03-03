@@ -30,13 +30,14 @@ const StyledContainer = styled.div`
     display: flex;
     justify-content: center;
     background-color: #bbb;
-    position: absolute;
+    position: fixed;
     top: 0px;
     bottom: 0px;
     left: 0px;
     right: 0px;
     align-items: center;
     opacity: 0.5;
+    z-index: 1000;
   }
 `;
 
@@ -124,6 +125,7 @@ const ObserverComponent:FC<IObserverComponentsProps> = observer(({store}) => {
                                 currency={store.cart.currency}
                                 onChange={onQuantityChanged}
                                 onDelete={onDeleteItem}
+                                isBusy={isLoading}
                             />
                         ))}
                     </CartProductHeader>

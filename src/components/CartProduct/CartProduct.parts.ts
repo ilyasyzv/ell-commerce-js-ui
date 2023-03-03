@@ -11,6 +11,7 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
     width: 100%;
     max-width: 100%;
     min-width: calc(${breakpoints.mobileSm}px - 40px);
+    min-height: 230px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -372,6 +373,8 @@ export const StyledInput = styled.div`
     position: relative;
     margin-right: 10%;
     box-sizing: border-box;
+    padding-bottom: 20px;
+    position: relative;
 
     .cart-product-input {
         outline: none;

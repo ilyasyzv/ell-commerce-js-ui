@@ -362,13 +362,19 @@ export const StyledShowMoreBtn = styled.button`
 
     &:hover {
         color: #376A86;
-        text-decoration: underline;
+        .showMoreLabel{
+            text-decoration: underline;
+        }
         svg path {
             fill: #376A86;
         }
     }
     &:focus-visible {
-        outline: 4px solid #77C2F9;
+        outline: none;
+        .showMoreLabel{
+            outline: 4px solid #77C2F9;
+            outline-offset: 5px;
+        }
     }
     &:active {
         color: #235C60;
@@ -419,6 +425,8 @@ export const StyledInput = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    padding-bottom: 20px;
+    position: relative;
 
     .cart-product-input {
         outline: none;
@@ -524,6 +532,10 @@ export const StyledButton = styled.button`
     &:hover {
         color: #FFFFFF;
         background: #007A9C;
+    }
+
+    &:focus-visible {
+        outline: 4px solid #77C2F9;
     }
    
     &:active {

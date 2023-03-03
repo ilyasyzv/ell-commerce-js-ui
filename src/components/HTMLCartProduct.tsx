@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState, useMemo} from "react";
+import React, {useCallback, useRef, useState, useMemo, useEffect,} from "react";
 import { CartItem, Currency } from "ell-commerce-sdk";
 import {
   StyledCartProduct,
@@ -20,12 +20,14 @@ import {
 import noImageSrc from "../assets/images/no-image.png";
 import {cutText, formatPrice, onInputDebounce} from "../utils";
 import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./CartProduct/constants";
-import {DEBOUNCE_INTERVAL} from "../commons/constants";
+import {DEBOUNCE_INTERVAL, ALLOWED_KEYS} from "../commons/constants";
 import { BucketSvg } from "../commons/svgs";
 import {Message} from "./Message";
 import parse from 'html-react-parser';
 import {useTranslation} from "react-i18next";
 import { useBreakpoints } from "../commons/hooks";
+import type {Props} from "./CartProduct";
+import {setAriaInvalidAttributes} from "../utils";
 
 export enum EnumStyledCartProductBreakPoints {
   mobileSm = 300,
@@ -36,49 +38,65 @@ export enum EnumStyledCartProductBreakPoints {
   desktopSm = 1125
 }
 
-type Props = {
-  item: CartItem;
-  currency: Currency;
-  onChange: (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => void | Promise<void>;
-  onDelete: (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>, itemId: string) => void;
-  htmlDescription: string;
-  debounceChangeQty?: number;
-};
+type HTMLCartProductProps = {htmlDescription: string} & Omit<Props, "hasDescription">
 
-export const HTMLCartProduct: React.FC<Props> = ({
+
+export const HTMLCartProduct: React.FC<HTMLCartProductProps> = ({
   item,
   currency,
   onChange,
   onDelete,
   htmlDescription,
-  debounceChangeQty = DEBOUNCE_INTERVAL
+  debounceChangeQty = DEBOUNCE_INTERVAL,
+  isBusy = false
 }) => {
   const minPurchaseQuantity = item.minPurchaseQuantity || 1
 	const maxPurchaseQuantity = item.maxPurchaseQuantity
   const parsedDescription = useMemo(() => parse(htmlDescription), [htmlDescription]);
 
-  const ref = useRef(null)
+  const containerRef = useRef(null)
+  const inputRef = useRef<HTMLInputElement | null>(null)
 	const [value, setValue] = useState(item.quantity)
+  const [isInvalid, setIsInvalid] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(maxPurchaseQuantity === 1);
 	const [message, setMessage] = useState({text: "", type: ""})
   const { t } = useTranslation()
+
+  useEffect(() => {
+    setIsDisabled(isBusy)
+  }, [isBusy]);
+
+  useEffect(() => {
+    setAriaInvalidAttributes(inputRef, isInvalid, "errorMessage")
+  }, [isInvalid])
+
+  const onKeydown = useCallback((event:  React.KeyboardEvent<HTMLInputElement>)=> {
+    if(!ALLOWED_KEYS.includes(event.code) &&
+       isNaN(Number(event.key))) {
+       event.preventDefault()
+    }
+},[])
 
 	const onInputChange = (ev: React.ChangeEvent<HTMLInputElement>, item: CartItem) => {
     ev.preventDefault();
 		const numValue = +ev.target.value
 		if (numValue >= minPurchaseQuantity && (numValue <= maxPurchaseQuantity || !maxPurchaseQuantity)) {
+      setIsInvalid(false);
 			setMessage({text: "", type: ""})
       onChange(ev, item)
       setValue(numValue)
 		} else if (numValue < minPurchaseQuantity) {
+      setIsInvalid(true);
 			setMessage({text: `Min qty is ${minPurchaseQuantity}`, type: "Error"})
 		} else if (numValue > maxPurchaseQuantity) {
+      setIsInvalid(true);
 			setMessage({text: `Max qty is ${maxPurchaseQuantity}`, type: "Error"})
 		}
 	}
 
   const onInputDebounceChange = useCallback(onInputDebounce(onInputChange, debounceChangeQty), [onInputChange]);
 
-  const breakpoint = useBreakpoints<EnumStyledCartProductBreakPoints>(ref, [
+  const breakpoint = useBreakpoints<EnumStyledCartProductBreakPoints>(containerRef, [
     EnumStyledCartProductBreakPoints.mobileSm,
     EnumStyledCartProductBreakPoints.mobileMd,
     EnumStyledCartProductBreakPoints.tabletSm,
@@ -88,7 +106,7 @@ export const HTMLCartProduct: React.FC<Props> = ({
   ])
 
   return (
-    <StyledCartProduct key={item.id} ref={ref} breakpoint={breakpoint}>
+    <StyledCartProduct key={item.id} ref={containerRef} breakpoint={breakpoint}>
       <StyledLeftFlexBlock className={"leftFlexBlock"}>
         <StyledImage
           role="presentation"
@@ -109,16 +127,18 @@ export const HTMLCartProduct: React.FC<Props> = ({
             </StyledProductName>
             <StyledInput className={"input"}>
 							<input
+                ref={inputRef}
+                onKeyDown={onKeydown}
 								type="number"
 								className={message.type === "Error" ? "cart-product-input error" : "cart-product-input"}
-                disabled={maxPurchaseQuantity === 1}
+                disabled={isDisabled}
 								defaultValue={value}
 								min={minPurchaseQuantity}
 								max={maxPurchaseQuantity}
 								onChange={(ev) => onInputDebounceChange(ev, item)}
                 aria-label="Quantity of product"
 							/>
-							<Message text={message.text} type={message.type} />
+							{isInvalid && <Message id="errorMessage" text={message.text} type={message.type} />}
 						</StyledInput>
           </StyledProductNameContainer>
           <StyledProductPriceContainer className={"productPriceContainer"}>

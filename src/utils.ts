@@ -1,3 +1,4 @@
+import {MutableRefObject} from "react";
 import { CurrencySymbolPosition, Currency } from "ell-commerce-sdk"
 
 export const onInputDebounce = <F extends ((...args: any) => any)>(inputFunction: F, debounceChangeQty: number) => {
@@ -35,4 +36,15 @@ export const formatPrice = (price: number, currency: Currency) => {
     return symbolPosition === CurrencySymbolPosition.Right
         ? `${formattedPrice}${symbol}`
         : `${symbol}${formattedPrice}`
+}
+
+export const setAriaInvalidAttributes = (ref: MutableRefObject<HTMLInputElement | null>, isInvalid:boolean, errorMessageId:string) => {
+  const input = ref.current;
+  if(input && isInvalid) {
+    input.setAttribute("aria-invalid", "true")
+    input.setAttribute("aria-describedby", errorMessageId)
+  } else if(input && !isInvalid) {
+    input.removeAttribute("aria-invalid")
+    input.removeAttribute("aria-describedby")
+  }
 }

@@ -1,4 +1,4 @@
-import React, {useState, useRef, useMemo} from "react";
+import React, {useState, useRef, useMemo, useEffect, useCallback} from "react";
 import { Product,Variant } from "ell-commerce-sdk";
 import {
   StyledCartProduct,
@@ -19,6 +19,7 @@ import {
 import noImageSrc from "../../assets/images/no-image.png";
 import {cutText, formatPrice} from "../../utils"
 import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./constants";
+import {ALLOWED_KEYS} from "../../commons/constants";
 import { ArrowControlsDown, ArrowControlsUp } from "../../commons/svgs";
 import {Message} from "../Message";
 import parse from 'html-react-parser';
@@ -51,26 +52,49 @@ export const RecommendedProduct: React.FC<Props> = ({
   const parsedDescription = useMemo(() => parse(description), [description]);
   const parsedShortDescription = useMemo(() => parse(shortDescription), [shortDescription]);
 
-  const ref = useRef<HTMLDivElement | null>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const inputRef = useRef<HTMLInputElement | null>(null)
 	const [quantity, setQuantity] = useState(minPurchaseQuantity)
   const [expanded, setExpanded] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
 	const [message, setMessage] = useState({text: "", type: ""})
   const { t } = useTranslation()
+
+  useEffect(() => {
+    const input = inputRef.current;
+    if(input && isInvalid) {
+      input.setAttribute("aria-invalid", "true")
+      input.setAttribute("aria-describedby", "errorMessage")
+    } else if(input && !isInvalid) {
+      input.removeAttribute("aria-invalid")
+      input.removeAttribute("aria-describedby")
+    }
+  }, [isInvalid])
+
+  const onKeydown = useCallback((event:  React.KeyboardEvent<HTMLInputElement>)=> {
+    if(!ALLOWED_KEYS.includes(event.code) &&
+       isNaN(Number(event.key))) {
+       event.preventDefault()
+    }
+},[])
 
 	const onInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     ev.preventDefault();
 		const numValue = +ev.target.value
 		if (numValue >= minPurchaseQuantity && (numValue <= maxPurchaseQuantity || !maxPurchaseQuantity)) {
+      setIsInvalid(false);
 			setMessage({text: "", type: ""})
       setQuantity(numValue)
 		} else if (numValue < minPurchaseQuantity) {
+      setIsInvalid(true);
 			setMessage({text: `Min qty is ${minPurchaseQuantity}`, type: "Error"})
 		} else if (numValue > maxPurchaseQuantity) {
+      setIsInvalid(true);
 			setMessage({text: `Max qty is ${maxPurchaseQuantity}`, type: "Error"})
 		}
 	}
 
-  const breakpoint = useBreakpoints<EnumStyledCartProductBreakPoints>(ref, [
+  const breakpoint = useBreakpoints<EnumStyledCartProductBreakPoints>(containerRef, [
     EnumStyledCartProductBreakPoints.mobileSm,
     EnumStyledCartProductBreakPoints.mobileMd,
     EnumStyledCartProductBreakPoints.tabletSm,
@@ -81,7 +105,7 @@ export const RecommendedProduct: React.FC<Props> = ({
   ])
 
   return (
-    <StyledCartProduct key={id} ref={ref} breakpoint={breakpoint}>
+    <StyledCartProduct key={id} ref={containerRef} breakpoint={breakpoint}>
       <StyledLeftFlexBlock className="leftFlexBlock">
         <StyledImage
           className="image"
@@ -100,7 +124,7 @@ export const RecommendedProduct: React.FC<Props> = ({
               </StyledProductPrice>
               <StyledProductDescription className="description" id="description-block">{expanded ? parsedDescription : parsedShortDescription}</StyledProductDescription>   
               <StyledShowMoreBtn className="showMore" onClick={() => setExpanded((prevState) => !prevState)} aria-expanded={expanded} aria-controls="description-block">
-                <span>{expanded ? t("show_less") : t("show_more")}
+                  <span className="showMoreLabel">{expanded ? t("show_less") : t("show_more")}
                   <i>{expanded ? <ArrowControlsUp aria-hidden={true}/> : <ArrowControlsDown aria-hidden={true}/>}</i>
                 </span>
               </StyledShowMoreBtn>
@@ -108,6 +132,8 @@ export const RecommendedProduct: React.FC<Props> = ({
             
             <StyledInput className="input">
 							<input
+                ref={inputRef}
+                onKeyDown={onKeydown}
 								type="number"
 								className={message.type === "Error" ? "cart-product-input error" : "cart-product-input"}
                 disabled={maxPurchaseQuantity === 1}
@@ -117,7 +143,7 @@ export const RecommendedProduct: React.FC<Props> = ({
 								onChange={(ev) => onInputChange(ev)}
                 aria-label="Quantity of product"
 							/>
-							<Message text={message.text} type={message.type} />
+							{isInvalid && <Message id="errorMessage" text={message.text} type={message.type} />}
 						</StyledInput>
           </StyledProductNameContainer>
           <StyledProductPriceContainer className="productPriceContainer">

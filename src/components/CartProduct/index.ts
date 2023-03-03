@@ -1,1 +1,2 @@
-export {CartProduct} from "./CartProduct"
+export {CartProduct} from "./CartProduct";
+export type {Props} from "./CartProduct";

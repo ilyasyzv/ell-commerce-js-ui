@@ -12,3 +12,15 @@ export const breakpoints = {
 }
 
 export const DEBOUNCE_INTERVAL = 250
+
+export const ALLOWED_KEYS = [
+    'Backspace',
+    'Delete',
+    'ArrowLeft',
+    'ArrowRight',
+    'Tab', 
+    'Space',
+    'Shift', 
+    'ArrowUp', 
+    'ArrowDown'
+  ];
