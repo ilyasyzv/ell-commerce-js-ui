@@ -72,7 +72,7 @@ export const getDefaultMocks = () => {
            "symbol": "€",
            "symbolPosition": 0,
            "decimalToken": ".",
-           "thousandsToken": "/",
+           "thousandsToken": ",",
            "decimalPlaces": 2
        },
        "email": "ddd.ddd@ddd.ddd"
@@ -93,10 +93,13 @@ export const getRecommendedProductMocks = () => {
              ],
              "currency": {
                 "isoCode": null,
-                    "currencyCode": "EUR",
-                    "symbol": "€",
-                    "symbolPosition": 0
-              },
+                "currencyCode": "EUR",
+                "symbol": "€",
+                "symbolPosition": 0,
+                "decimalToken": ".",
+                "thousandsToken": ",",
+                "decimalPlaces": 2
+             },
              "basePrice": 47,
              "salePrice": 47,
              "price": 47,
@@ -119,10 +122,13 @@ export const getRecommendedProductMocks = () => {
              ],
              "currency": {
                 "isoCode": null,
-                    "currencyCode": "EUR",
-                    "symbol": "€",
-                    "symbolPosition": 0
-              },
+                "currencyCode": "EUR",
+                "symbol": "€",
+                "symbolPosition": 0,
+                "decimalToken": ".",
+                "thousandsToken": ",",
+                "decimalPlaces": 2
+             },
              "basePrice": 53.23,
              "salePrice": 53.23,
              "price": 53.23,
@@ -145,10 +151,13 @@ export const getRecommendedProductMocks = () => {
              ],
              "currency": {
                 "isoCode": null,
-                    "currencyCode": "EUR",
-                    "symbol": "€",
-                    "symbolPosition": 0
-              },
+                "currencyCode": "EUR",
+                "symbol": "€",
+                "symbolPosition": 0,
+                "decimalToken": ".",
+                "thousandsToken": ",",
+                "decimalPlaces": 2
+             },
              "basePrice": 26.12,
              "salePrice": 26.12,
              "price": 26.12,

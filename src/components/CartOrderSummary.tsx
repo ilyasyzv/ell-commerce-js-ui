@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { MAIN_COLOR } from "../commons/colors";
 import { breakpoints } from "../commons/constants";
-import {formatPrice, mockConfig} from "../utils"
+import {formatPrice} from "../utils"
 import {Trans, useTranslation} from "react-i18next";
 
 const StyledCartOrderSummary = styled.div`
@@ -167,14 +167,14 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                 <div>
                     <span>{t("subtotal")}</span>
                     <span className="price">
-                        {formatPrice(mockConfig, cart.currency.symbol, cart.baseAmount)}
+                        {formatPrice(cart.baseAmount, cart.currency)}
                     </span>
                 </div>
                 {cart?.discountAmount > 0 && (
                     <div>
                     <span>{t("discount")}</span>
                     <span className="price">
-                        -{formatPrice(mockConfig, cart.currency.symbol, cart.discountAmount)}
+                        -{formatPrice(cart.discountAmount, cart.currency)}
                     </span>
                     </div>
                 )}
@@ -183,7 +183,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                 <div className="total_wrapper">
                     <span>{t('total')}</span>
                     <span>
-                        {formatPrice(mockConfig, cart.currency.symbol, cart.preTaxCartAmount)}
+                        {formatPrice(cart.preTaxCartAmount, cart.currency)}
                     </span>
                 </div>
             )}

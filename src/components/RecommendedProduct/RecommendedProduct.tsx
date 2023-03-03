@@ -17,7 +17,7 @@ import {
   StyledShowMoreBtn
 } from "./RecommendedProduct.parts";
 import noImageSrc from "../../assets/images/no-image.png";
-import {cutText, formatPrice, mockConfig} from "../../utils"
+import {cutText, formatPrice} from "../../utils"
 import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./constants";
 import { ArrowControlsDown, ArrowControlsUp } from "../../commons/svgs";
 import {Message} from "../Message";
@@ -80,7 +80,6 @@ export const RecommendedProduct: React.FC<Props> = ({
     EnumStyledCartProductBreakPoints.desktopMd
   ])
 
-
   return (
     <StyledCartProduct key={id} ref={ref} breakpoint={breakpoint}>
       <StyledLeftFlexBlock className="leftFlexBlock">
@@ -97,7 +96,7 @@ export const RecommendedProduct: React.FC<Props> = ({
             <StyledProductName className="productName">
             <StyledProductTitle>{cutText(name, MAX_PRODUCT_NAME_DISLPAY_LENGTH)}</StyledProductTitle>
               <StyledProductPrice className="productPriceMobile">
-                  {formatPrice(mockConfig, currency.symbol, price)}
+                  {formatPrice(price, currency)}
               </StyledProductPrice>
               <StyledProductDescription className="description" id="description-block">{expanded ? parsedDescription : parsedShortDescription}</StyledProductDescription>   
               <StyledShowMoreBtn className="showMore" onClick={() => setExpanded((prevState) => !prevState)} aria-expanded={expanded} aria-controls="description-block">
@@ -123,7 +122,7 @@ export const RecommendedProduct: React.FC<Props> = ({
           </StyledProductNameContainer>
           <StyledProductPriceContainer className="productPriceContainer">
             <StyledProductPrice className="productPrice">
-                  {formatPrice(mockConfig, currency.symbol, price)}
+                  {formatPrice(price, currency)}
             </StyledProductPrice>
             <StyledButton
               className="button"

@@ -18,7 +18,7 @@ import {
   StyledProductHTMLDescription,
 } from "./CartProduct/CartProduct.parts";
 import noImageSrc from "../assets/images/no-image.png";
-import {cutText, formatPrice, mockConfig, onInputDebounce} from "../utils";
+import {cutText, formatPrice, onInputDebounce} from "../utils";
 import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./CartProduct/constants";
 import {DEBOUNCE_INTERVAL} from "../commons/constants";
 import { BucketSvg } from "../commons/svgs";
@@ -124,16 +124,16 @@ export const HTMLCartProduct: React.FC<Props> = ({
           <StyledProductPriceContainer className={"productPriceContainer"}>
             {item.totalOriginalPrice === item.totalSalePrice && (
               <StyledProductPrice className={"productPrice"}>
-                {formatPrice(mockConfig, currency.symbol, item.totalOriginalPrice)}
+                {formatPrice(item.totalOriginalPrice, currency)}
               </StyledProductPrice>
             )}
             {item.totalOriginalPrice !== item.totalSalePrice && (
               <StyledDiscountWrapper className={"discountWrapper"}>
                 <StyledProductPrice className={"discount-price-container productPrice"}>
-                  {formatPrice(mockConfig, currency.symbol, item.totalSalePrice)}
+                  {formatPrice(item.totalSalePrice, currency)}
                 </StyledProductPrice>
                 <StyledDisabledProductPrice className={"discount-price-container disabledProductPrice"}>
-                  {formatPrice(mockConfig, currency.symbol, item.totalOriginalPrice)}
+                  {formatPrice(item.totalOriginalPrice, currency)}
                 </StyledDisabledProductPrice>
               </StyledDiscountWrapper>
             )}

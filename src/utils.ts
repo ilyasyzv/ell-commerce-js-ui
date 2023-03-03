@@ -1,53 +1,4 @@
-import { CurrencySymbolPosition } from "ell-commerce-sdk"
-
-type Config = {
-    position: CurrencySymbolPosition, 
-    decimalToken: string; 
-    thousandToken: string; 
-    decimalPlaces: number;
-}
-
-export const mockConfig = {
-    position: 0,
-    decimalToken: ".",
-    thousandToken: ",",
-    decimalPlaces: 2,
-}
-
-const addThousandToken = (priceStr:string, token:string) => {
-    const lastIndex = priceStr.length - 1;
-    return priceStr
-            .split("")
-            .reverse()
-            .map((it, i) => {
-                if((i + 1) % 3 === 0 && i !== lastIndex) {
-                    return `${token}${it}`;
-                }
-                return `${it}`;
-            })
-            .reverse()
-            .join("");
-}
-
-export const formatPrice = (config: Config, currencySymbol: string,  price?: number | string) => {
-    if (!price) {
-        return ""
-    }
-    if (typeof price === "string") {
-        price = Number.parseFloat(price)
-    }
-    if (Number.isNaN(price)) {
-        return ""
-    }
-
-    const parts = price.toFixed(config.decimalPlaces).split(".")
-    const formattedFirstPart = addThousandToken(parts[0], config.thousandToken);
-    const formattedPrice = `${formattedFirstPart}${config.decimalToken}${parts[1]}`
-
-    return config.position === CurrencySymbolPosition.Right
-        ? `${formattedPrice}${currencySymbol}`
-        : `${currencySymbol}${formattedPrice}`
-}
+import { CurrencySymbolPosition, Currency } from "ell-commerce-sdk"
 
 export const onInputDebounce = <F extends ((...args: any) => any)>(inputFunction: F, debounceChangeQty: number) => {
     let timeout: number = 0
@@ -62,4 +13,26 @@ export const onInputDebounce = <F extends ((...args: any) => any)>(inputFunction
 
 export const cutText = (text: string, maxLength: number) => {
     return text.length <= maxLength ? text : `${text.slice(0, maxLength)}...`;
+}
+
+export const formatPrice = (price: number, currency: Currency) => {
+    const { currencyCode, decimalPlaces, decimalToken, isoCode, symbol, symbolPosition, thousandsToken } = currency;
+    const roundedPrice = price.toFixed(decimalPlaces);
+    const [integerPart, decimalPart] = roundedPrice.split(".");
+    const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, thousandsToken);
+    let formattedPrice = "";
+  
+    formattedPrice += formattedIntegerPart;
+  
+    if (decimalPlaces > 0) {
+      formattedPrice += decimalToken + decimalPart.padEnd(decimalPlaces, "0");
+    }
+  
+    if (isoCode) {
+      formattedPrice += ` ${isoCode}`;
+    }
+
+    return symbolPosition === CurrencySymbolPosition.Right
+        ? `${formattedPrice}${symbol}`
+        : `${symbol}${formattedPrice}`
 }

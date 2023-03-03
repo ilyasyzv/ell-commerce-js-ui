@@ -2,11 +2,13 @@ import React from 'react';
 import { ComponentStory } from '@storybook/react';
 import { RecommendedBundle } from '../components/RecommendedBundle';
 import { Product } from 'ell-commerce-sdk';
+import {getDefaultMocks} from "./mocks";
 
 export default {
     title: 'RecommendedBundle',
 };
 
+const mock = getDefaultMocks()
 const Template: ComponentStory<typeof RecommendedBundle> = (args) => <RecommendedBundle {...args}/>
 
 export const FirstStory = Template.bind({});
@@ -18,10 +20,8 @@ FirstStory.args = {
             altText: ""
         }],
         name: "Gold Package",
-        price: "130.00",
-        currency: {
-            symbol: "$"
-        },
+        price: 130,
+        currency: mock.currency,
         shortDescription: `
             All our test prep together to give you the very best support for success. Includes:
             <ul>
