@@ -18,8 +18,7 @@ import {
 } from "./RecommendedProduct.parts";
 import noImageSrc from "../../assets/images/no-image.png";
 import {cutText, formatPrice} from "../../utils"
-import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./constants";
-import {ALLOWED_KEYS} from "../../commons/constants";
+import {ALLOWED_KEYS, MAX_PRODUCT_NAME_DISPLAY_LENGTH} from "../../commons/constants";
 import { ArrowControlsDown, ArrowControlsUp } from "../../commons/svgs";
 import {Message} from "../Message";
 import parse from 'html-react-parser';
@@ -118,7 +117,7 @@ export const RecommendedProduct: React.FC<Props> = ({
         <StyledProductInfo className="productInfo">
           <StyledProductNameContainer className="productNameContainer">
             <StyledProductName className="productName">
-            <StyledProductTitle>{cutText(name, MAX_PRODUCT_NAME_DISLPAY_LENGTH)}</StyledProductTitle>
+            <StyledProductTitle>{cutText(name, MAX_PRODUCT_NAME_DISPLAY_LENGTH)}</StyledProductTitle>
               <StyledProductPrice className="productPriceMobile">
                   {formatPrice(price, currency)}
               </StyledProductPrice>

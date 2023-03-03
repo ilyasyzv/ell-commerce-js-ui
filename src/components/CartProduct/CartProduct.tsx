@@ -19,8 +19,7 @@ import {
 } from "./CartProduct.parts";
 import noImageSrc from "../../assets/images/no-image.png";
 import {cutText, formatPrice, onInputDebounce} from "../../utils";
-import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./constants";
-import {DEBOUNCE_INTERVAL, ALLOWED_KEYS} from "../../commons/constants"
+import {DEBOUNCE_INTERVAL, ALLOWED_KEYS, MAX_PRODUCT_NAME_DISPLAY_LENGTH} from "../../commons/constants"
 import { BucketSvg } from "../../commons/svgs";
 import {Message} from "../Message";
 import parse from 'html-react-parser';
@@ -44,7 +43,7 @@ export type Props = {
   onDelete: (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLButtonElement>, itemId: string) => void;
   hasDescription?: boolean;
   debounceChangeQty?: number;
-  isBusy: boolean;
+  isBusy?: boolean;
 };
 
 export const CartProduct: React.FC<Props> = ({
@@ -128,7 +127,7 @@ export const CartProduct: React.FC<Props> = ({
         <StyledProductInfo className={"productInfo"}>
           <StyledProductNameContainer className={"productNameContainer"}>
             <StyledProductName className={"productName"}>
-              <StyledProductTitle>{cutText(item.name, MAX_PRODUCT_NAME_DISLPAY_LENGTH)}</StyledProductTitle>
+              <StyledProductTitle>{cutText(item.name, MAX_PRODUCT_NAME_DISPLAY_LENGTH)}</StyledProductTitle>
               {hasDescription && item.shortDescription && <StyledProductDescription>{parsedShortDescription}</StyledProductDescription>}   
             </StyledProductName>
             <StyledInput className={"input"}>

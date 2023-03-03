@@ -24,3 +24,5 @@ export const ALLOWED_KEYS = [
     'ArrowUp', 
     'ArrowDown'
   ];
+
+  export const MAX_PRODUCT_NAME_DISPLAY_LENGTH = 50

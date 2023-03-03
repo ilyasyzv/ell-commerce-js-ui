@@ -19,24 +19,14 @@ import {
 } from "./CartProduct/CartProduct.parts";
 import noImageSrc from "../assets/images/no-image.png";
 import {cutText, formatPrice, onInputDebounce} from "../utils";
-import { MAX_PRODUCT_NAME_DISLPAY_LENGTH } from "./CartProduct/constants";
-import {DEBOUNCE_INTERVAL, ALLOWED_KEYS} from "../commons/constants";
+import {DEBOUNCE_INTERVAL, ALLOWED_KEYS, MAX_PRODUCT_NAME_DISPLAY_LENGTH} from "../commons/constants";
 import { BucketSvg } from "../commons/svgs";
 import {Message} from "./Message";
 import parse from 'html-react-parser';
 import {useTranslation} from "react-i18next";
 import { useBreakpoints } from "../commons/hooks";
-import type {Props} from "./CartProduct";
+import {EnumStyledCartProductBreakPoints, Props} from "./CartProduct";
 import {setAriaInvalidAttributes} from "../utils";
-
-export enum EnumStyledCartProductBreakPoints {
-  mobileSm = 300,
-  mobileMd = 353,
-  tabletSm = 669,
-  tabletMd = 759,
-  tabletLg = 949,
-  desktopSm = 1125
-}
 
 type HTMLCartProductProps = {htmlDescription: string} & Omit<Props, "hasDescription">
 
@@ -119,7 +109,7 @@ export const HTMLCartProduct: React.FC<HTMLCartProductProps> = ({
         <StyledProductInfo className={"productInfo"}>
           <StyledProductNameContainer className={"productNameContainer"}>
             <StyledProductName className={"productName"}>
-              <StyledProductTitle>{cutText(item.name, MAX_PRODUCT_NAME_DISLPAY_LENGTH)}</StyledProductTitle>
+              <StyledProductTitle>{cutText(item.name, MAX_PRODUCT_NAME_DISPLAY_LENGTH)}</StyledProductTitle>
               <StyledProductHTMLDescription>
                 {parsedDescription}
               </StyledProductHTMLDescription>
