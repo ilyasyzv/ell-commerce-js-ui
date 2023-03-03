@@ -21,6 +21,7 @@ const StyledCartQty = styled.div`
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
+    color: #000000;
   }
 
 
