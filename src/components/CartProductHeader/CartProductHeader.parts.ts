@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { breakpoints } from '../../commons/constants';
+import {WithUiTag} from "../../commons/components";
 import {EnumStyledCartProductBreakPoints} from "../CartProduct";
 
 interface StyledCartProductProps {
   readonly breakpoint: EnumStyledCartProductBreakPoints | undefined
 }
 
-export const StyledContainer = styled.div`
+export const StyledContainer = WithUiTag("CartProductHeaderContainer")(styled.div`
     font-family: "OpenSans", sans-serif;    
     width: 100%;
     max-width: 100%;
@@ -19,9 +20,8 @@ export const StyledContainer = styled.div`
     flex-direction: column;
     align-items:center;
     background-color: transparent;
-`;
-
-export const StyledHeader = styled.div<StyledCartProductProps>`
+`)
+export const StyledHeader = WithUiTag("CartProductHeader")(styled.div<StyledCartProductProps>`
     padding: 20px;
     padding-top: 0;
     margin: 0;
@@ -107,9 +107,8 @@ export const StyledHeader = styled.div<StyledCartProductProps>`
       }}
     }
 
-`;
-
-export const StyledTitle = styled.div`
+`)
+export const StyledTitle = WithUiTag("CartProductTitle")(styled.div`
     text-transform: uppercase;
     font-weight: 700;
     font-size: 16px;
@@ -126,10 +125,8 @@ export const StyledTitle = styled.div`
       padding: 0;
       box-sizing: border-box;
     }
-`;
-
-
-export const StyledLeftColumnTitle = styled(StyledTitle)`
+`)
+export const StyledLeftColumnTitle = WithUiTag("CartProductLeftColumnTitle")(styled(StyledTitle)`
       width: 100%;
       max-width: 100%;
       text-align: left;
@@ -141,9 +138,8 @@ export const StyledLeftColumnTitle = styled(StyledTitle)`
         padding: 0;
         white-space: nowrap;
       }
-`
-
-export const StyledCenterColumnTitle = styled(StyledTitle)`
+`)
+export const StyledCenterColumnTitle = WithUiTag("CartProductCenterColumnTitle")(styled(StyledTitle)`
     flex: 1;
     display: flex;
     justify-content: flex-end;
@@ -158,9 +154,8 @@ export const StyledCenterColumnTitle = styled(StyledTitle)`
       padding-left: 2px;
       margin-right: 10%;
     }
-`
-
-export const StyledRightColumnTitle = styled(StyledTitle)`
+`)
+export const StyledRightColumnTitle = WithUiTag("CartProductRightColumnTitle")(styled(StyledTitle)`
     max-width: calc(120px + 20px);
     width: calc(120px + 20px);
     margin: 0;
@@ -172,14 +167,11 @@ export const StyledRightColumnTitle = styled(StyledTitle)`
       width: 100%;
       max-width: 100%;
     }
-`
-
-
-
-export const StyledProductList = styled.div`
+`)
+export const StyledProductList = WithUiTag("CartProductList")(styled.div`
     font-size: 18px;
     margin: 0;
     padding: 0;
     width: 100%;
     max-width: 100%;
-`;
+`)

@@ -166,7 +166,7 @@ export const CartProduct: React.FC<Props> = ({
             <StyledButton
               className={"button"}
               aria-label={`${t('remove')} ${item.name}`}
-              onClick={(ev) => onDelete(ev, item.id)}
+              onClick={(ev:any) => onDelete(ev, item.id)}
             >
               <i>
                 <BucketSvg aria-hidden={true} />

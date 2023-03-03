@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { breakpoints } from '../../commons/constants';
 import { EnumStyledCartProductBreakPoints } from './CartProduct';
+import {WithUiTag} from "../../commons/components";
 
 interface StyledCartProductProps {
     readonly breakpoint: EnumStyledCartProductBreakPoints | undefined
 }
 
-export const StyledCartProduct = styled.div<StyledCartProductProps>`
+export const StyledCartProduct = WithUiTag("CartProduct")(styled.div<StyledCartProductProps>`
     font-family: "OpenSans", sans-serif;  
     width: 100%;
     max-width: 100%;
@@ -281,10 +282,8 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
             }
         }}
     }
-
-`
-
-export const StyledLeftFlexBlock = styled.div`
+`)
+export const StyledLeftFlexBlock = WithUiTag("LeftFlexBlock")(styled.div`
     width: 112px;
     min-width: 112px;
     margin: 0;
@@ -292,14 +291,12 @@ export const StyledLeftFlexBlock = styled.div`
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
-`
-
-export const StyledImage = styled.img`
+`)
+export const StyledImage = WithUiTag("Image")(styled.img`
     max-width: 100%;
     height: auto;
-`
-
-export const StyledRightFlexBlock = styled.div`
+`)
+export const StyledRightFlexBlock = WithUiTag("RightFlexBlock")(styled.div`
     margin: 0;
     padding: 0;
     flex: 1;
@@ -309,10 +306,8 @@ export const StyledRightFlexBlock = styled.div`
     justify-content: space-between;
     align-self: stretch;
     box-sizing: border-box;
-`
-
-
-export const StyledProductInfo = styled.div`
+`)
+export const StyledProductInfo = WithUiTag("ProductInfo")(styled.div`
     margin: 0;
     padding: 0;
     width: 100%;
@@ -323,9 +318,8 @@ export const StyledProductInfo = styled.div`
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-between;
-`
-
-export const StyledProductNameContainer = styled.div`
+`)
+export const StyledProductNameContainer = WithUiTag("ProductNameContainer")(styled.div`
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -334,9 +328,8 @@ export const StyledProductNameContainer = styled.div`
     align-self: stretch;
     padding: 0 15px;
     box-sizing: border-box;
-`
-
-export const StyledProductName = styled.div`
+`)
+export const StyledProductName = WithUiTag("ProductName")(styled.div`
     color: #151515;
     font-family: "OpenSans", sans-serif;
     font-style: normal;
@@ -352,34 +345,30 @@ export const StyledProductName = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-`
-
-export const StyledProductTitle = styled.p`
+`)
+export const StyledProductTitle =  WithUiTag("ProductTitle")(styled.p`
     width: 100%;
     max-width: 100%;
     margin: 0;
     margin-bottom: 20px;
     padding: 0;
     box-sizing: border-box;
-`
-
-export const StyledProductDescription = styled.div`
+`)
+export const StyledProductDescription = WithUiTag("ProductDescription")(styled.div`
     width: 100%;
     max-width: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-`
-
-export const StyledProductHTMLDescription = styled.div`
+`)
+export const StyledProductHTMLDescription = WithUiTag("ProductHTMLDescription")(styled.div`
     width: 100%;
     max-width: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-`
-
-export const StyledInput = styled.div`
+`)
+export const StyledInput = WithUiTag("Input")(styled.div`
     position: relative;
     margin-right: 10%;
     box-sizing: border-box;
@@ -437,9 +426,8 @@ export const StyledInput = styled.div`
             margin: 0;
         }
     }
-`
-
-export const StyledProductPriceContainer = styled.div`
+`)
+export const StyledProductPriceContainer = WithUiTag("ProductPriceContainer")(styled.div`
     max-width: calc(120px + 20px);
     width: calc(120px + 20px);
     margin: 0;
@@ -453,9 +441,8 @@ export const StyledProductPriceContainer = styled.div`
     align-self: stretch;
     box-sizing: border-box;
     position: relative;
-`
-
-export const StyledProductPrice = styled.p`
+`)
+export const StyledProductPrice = WithUiTag("ProductPrice")(styled.p`
     font-weight: 600;
     font-size: 18px;
     padding: 0;
@@ -468,9 +455,8 @@ export const StyledProductPrice = styled.p`
     white-space: nowrap;
     overflow: auto;
     box-sizing: border-box;
-`
-
-export const StyledDisabledProductPrice = styled.p`
+`)
+export const StyledDisabledProductPrice = WithUiTag("DisabledProductPrice")(styled.p`
     font-weight: 400;
     font-size: 14px;
     padding: 0;
@@ -484,9 +470,8 @@ export const StyledDisabledProductPrice = styled.p`
     padding-right: 10px;
     text-decoration: line-through;
     box-sizing: border-box;
-`
-
-export const StyledButton = styled.button`
+`)
+export const StyledButton = WithUiTag("Button")(styled.button`
     display: flex;
     align-items: center;
     justify-content: end;
@@ -536,9 +521,8 @@ export const StyledButton = styled.button`
         height: 18px;
         margin-right: 6px;
     }
-`
-
-export const StyledDiscountWrapper = styled.div`
+`)
+export const StyledDiscountWrapper = WithUiTag("DiscountWrapper")(styled.div`
     padding: 0;
     margin: 0;
     position: absolute;
@@ -548,4 +532,4 @@ export const StyledDiscountWrapper = styled.div`
         padding: 0;
         margin: 0;
     }
-`;
+`)

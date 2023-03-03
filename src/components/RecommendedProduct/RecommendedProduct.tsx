@@ -153,7 +153,7 @@ export const RecommendedProduct: React.FC<Props> = ({
             <StyledButton
               className="button"
               aria-label={`${t('add_to_cart')} ${product.name}`}
-              onClick={(ev) => onAddToCart(ev, product, quantity)}
+              onClick={(ev: any) => onAddToCart(ev, product, quantity)}
             >
                {t('add_to_cart')}
             </StyledButton>

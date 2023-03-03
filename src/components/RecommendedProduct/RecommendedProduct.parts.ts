@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { breakpoints } from '../../commons/constants';
 import { EnumStyledCartProductBreakPoints } from './RecommendedProduct';
+import {WithUiTag} from "../../commons/components";
 
 interface StyledCartProductProps {
     readonly breakpoint: EnumStyledCartProductBreakPoints | undefined
 }
-
-export const StyledCartProduct = styled.div<StyledCartProductProps>`
+export const StyledCartProduct = WithUiTag("RecommendedProduct")(styled.div<StyledCartProductProps>`
   font-family: "OpenSans", sans-serif;  
   width: 100%;
   max-width: 100%;
@@ -238,9 +238,8 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
             }
        }}
     }
-`
-
-export const StyledLeftFlexBlock = styled.div`
+`)
+export const StyledLeftFlexBlock = WithUiTag("RecommendedProductLeftBlock")(styled.div`
     width: 112px;
     min-width: 112px;
     margin: 0;
@@ -248,15 +247,13 @@ export const StyledLeftFlexBlock = styled.div`
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
-`
-
-export const StyledImage = styled.img`
+`)
+export const StyledImage = WithUiTag("RecommendedProductImage")(styled.img`
     width: 100%;
     max-width: 100%;
     height: auto;
-`
-
-export const StyledRightFlexBlock = styled.div`
+`)
+export const StyledRightFlexBlock = WithUiTag("RecommendedProductRightBlock")(styled.div`
     margin: 0;
     padding: 0;
     flex: 1;
@@ -266,10 +263,8 @@ export const StyledRightFlexBlock = styled.div`
     justify-content: space-between;
     align-self: stretch;
     box-sizing: border-box;
-`
-
-
-export const StyledProductInfo = styled.div`
+`)
+export const StyledProductInfo = WithUiTag("RecommendedProductInfo")(styled.div`
     margin: 0;
     padding: 0;
     width: 100%;
@@ -281,9 +276,8 @@ export const StyledProductInfo = styled.div`
     flex-direction: row;
     justify-content: space-between;
 
-`
-
-export const StyledProductNameContainer = styled.div`
+`)
+export const StyledProductNameContainer = WithUiTag("RecommendedProductNameContainer")(styled.div`
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -293,9 +287,8 @@ export const StyledProductNameContainer = styled.div`
     padding: 0 15px;
     box-sizing: border-box;
 
-`
-
-export const StyledProductName = styled.div`
+`)
+export const StyledProductName = WithUiTag("RecommendedProductName")(styled.div`
     color: #151515;
     font-family: "OpenSans", sans-serif;
     font-style: normal;
@@ -312,18 +305,16 @@ export const StyledProductName = styled.div`
     flex-direction: column;
     height: 100%;
     position: relative;
-`
-
-export const StyledProductTitle = styled.p`
+`)
+export const StyledProductTitle = WithUiTag("RecommendedProductLeftBlock")(styled.p`
     width: 100%;
     max-width: 100%;
     margin: 0;
     margin-bottom: 20px;
     padding: 0;
     box-sizing: border-box;
-`
-
-export const StyledProductDescription = styled.div`
+`)
+export const StyledProductDescription = WithUiTag("RecommendedProductDescription")(styled.div`
     width: 100%;
     max-width: 100%;
     height: auto;
@@ -332,9 +323,8 @@ export const StyledProductDescription = styled.div`
     padding: 0;
     padding-bottom: 20px;
     box-sizing: border-box;
-`
-
-export const StyledShowMoreBtn = styled.button`
+`)
+export const StyledShowMoreBtn = WithUiTag("RecommendedProductShowMoreButton")(styled.button`
     width: 100%;
     max-width: 100%;
     align-self: flex-end;
@@ -417,9 +407,8 @@ export const StyledShowMoreBtn = styled.button`
             fill: #007A9C;
         }
     }
-`
-
-export const StyledInput = styled.div`
+`)
+export const StyledInput = WithUiTag("RecommendedProductInput")(styled.div`
     position: relative;
     margin-right: 10%;
     box-sizing: border-box;
@@ -468,9 +457,8 @@ export const StyledInput = styled.div`
             border: 2px solid #D30018;
         }
     }
-`
-
-export const StyledProductPriceContainer = styled.div`
+`)
+export const StyledProductPriceContainer = WithUiTag("RecommendedProductPriceContainer")(styled.div`
     max-width: calc(120px + 20px);
     width: calc(120px + 20px);
     margin: 0;
@@ -485,9 +473,8 @@ export const StyledProductPriceContainer = styled.div`
     box-sizing: border-box;
     position: relative;
 
-`
-
-export const StyledProductPrice = styled.p`
+`)
+export const StyledProductPrice = WithUiTag("RecommendedProductPrice")(styled.p`
     font-weight: 600;
     font-size: 16px;
     padding: 0;
@@ -500,9 +487,8 @@ export const StyledProductPrice = styled.p`
     white-space: nowrap;
     overflow: auto;
     box-sizing: border-box;
-`
-
-export const StyledButton = styled.button`
+`)
+export const StyledButton = WithUiTag("RecommendedProductButton")(styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -542,4 +528,4 @@ export const StyledButton = styled.button`
         color: #007A9C;
     }
 
-`
+`)

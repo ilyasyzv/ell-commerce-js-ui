@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { breakpoints } from '../commons/constants';
 import {EmptyCartSvg} from "../commons/svgs";
+import {WithUiTag} from "../commons/components";
 
-const StyledEmptyCart = styled.div`
+const StyledEmptyCart = WithUiTag("EmptyCart")(styled.div`
 	box-sizing: border-box;
 	max-height: 379px;
 	max-width: 1025px;
@@ -52,7 +53,7 @@ const StyledEmptyCart = styled.div`
         margin-right: 0;
 		margin-bottom: 30px;
     }
-`
+`)
 
 interface EmptyCartProps {
 	onBackButtonClick: () => void;

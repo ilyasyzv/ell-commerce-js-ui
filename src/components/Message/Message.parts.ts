@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import {WithUiTag} from "../../commons/components";
 
-export const StyledMessage = styled.div`
+export const StyledMessage = WithUiTag("Message")(styled.div`
     font-weight: 400;
     font-size: 14px;
     line-height: 150%;
@@ -12,4 +13,4 @@ export const StyledMessage = styled.div`
     .messageText {
         margin: 0;
     }
-`
+`)

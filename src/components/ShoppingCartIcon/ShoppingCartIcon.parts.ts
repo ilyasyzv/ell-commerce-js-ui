@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import {WithUiTag} from "../../commons/components";
 
-export const StyledShoppingCartIcon = styled.div`
+export const StyledShoppingCartIcon = WithUiTag("ShoppingCartIcon")(styled.div`
 display: block;
 position: relative;
 width: 32px;
@@ -128,4 +129,4 @@ box-sizing: border-box;
     }
   }
 }
-`;
+`)

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { RecommendedBundleComponentBreakPoints } from './RecommendedBundle';
+import {WithUiTag} from "../../commons/components";
 
 interface StyledContainerProps {
     readonly breakpoint: RecommendedBundleComponentBreakPoints | undefined
@@ -31,7 +32,7 @@ const getPositionValue = (breakpoint: number | undefined) => {
     }
 }
 
-export const StyledContainer = styled.div<StyledContainerProps>`
+export const StyledContainer = WithUiTag("RecommendedBundleContainer")(styled.div<StyledContainerProps>`
     container-type: inline-size;
     margin: 0;
     padding: 0;
@@ -49,17 +50,15 @@ export const StyledContainer = styled.div<StyledContainerProps>`
     .image-container {
         ${props => getPositionValue(props.breakpoint)}
     }
-`;
-
-export const StyledHeader = styled.div<StyledHeaderProps>`
+`)
+export const StyledHeader = WithUiTag("RecommendedBundleHeader")(styled.div<StyledHeaderProps>`
     padding: 0;
     margin: 0;
     background-image: url(${props => props.backgroundImageUrl || "" });
     border-radius: 5px 5px 0px 0px;
     height: 186px;
-`;
-
-export const StyledImgContainer = styled.div`
+`)
+export const StyledImgContainer = WithUiTag("RecommendedBundleImgContainer")(styled.div`
     padding: 0;
     margin: 0;
     position: absolute;
@@ -69,9 +68,8 @@ export const StyledImgContainer = styled.div`
     img {
         max-width: 88px;
     }
-`;
-
-export const StyledProductInfoContainer = styled.div`
+`)
+export const StyledProductInfoContainer = WithUiTag("RecommendedBundleProductInfoContainer")(styled.div`
     padding: 0;
     margin: 0;
     padding: 44px 30px 0px;
@@ -80,9 +78,8 @@ export const StyledProductInfoContainer = styled.div`
     justify-content: space-between;
     font-weight: 600;
     font-size: 16px;
-`;
-
-export const StyledDescriptionContainer = styled.div`
+`)
+export const StyledDescriptionContainer = WithUiTag("RecommendedBundleDescriptionContainer")(styled.div`
     padding: 0;
     margin: 38px 0px 0px;
     padding: 0px 30px;
@@ -90,9 +87,8 @@ export const StyledDescriptionContainer = styled.div`
     font-size: 14px;
     height: 135px;
     overflow-y: overlay;
-`;
-
-export const StyledBtn = styled.button`
+`)
+export const StyledBtn = WithUiTag("RecommendedBundleButton")(styled.button`
     display: flex;
     align-items: center;
     padding: 6px 20px;
@@ -127,4 +123,4 @@ export const StyledBtn = styled.button`
             border-bottom: 2px solid #fff;
         }
     }
-`;
+`)
