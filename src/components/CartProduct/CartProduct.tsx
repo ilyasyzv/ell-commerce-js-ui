@@ -137,9 +137,9 @@ export const CartProduct: React.FC<Props> = ({
             )}
             {item.totalOriginalPrice !== item.totalSalePrice && (
               <StyledDiscountWrapper className={"discountWrapper"}>
-                <StyledProductPrice className={"discount-price-container productPrice"}>
+                {item.totalSalePrice > 0 && <StyledProductPrice className={"discount-price-container productPrice"}>
                   {formatPrice(item.totalSalePrice, currency)}
-                </StyledProductPrice>
+                </StyledProductPrice>}
                 <StyledDisabledProductPrice className={"discount-price-container disabledProductPrice"}>
                   {formatPrice(item.totalOriginalPrice, currency)}
                 </StyledDisabledProductPrice>
