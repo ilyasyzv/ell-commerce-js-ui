@@ -14,6 +14,7 @@ const StyledCartOrderSummary = styled.div`
     max-width: 100%;
     box-sizing: border-box;
     min-width: calc(${breakpoints.mobileSm}px - 40px);
+    color: #333333;
     
     font-family: "OpenSans", sans-serif;
     h2 {
@@ -66,13 +67,14 @@ const StyledCartOrderSummary = styled.div`
         font-size: 16px;
         line-height: 20px;
         text-align: left;
+        color: #000000;
     }
 
     .agreement-wrapper {
         display: flex;
         align-items: flex-start;
         margin-top: 108px;
-
+        color: #151515;
         input {
             accent-color: ${MAIN_COLOR};
         }
