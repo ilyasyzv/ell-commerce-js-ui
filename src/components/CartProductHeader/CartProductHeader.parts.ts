@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 import { breakpoints } from '../../commons/constants';
+import {EnumStyledCartProductBreakPoints} from "../CartProduct";
+
+interface StyledCartProductProps {
+  readonly breakpoint: EnumStyledCartProductBreakPoints | undefined
+}
 
 export const StyledContainer = styled.div`
     font-family: "OpenSans", sans-serif;    
@@ -16,7 +21,7 @@ export const StyledContainer = styled.div`
     background-color: transparent;
 `;
 
-export const StyledHeader = styled.div`
+export const StyledHeader = styled.div<StyledCartProductProps>`
     padding: 20px;
     padding-top: 0;
     margin: 0;
@@ -27,9 +32,81 @@ export const StyledHeader = styled.div`
     max-width: 100%;
     box-sizing: border-box;
 
-    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-      padding: 15px;
+    ${props => {
+      if (
+          props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+      ) {
+          return `
+          padding: 15px;
+          `
+      }
+    }}
+
+    .centerColumnTitle {
+      ${props => {
+        switch (props.breakpoint) {
+            case EnumStyledCartProductBreakPoints.tabletMd:
+                return `
+                    padding: 0 10px;
+                    padding-left: 15px;
+                `
+            case EnumStyledCartProductBreakPoints.tabletSm:
+                return `
+                    padding: 0 10px;
+                    padding-left: 15px;
+                    padding-right: 0;
+                `
+            
+        }
+    }}
+      
+     
+      ${props => {
+        if (
+            props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+        ) { return `font-size: 0;` }
+      }}
     }
+
+    .rightColumnTitle {
+      p {
+        ${props => {
+          if (
+              props.breakpoint! <= EnumStyledCartProductBreakPoints.desktopSm
+          ) {
+              return `
+              padding-right: 0;
+              `
+          }
+        }}
+      }
+
+      ${props => {
+        switch (props.breakpoint) {
+             case EnumStyledCartProductBreakPoints.tabletSm:
+                return `
+                    max-width: calc(90px + 20px);
+                    width: calc(90px + 20px);
+                `
+            case EnumStyledCartProductBreakPoints.tabletSm:
+                return `
+                    max-width: calc(90px + 20px);
+                    width: calc(90px + 20px);
+                `
+            case EnumStyledCartProductBreakPoints.mobileMd:
+                return `
+                    max-width: calc(90px + 20px);
+                    width: calc(90px + 20px);
+                    padding-right: 5px;
+                `
+            case EnumStyledCartProductBreakPoints.mobileSm:
+                return `
+                    display: none;
+                `
+        }
+      }}
+    }
+
 `;
 
 export const StyledTitle = styled.div`
@@ -79,27 +156,8 @@ export const StyledCenterColumnTitle = styled(StyledTitle)`
       margin-left: auto;
       text-align: left;
       padding-left: 2px;
-
       margin-right: 10%;
     }
-   
-    @media screen and (max-width: ${breakpoints.tabletLg - 1}px) {         
-       font-size: 16px;
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
-      padding-right: 0;
-      margin-right: 0;
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-      font-size: 0;
-    }
-
-    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-      display: none;
-    }
-
 `
 
 export const StyledRightColumnTitle = styled(StyledTitle)`
@@ -113,24 +171,6 @@ export const StyledRightColumnTitle = styled(StyledTitle)`
       padding-right: 20px;
       width: 100%;
       max-width: 100%;
-
-      @media screen and (max-width: ${breakpoints.desktopSm - 1}px) {
-        padding-right: 0;
-      }
-    }
-
-   
-    @media screen and (max-width: ${breakpoints.tabletMd - 1}px) {
-        max-width: calc(90px + 20px);
-        width: calc(90px + 20px);
-    }
-
-    @media screen and (max-width: ${breakpoints.tabletSm - 1}px) {
-        padding-right: 5px;
-    }
-   
-    @media screen and (max-width: ${breakpoints.mobileMd - 1}px) {
-        display: none;
     }
 `
 

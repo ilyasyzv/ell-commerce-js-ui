@@ -25,6 +25,16 @@ export const StyledCartProduct = styled.div<StyledCartProductProps>`
     border: 1px solid #eaeaea;
     border-radius: 6px;
 
+    ${props => {
+        if (
+            props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+        ) {
+            return `
+            padding: 15px;
+            `
+        }
+    }}
+
     .leftFlexBlock {
         ${props => {
             if (

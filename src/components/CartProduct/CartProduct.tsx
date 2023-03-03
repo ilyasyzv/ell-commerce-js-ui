@@ -67,11 +67,12 @@ export const CartProduct: React.FC<Props> = ({
   const [isDisabled, setIsDisabled] = useState(maxPurchaseQuantity === 1);
 	const [message, setMessage] = useState({text: "", type: ""})
   const { t } = useTranslation()
-  // const invalid = useAriaInvalid()
 
   useEffect(() => {
-    setIsDisabled(isBusy)
-  }, [isBusy]);
+    if(maxPurchaseQuantity !== 1) {
+      setIsDisabled(isBusy)
+    }
+  }, [isBusy, maxPurchaseQuantity]);
 
   useEffect(() => {
     setAriaInvalidAttributes(inputRef, isInvalid, "errorMessage")
