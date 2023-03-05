@@ -340,7 +340,7 @@ export const StyledShowMoreBtn = WithUiTag("RecommendedProductShowMoreButton")(s
     justify-content: center;
     font-size: 14px;
     line-height: 150%;
-    font-family: 'OpenSans';
+    font-family: 'OpenSans', sans-serif;
     font-style: normal;
     font-weight: 600;
     color: #007A9C;
