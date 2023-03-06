@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof HTMLCartProduct> = (args) => {
 
     return (
         <CartProductHeader>
-            {products.map((item) => (
+            {products.map((item, i) => (
                 <HTMLCartProduct
                     key={item.id}
                     item={item}
@@ -46,7 +46,7 @@ const Template: ComponentStory<typeof HTMLCartProduct> = (args) => {
                             prevState.filter((item) => item.id !== itemId)
                         )
                     }}
-                    htmlDescription={args.htmlDescription}
+                    htmlDescription={args.htmlDescription[i]}
                 />
             ))}
         </CartProductHeader>
@@ -58,5 +58,5 @@ export const WithHeaders = Template.bind({})
 WithHeaders.args = {
     items: mock.items,
     currency: mock.currency,
-    htmlDescription: `<span style="font-size: 10pt;">Get a personalized Barracuda English 4 Skills Full Test certificate and a Credly badge to add onto your LinkedIn profile</span>`,
+    htmlDescription: mock.items.map(item => item.description)
 }

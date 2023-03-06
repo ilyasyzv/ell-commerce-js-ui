@@ -57,13 +57,15 @@ export const HTMLCartProduct: React.FC<HTMLCartProductProps> = ({
     const inputRef = useRef<HTMLInputElement | null>(null)
     const [value, setValue] = useState(item.quantity)
     const [isInvalid, setIsInvalid] = useState(false)
-    const [isDisabled, setIsDisabled] = useState(maxPurchaseQuantity === 1)
+    const [isDisabled, setIsDisabled] = useState(maxPurchaseQuantity === item.quantity)
     const [message, setMessage] = useState({ text: "", type: "" })
     const { t } = useTranslation()
 
     useEffect(() => {
-        setIsDisabled(isBusy)
-    }, [isBusy])
+        if (maxPurchaseQuantity !== item.quantity) {
+            setIsDisabled(isBusy)
+        }
+    }, [isBusy, maxPurchaseQuantity])
 
     useEffect(() => {
         setAriaInvalidAttributes(inputRef, isInvalid, "errorMessage")

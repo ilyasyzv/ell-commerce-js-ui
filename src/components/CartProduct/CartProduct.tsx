@@ -70,12 +70,12 @@ export const CartProduct: React.FC<Props> = ({
     const inputRef = useRef<HTMLInputElement | null>(null)
     const [value, setValue] = useState(item.quantity)
     const [isInvalid, setIsInvalid] = useState(false)
-    const [isDisabled, setIsDisabled] = useState(maxPurchaseQuantity === 1)
+    const [isDisabled, setIsDisabled] = useState(maxPurchaseQuantity === item.quantity)
     const [message, setMessage] = useState({ text: "", type: "" })
     const { t } = useTranslation()
 
     useEffect(() => {
-        if (maxPurchaseQuantity !== 1) {
+        if (maxPurchaseQuantity !== item.quantity) {
             setIsDisabled(isBusy)
         }
     }, [isBusy, maxPurchaseQuantity])
