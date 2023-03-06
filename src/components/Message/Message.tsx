@@ -9,7 +9,7 @@ export type MessageProps = {
 
 export const Message: React.FC<MessageProps> = ({ id, text, type }) => {
     return (
-        <StyledMessage id={id} role="alert" aria-live="assertive">
+        <StyledMessage id={id}>
             <p
                 className="messageText"
                 style={

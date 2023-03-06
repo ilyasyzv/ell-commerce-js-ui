@@ -222,23 +222,15 @@ export const StyledCartProduct = WithUiTag(
 
     .productPrice {
         padding-right: 0;
+
         ${(props) => {
-            switch (props.breakpoint) {
-                case EnumStyledCartProductBreakPoints.tabletMd: {
-                    return `font-size: 16px;`
-                }
-                case EnumStyledCartProductBreakPoints.tabletSm: {
-                    return `font-size: 16px;`
-                }
-                case EnumStyledCartProductBreakPoints.mobileMd: {
-                    return `font-size: 16px;`
-                }
-                case EnumStyledCartProductBreakPoints.mobileSm: {
-                    return `
-                        font-size: 20px;
-                        text-align: left;
-                    `
-                }
+            if (
+                props.breakpoint! <=
+                EnumStyledCartProductBreakPoints.mobileSm
+            ) {
+                return `
+                    text-align: left;
+                `
             }
         }}
     }
@@ -256,6 +248,7 @@ export const StyledCartProduct = WithUiTag(
 
     .button {
         right: -10px;
+
         ${(props) => {
             switch (props.breakpoint) {
                 case EnumStyledCartProductBreakPoints.tabletMd: {
@@ -491,6 +484,7 @@ export const StyledProductPriceContainer = WithUiTag(
 export const StyledProductPrice = WithUiTag("ProductPrice")(styled.p`
     font-weight: 600;
     font-size: 18px;
+    color: #151515;
     padding: 0;
     padding-right: 20px;
     margin: 0;

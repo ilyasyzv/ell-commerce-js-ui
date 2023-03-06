@@ -58,8 +58,8 @@ export const StyledCartProduct = WithUiTag(
                 }
                 case EnumStyledRecommendedProductBreakPoints.mobileMd: {
                     return `
-                        max-width: calc(90px + 20px);
-                        width: calc(90px + 20px);
+                        max-width: calc(90px + 30px);
+                        width: calc(90px + 30px);
                         padding-right: 5px;
                     `
                 }
@@ -206,16 +206,6 @@ export const StyledCartProduct = WithUiTag(
                 `
             }
         }}
-        ${(props) => {
-            if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.mobileMd
-            ) {
-                return `
-                   font-size: 18px;
-                `
-            }
-        }}
     }
 
     .showMore {
@@ -253,10 +243,12 @@ export const StyledCartProduct = WithUiTag(
                 EnumStyledRecommendedProductBreakPoints.tabletLg
             ) {
                 return `
-                padding: 0 5px;
+                padding: 0;
                 width: 100%;
                 `
             }
+        }}
+        ${(props) => {
             if (
                 props.breakpoint! <=
                 EnumStyledRecommendedProductBreakPoints.mobileMd
@@ -377,7 +369,7 @@ export const StyledShowMoreBtn = WithUiTag(
     cursor: pointer;
     text-align: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 150%;
     font-family: "OpenSans", sans-serif;
     font-style: normal;
@@ -515,7 +507,8 @@ export const StyledProductPriceContainer = WithUiTag(
 `)
 export const StyledProductPrice = WithUiTag("RecommendedProductPrice")(styled.p`
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
+    color: #151515;
     padding: 0;
     padding-right: 20px;
     margin: 0;
@@ -533,7 +526,7 @@ export const StyledButton = WithUiTag("RecommendedProductButton")(styled.button`
     justify-content: center;
     text-align: center;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -542,7 +535,7 @@ export const StyledButton = WithUiTag("RecommendedProductButton")(styled.button`
     max-width: 100%;
     min-width: 44px;
     min-height: 44px;
-    padding: 0 20px;
+    padding: 0 10px;
     margin: 0;
     border: 2px solid #007a9c;
     border-radius: 20px;
