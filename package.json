@@ -8,6 +8,7 @@
     "dist"
   ],
   "scripts": {
+    "prebuild": "eslint --fix ./src && rollup -c",
     "lint": "eslint --fix ./src",
     "init": "npm i && npm link ../ell-commerce-web-app/node_modules/react",
     "dev": "del /q dist && rollup -c -w",

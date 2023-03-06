@@ -10,7 +10,7 @@ import {
 } from "./RecommendedBundle.parts"
 import noImageSrc from "../../assets/images/no-image.png"
 import { Product } from "ell-commerce-sdk"
-import { cutText, formatPrice } from "../../utils"
+import { cutText, formatPrice } from "../../commons/utils"
 import parse from "html-react-parser"
 import { useBreakpoints } from "../../commons/hooks"
 

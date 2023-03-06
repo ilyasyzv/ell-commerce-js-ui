@@ -1,3 +1,3 @@
 export * from "./components"
-export * from "./utils"
+export * from "./commons/utils"
 export { changeLanguage } from "./commons/functions"

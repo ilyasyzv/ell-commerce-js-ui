@@ -19,7 +19,7 @@ import {
     EnumStyledCartProductBreakPoints,
 } from "./CartProduct.parts"
 import noImageSrc from "../../assets/images/no-image.png"
-import { cutText, formatPrice, onInputDebounce } from "../../utils"
+import { cutText, formatPrice, onInputDebounce } from "../../commons/utils"
 import {
     DEBOUNCE_INTERVAL,
     ALLOWED_KEYS,
@@ -30,7 +30,7 @@ import { Message } from "../Message"
 import parse from "html-react-parser"
 import { useTranslation } from "react-i18next"
 import { useBreakpoints } from "../../commons/hooks"
-import { setAriaInvalidAttributes } from "../../utils"
+import { setAriaInvalidAttributes } from "../../commons/utils"
 
 export type Props = {
     item: CartItem

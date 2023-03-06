@@ -1,7 +1,7 @@
 import { MutableRefObject } from "react"
 import { CurrencySymbolPosition, Currency } from "ell-commerce-sdk"
 
-export const onInputDebounce = <F extends (...args: unknown[]) => any>(
+export const onInputDebounce = <F extends (...args: any) => any>(
     inputFunction: F,
     debounceChangeQty: number
 ) => {

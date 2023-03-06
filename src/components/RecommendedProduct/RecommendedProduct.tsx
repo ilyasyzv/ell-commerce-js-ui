@@ -18,7 +18,7 @@ import {
     EnumStyledRecommendedProductBreakPoints,
 } from "./RecommendedProduct.parts"
 import noImageSrc from "../../assets/images/no-image.png"
-import { cutText, formatPrice } from "../../utils"
+import { cutText, formatPrice } from "../../commons/utils"
 import {
     ALLOWED_KEYS,
     MAX_PRODUCT_NAME_DISPLAY_LENGTH,

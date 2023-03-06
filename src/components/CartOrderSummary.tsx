@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { MAIN_COLOR } from "../commons/colors"
 import { breakpoints } from "../commons/constants"
-import { formatPrice } from "../utils"
+import { formatPrice } from "../commons/utils"
 import { Trans, useTranslation } from "react-i18next"
 import WithUiTag from "../commons/components"
 
