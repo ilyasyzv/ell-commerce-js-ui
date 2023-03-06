@@ -1,1 +1,1 @@
-export {CartProductHeader} from './CartProductHeader'
+export { CartProductHeader } from "./CartProductHeader"

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import {WithUiTag} from "../../commons/components";
+import styled from "styled-components"
+import WithUiTag from "../../commons/components"
 
 export const StyledMessage = WithUiTag("Message")(styled.div`
     font-weight: 400;

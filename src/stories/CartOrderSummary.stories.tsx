@@ -1,17 +1,19 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { CartOrderSummary } from '../components/CartOrderSummary';
-import {getDefaultMocks} from "./mocks";
+import React from "react"
+import { ComponentStory } from "@storybook/react"
+import { CartOrderSummary } from "../components/CartOrderSummary"
+import { getDefaultMocks } from "./mocks"
 
 export default {
-    title: 'CartOrderSummary',
-};
+    title: "CartOrderSummary",
+}
 
 const mock = getDefaultMocks()
 //👇 We create a “template” of how args map to rendering
-const Template: ComponentStory<typeof CartOrderSummary> = (args) => <CartOrderSummary {...args}/>;
+const Template: ComponentStory<typeof CartOrderSummary> = (args) => (
+    <CartOrderSummary {...args} />
+)
 
-export const FirstStory = Template.bind({});
+export const FirstStory = Template.bind({})
 
 FirstStory.args = {
     cart: {
@@ -20,5 +22,7 @@ FirstStory.args = {
         discountAmount: 200,
         preTaxCartAmount: 300,
     },
-    onCheckoutClick: ()=> {alert("click")}
-};
+    onCheckoutClick: () => {
+        alert("click")
+    },
+}

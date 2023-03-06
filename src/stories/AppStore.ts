@@ -1,6 +1,6 @@
-import {makeAutoObservable, runInAction} from "mobx"
+import { makeAutoObservable, runInAction } from "mobx"
 import { Cart, CartItem, ELLCommerce, Product, Variant } from "ell-commerce-sdk"
-import {Currency} from "ell-commerce-sdk/dist/cjs/models/Currency";
+import { Currency } from "ell-commerce-sdk/dist/cjs/models/Currency"
 
 const COUNTRY_ISO = "US"
 
@@ -26,25 +26,25 @@ export class AppStore {
     }
 
     async init(count?: number) {
-        runInAction(()=> {
+        runInAction(() => {
             this.isBusy = true
         })
         this.products = await this.getProducts()
         this.cart = await this.getCart(this.products[0].currency)
 
-        for (let [index, item] of this.products.entries()) {
+        for (const [index, item] of this.products.entries()) {
             await this.addToCart(item)
-            if (count && index +1 >= count) {
+            if (count && index + 1 >= count) {
                 break
             }
         }
 
-        runInAction(()=> {
+        runInAction(() => {
             this.isBusy = false
         })
     }
 
-    async getProducts():Promise<Product[]> {
+    async getProducts(): Promise<Product[]> {
         return await this.ellCommerce
             .ProductService()
             .getProducts("Barracuda", "US")
@@ -115,12 +115,9 @@ export class AppStore {
     }
 
     async getCart(currency: Currency): Promise<Cart | undefined> {
-            return await this.ellCommerce.CartService().createCart(
-                2,
-                [],
-                COUNTRY_ISO,
-                currency
-            )
+        return await this.ellCommerce
+            .CartService()
+            .createCart(2, [], COUNTRY_ISO, currency)
     }
 
     async clearCart(cartId: string) {
@@ -143,7 +140,7 @@ export class AppStore {
     }
 
     async updateCartItem(item: CartItem) {
-        if(!this.cart) {
+        if (!this.cart) {
             return
         }
 

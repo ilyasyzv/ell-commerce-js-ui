@@ -1,1 +1,1 @@
-export {ShoppingCartIcon} from "./ShoppingCartIcon"
+export { ShoppingCartIcon } from "./ShoppingCartIcon"

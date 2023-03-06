@@ -1,12 +1,13 @@
-import { Cart } from "ell-commerce-sdk";
-import React, { useState } from "react";
-import styled from "styled-components";
-import { MAIN_COLOR } from "../commons/colors";
-import { breakpoints } from "../commons/constants";
-import {formatPrice} from "../utils"
-import {Trans, useTranslation} from "react-i18next";
+import { Cart } from "ell-commerce-sdk"
+import React, { useState } from "react"
+import styled from "styled-components"
+import { MAIN_COLOR } from "../commons/colors"
+import { breakpoints } from "../commons/constants"
+import { formatPrice } from "../utils"
+import { Trans, useTranslation } from "react-i18next"
+import WithUiTag from "../commons/components"
 
-const StyledCartOrderSummary = styled.div`
+const StyledCartOrderSummary = WithUiTag("CartOrderSummary")(styled.div`
     padding: 47px 40px;
     background: #ffffff;
     border: 1px solid #eaeaea;
@@ -15,7 +16,7 @@ const StyledCartOrderSummary = styled.div`
     box-sizing: border-box;
     min-width: calc(${breakpoints.mobileSm}px - 40px);
     color: #333333;
-    
+
     font-family: "OpenSans", sans-serif;
     h2 {
         font-weight: 700;
@@ -46,7 +47,7 @@ const StyledCartOrderSummary = styled.div`
 
         .price {
             font-weight: 600;
-            font-size: 16px;    
+            font-size: 16px;
         }
     }
 
@@ -137,12 +138,12 @@ const StyledCartOrderSummary = styled.div`
     @media only screen and (min-width: ${breakpoints.desktopMd}px) {
         min-width: 429px;
     }
-`;
+`)
 
 export interface ICartOrderSummary {
-    className?: string;
-    cart: Cart;
-    onCheckoutClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    className?: string
+    cart: Cart
+    onCheckoutClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
@@ -150,16 +151,16 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
     cart,
     onCheckoutClick,
 }: ICartOrderSummary) => {
-    const [isDisabled, setIsDisabled] = useState<boolean>(false);
-    const{t} =useTranslation()
+    const [isDisabled, setIsDisabled] = useState<boolean>(false)
+    const { t } = useTranslation()
 
     const toogleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const isChecked = e.target.checked;
-        setIsDisabled(isChecked);
-    };
+        const isChecked = e.target.checked
+        setIsDisabled(isChecked)
+    }
 
     if (!cart) {
-        return <div></div>;
+        return <div></div>
     }
 
     return (
@@ -174,16 +175,16 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                 </div>
                 {cart?.discountAmount > 0 && (
                     <div>
-                    <span>{t("discount")}</span>
-                    <span className="price">
-                        -{formatPrice(cart.discountAmount, cart.currency)}
-                    </span>
+                        <span>{t("discount")}</span>
+                        <span className="price">
+                            -{formatPrice(cart.discountAmount, cart.currency)}
+                        </span>
                     </div>
                 )}
             </div>
             {cart?.discountAmount > 0 && (
                 <div className="total_wrapper">
-                    <span>{t('total')}</span>
+                    <span>{t("total")}</span>
                     <span>
                         {formatPrice(cart.preTaxCartAmount, cart.currency)}
                     </span>
@@ -196,7 +197,10 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                 <span>
                     {t("i_agree")}{" "}
                     <a>
-                        <Trans i18nKey={"privacy_policy"} components={{b: <b/>}} />
+                        <Trans
+                            i18nKey={"privacy_policy"}
+                            components={{ b: <b /> }}
+                        />
                     </a>
                 </span>
             </div>
@@ -204,5 +208,5 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                 {t("checkout")}
             </button>
         </StyledCartOrderSummary>
-    );
-};
+    )
+}

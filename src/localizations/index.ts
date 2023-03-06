@@ -1,37 +1,33 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import i18n from "i18next"
+import { initReactI18next } from "react-i18next"
 import { en } from "./en"
 import { jp } from "./jp"
-import { ko } from "./ko";
-
+import { ko } from "./ko"
 
 const resources = {
     en: {
         translation: {
-            ...en
-        }
+            ...en,
+        },
     },
     jp: {
         translation: {
-            ...jp
-        }
+            ...jp,
+        },
     },
     ko: {
         translation: {
-            ...ko
-        }
-    }
-};
+            ...ko,
+        },
+    },
+}
 
+i18n.use(initReactI18next).init({
+    resources,
+    lng: "en",
+    interpolation: {
+        escapeValue: false,
+    },
+})
 
-i18n
-    .use(initReactI18next)
-    .init({
-        resources,
-        lng: "en",
-        interpolation: {
-            escapeValue: false
-        }
-    });
-
-export default i18n;
+export { default } from "i18next"

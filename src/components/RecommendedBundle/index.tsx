@@ -1,1 +1,1 @@
-export {RecommendedBundle} from './RecommendedBundle';
+export { RecommendedBundle } from "./RecommendedBundle"

@@ -8,6 +8,7 @@
     "dist"
   ],
   "scripts": {
+    "lint": "eslint --fix ./src",
     "init": "npm i && npm link ../ell-commerce-web-app/node_modules/react",
     "dev": "del /q dist && rollup -c -w",
     "build:rollup": "rollup -c",
@@ -57,7 +58,18 @@
     "rollup-plugin-typescript2": "^0.34.1",
     "rollup-pluginutils": "^2.8.2",
     "tslib": "^2.4.1",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^24.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-unicorn": "^45.0.2",
+    "prettier": "2.8.1"
   },
   "peerDependencies": {
     "ell-commerce-sdk": "^1.1.21",

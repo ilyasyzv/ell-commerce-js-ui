@@ -8,21 +8,21 @@ export const breakpoints = {
     desktopMd: 1366,
     desktopMl: 1512,
     desktopLg: 1728,
-    desktopXl: 1920
+    desktopXl: 1920,
 }
 
 export const DEBOUNCE_INTERVAL = 250
 
 export const ALLOWED_KEYS = [
-    'Backspace',
-    'Delete',
-    'ArrowLeft',
-    'ArrowRight',
-    'Tab', 
-    'Space',
-    'Shift', 
-    'ArrowUp', 
-    'ArrowDown'
-  ];
+    "Backspace",
+    "Delete",
+    "ArrowLeft",
+    "ArrowRight",
+    "Tab",
+    "Space",
+    "Shift",
+    "ArrowUp",
+    "ArrowDown",
+]
 
-  export const MAX_PRODUCT_NAME_DISPLAY_LENGTH = 50
+export const MAX_PRODUCT_NAME_DISPLAY_LENGTH = 50

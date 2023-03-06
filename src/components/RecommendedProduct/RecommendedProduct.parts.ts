@@ -1,68 +1,84 @@
-import styled from 'styled-components';
-import { breakpoints } from '../../commons/constants';
-import { EnumStyledCartProductBreakPoints } from './RecommendedProduct';
-import {WithUiTag} from "../../commons/components";
+import styled from "styled-components"
+import { breakpoints } from "../../commons/constants"
+import WithUiTag from "../../commons/components"
+
+export enum EnumStyledRecommendedProductBreakPoints {
+    mobileSm = 331,
+    mobileMd = 396,
+    tabletSm = 525,
+    tabletMd = 666,
+    tabletLg = 693,
+    desktopSm = 945,
+    desktopMd = 1050,
+}
 
 interface StyledCartProductProps {
-    readonly breakpoint: EnumStyledCartProductBreakPoints | undefined
+    readonly breakpoint: EnumStyledRecommendedProductBreakPoints | undefined
 }
-export const StyledCartProduct = WithUiTag("RecommendedProduct")(styled.div<StyledCartProductProps>`
-  font-family: "OpenSans", sans-serif;  
-  width: 100%;
-  max-width: 100%;
-  min-width: calc(${breakpoints.mobileSm}px - 40px);
-  min-height: 230px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: flex-start;
-  margin: 0;
-  margin-bottom: 20px;
-  padding: 27px 20px;
-  box-sizing: border-box;
+export const StyledCartProduct = WithUiTag(
+    "RecommendedProduct"
+)(styled.div<StyledCartProductProps>`
+    font-family: "OpenSans", sans-serif;
+    width: 100%;
+    max-width: 100%;
+    min-width: calc(${breakpoints.mobileSm}px - 40px);
+    min-height: 230px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 27px 20px;
+    box-sizing: border-box;
 
-  background: #ffffff;
-  border: 1px solid #eaeaea;
-  border-radius: 6px;
+    background: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 6px;
 
-  ${props => {
+    ${(props) => {
         if (
-            props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+            props.breakpoint! <=
+            EnumStyledRecommendedProductBreakPoints.mobileMd
         ) {
             return `
             padding: 15px;`
         }
-   }}
-   
-   .productPriceContainer {
+    }}
+
+    .productPriceContainer {
         padding: 0 10px;
-        ${props => {
+        ${(props) => {
             switch (props.breakpoint) {
-                case EnumStyledCartProductBreakPoints.tabletSm:
+                case EnumStyledRecommendedProductBreakPoints.tabletSm: {
                     return `
                         max-width: calc(90px + 20px);
                         width: calc(90px + 20px);
                     `
-                case EnumStyledCartProductBreakPoints.mobileMd:
+                }
+                case EnumStyledRecommendedProductBreakPoints.mobileMd: {
                     return `
                         max-width: calc(90px + 20px);
                         width: calc(90px + 20px);
                         padding-right: 5px;
                     `
-                case EnumStyledCartProductBreakPoints.mobileSm:
+                }
+                case EnumStyledRecommendedProductBreakPoints.mobileSm: {
                     return `
                         padding: 5px 10px;
                         flex-direction: row;
                         flex-wrap: nowrap;
                     `
+                }
             }
         }}
-   }
+    }
 
-  .leftFlexBlock {
-        ${props => {
+    .leftFlexBlock {
+        ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.mobileMd
             ) {
                 return `
                     width: 98px;
@@ -72,105 +88,113 @@ export const StyledCartProduct = WithUiTag("RecommendedProduct")(styled.div<Styl
     }
 
     .productInfo {
-        ${props => {
+        ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.mobileMd
             ) {
                 return `
                   flex-direction: column;`
             }
-           }}
+        }}
     }
 
     .productNameContainer {
-        ${props => {
+        ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.tabletMd
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.tabletMd
             ) {
                 return `
                     flex-direction: column;
                     padding: 0 10px;
                     padding-left: 15px;`
             }
-       }}
+        }}
     }
 
     .productName {
-           ${props => {
-                if (
-                    props.breakpoint! <= EnumStyledCartProductBreakPoints.tabletLg
-                ) {
-                    return `
+        ${(props) => {
+            if (
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.tabletLg
+            ) {
+                return `
                     margin-bottom: 40px;
                     max-width: 65%;
                     padding-right: 50px;
                     `
-                }
-           }}
-           ${props => {
-                if (
-                    props.breakpoint! <= EnumStyledCartProductBreakPoints.tabletMd
-                ) {
-                    return `
+            }
+        }}
+        ${(props) => {
+            if (
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.tabletMd
+            ) {
+                return `
                     font-size: 16px;
                     width: 100%;
                     max-width: 100%;
                     `
-                }
-           }}
-           ${props => {
-                if (
-                    props.breakpoint! <= EnumStyledCartProductBreakPoints.tabletSm
-                ) {
-                    return `
+            }
+        }}
+           ${(props) => {
+            if (
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.tabletSm
+            ) {
+                return `
                     padding-right: 10px;
                     margin-bottom: 35px;
                     `
-                }
-           }}
-           ${props => {
-                if (
-                    props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
-                ) {
-                    return `
+            }
+        }}
+           ${(props) => {
+            if (
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.mobileMd
+            ) {
+                return `
                     margin-bottom: 40px;
                     `
-                }
-           }}
+            }
+        }}
     }
 
     .input {
-        ${props => {
+        ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.mobileMd
             ) {
                 return `
                 margin-bottom: 20px;
                 margin-right: 10px;
                 `
             }
-           }}
-        
+        }}
     }
 
     .productPrice {
-        ${props => {
+        ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.tabletMd
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.tabletMd
             ) {
                 return `
                   display: none;
                 `
             }
-           }}
+        }}
     }
 
     .productPriceMobile {
         display: none;
 
-        ${props => {
+        ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.tabletMd
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.tabletMd
             ) {
                 return `
                     display: block;
@@ -179,50 +203,54 @@ export const StyledCartProduct = WithUiTag("RecommendedProduct")(styled.div<Styl
                     width: auto;
                     max-width: 100%;
                     overflow: visible;
-                ` 
+                `
             }
-           }}
-           ${props => {
+        }}
+        ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.mobileMd
             ) {
                 return `
                    font-size: 18px;
-                ` 
+                `
             }
-           }}
+        }}
     }
 
     .showMore {
-        ${props => {
+        ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.tabletLg
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.tabletLg
             ) {
                 return `
                  width: calc(100% - 50px);
                  max-width: calc(100% - 50px);
                 `
             }
-       }}
+        }}
     }
 
     .showMore,
     .description {
-        ${props => {
+        ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.tabletMd
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.tabletMd
             ) {
                 return `
                 display: none;
                 `
             }
-       }}
+        }}
     }
-    
+
     .button {
-        ${props => {
+        ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.tabletLg
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.tabletLg
             ) {
                 return `
                 padding: 0 5px;
@@ -230,16 +258,19 @@ export const StyledCartProduct = WithUiTag("RecommendedProduct")(styled.div<Styl
                 `
             }
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+                props.breakpoint! <=
+                EnumStyledRecommendedProductBreakPoints.mobileMd
             ) {
                 return `
                 min-height: 48px;
                 `
             }
-       }}
+        }}
     }
 `)
-export const StyledLeftFlexBlock = WithUiTag("RecommendedProductLeftBlock")(styled.div`
+export const StyledLeftFlexBlock = WithUiTag(
+    "RecommendedProductLeftBlock"
+)(styled.div`
     width: 112px;
     min-width: 112px;
     margin: 0;
@@ -253,7 +284,9 @@ export const StyledImage = WithUiTag("RecommendedProductImage")(styled.img`
     max-width: 100%;
     height: auto;
 `)
-export const StyledRightFlexBlock = WithUiTag("RecommendedProductRightBlock")(styled.div`
+export const StyledRightFlexBlock = WithUiTag(
+    "RecommendedProductRightBlock"
+)(styled.div`
     margin: 0;
     padding: 0;
     flex: 1;
@@ -270,14 +303,15 @@ export const StyledProductInfo = WithUiTag("RecommendedProductInfo")(styled.div`
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    
+
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-between;
-
 `)
-export const StyledProductNameContainer = WithUiTag("RecommendedProductNameContainer")(styled.div`
+export const StyledProductNameContainer = WithUiTag(
+    "RecommendedProductNameContainer"
+)(styled.div`
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -286,7 +320,6 @@ export const StyledProductNameContainer = WithUiTag("RecommendedProductNameConta
     align-self: stretch;
     padding: 0 15px;
     box-sizing: border-box;
-
 `)
 export const StyledProductName = WithUiTag("RecommendedProductName")(styled.div`
     color: #151515;
@@ -306,7 +339,9 @@ export const StyledProductName = WithUiTag("RecommendedProductName")(styled.div`
     height: 100%;
     position: relative;
 `)
-export const StyledProductTitle = WithUiTag("RecommendedProductLeftBlock")(styled.p`
+export const StyledProductTitle = WithUiTag(
+    "RecommendedProductLeftBlock"
+)(styled.p`
     width: 100%;
     max-width: 100%;
     margin: 0;
@@ -314,7 +349,9 @@ export const StyledProductTitle = WithUiTag("RecommendedProductLeftBlock")(style
     padding: 0;
     box-sizing: border-box;
 `)
-export const StyledProductDescription = WithUiTag("RecommendedProductDescription")(styled.div`
+export const StyledProductDescription = WithUiTag(
+    "RecommendedProductDescription"
+)(styled.div`
     width: 100%;
     max-width: 100%;
     height: auto;
@@ -324,7 +361,9 @@ export const StyledProductDescription = WithUiTag("RecommendedProductDescription
     padding-bottom: 20px;
     box-sizing: border-box;
 `)
-export const StyledShowMoreBtn = WithUiTag("RecommendedProductShowMoreButton")(styled.button`
+export const StyledShowMoreBtn = WithUiTag(
+    "RecommendedProductShowMoreButton"
+)(styled.button`
     width: 100%;
     max-width: 100%;
     align-self: flex-end;
@@ -340,10 +379,10 @@ export const StyledShowMoreBtn = WithUiTag("RecommendedProductShowMoreButton")(s
     justify-content: center;
     font-size: 14px;
     line-height: 150%;
-    font-family: 'OpenSans', sans-serif;
+    font-family: "OpenSans", sans-serif;
     font-style: normal;
     font-weight: 600;
-    color: #007A9C;
+    color: #007a9c;
     overflow: hidden;
 
     position: absolute;
@@ -351,25 +390,24 @@ export const StyledShowMoreBtn = WithUiTag("RecommendedProductShowMoreButton")(s
     left: 0;
 
     &:hover {
-        color: #376A86;
-        .showMoreLabel{
+        color: #376a86;
+        .showMoreLabel {
             text-decoration: underline;
         }
         svg path {
-            fill: #376A86;
+            fill: #376a86;
         }
     }
     &:focus-visible {
         outline: none;
-        .showMoreLabel{
-            outline: 4px solid #77C2F9;
+        .showMoreLabel {
+            outline: 4px solid #77c2f9;
             outline-offset: 5px;
         }
     }
     &:active {
-        color: #235C60;
+        color: #235c60;
     }
-    
 
     &:before,
     &:after {
@@ -378,7 +416,7 @@ export const StyledShowMoreBtn = WithUiTag("RecommendedProductShowMoreButton")(s
         vertical-align: middle;
         height: 1px;
         width: 100%;
-        background: #DFE1E1;
+        background: #dfe1e1;
         position: relative;
     }
 
@@ -404,7 +442,7 @@ export const StyledShowMoreBtn = WithUiTag("RecommendedProductShowMoreButton")(s
         margin-top: -5px;
 
         svg path {
-            fill: #007A9C;
+            fill: #007a9c;
         }
     }
 `)
@@ -423,7 +461,7 @@ export const StyledInput = WithUiTag("RecommendedProductInput")(styled.div`
         width: 96px;
         height: 48px;
         color: #333333;
-        background: #FFFFFF;
+        background: #ffffff;
         border: 1px solid #919191;
         border-radius: 4px;
         padding: 12px 13px;
@@ -440,25 +478,27 @@ export const StyledInput = WithUiTag("RecommendedProductInput")(styled.div`
         &:focus {
             border: 2px solid #151515;
         }
-    
+
         &:disabled {
-            background: #F5F5F5;
+            background: #f5f5f5;
             border: 1px solid #919191;
             color: #919191;
         }
-    
+
         &::-webkit-inner-spin-button,
-        &::-webkit-outer-spin-button {  
+        &::-webkit-outer-spin-button {
             height: 24px;
             opacity: 1;
         }
 
         &.error {
-            border: 2px solid #D30018;
+            border: 2px solid #d30018;
         }
     }
 `)
-export const StyledProductPriceContainer = WithUiTag("RecommendedProductPriceContainer")(styled.div`
+export const StyledProductPriceContainer = WithUiTag(
+    "RecommendedProductPriceContainer"
+)(styled.div`
     max-width: calc(120px + 20px);
     width: calc(120px + 20px);
     margin: 0;
@@ -472,7 +512,6 @@ export const StyledProductPriceContainer = WithUiTag("RecommendedProductPriceCon
     align-self: stretch;
     box-sizing: border-box;
     position: relative;
-
 `)
 export const StyledProductPrice = WithUiTag("RecommendedProductPrice")(styled.p`
     font-weight: 600;
@@ -505,27 +544,26 @@ export const StyledButton = WithUiTag("RecommendedProductButton")(styled.button`
     min-height: 44px;
     padding: 0 20px;
     margin: 0;
-    border: 2px solid  #007A9C;
+    border: 2px solid #007a9c;
     border-radius: 20px;
     box-sizing: border-box;
 
     &:disabled {
         opacity: 0.6;
     }
-    
-    color: #007A9C;
+
+    color: #007a9c;
 
     &:hover {
-        color: #FFFFFF;
-        background: #007A9C;
+        color: #ffffff;
+        background: #007a9c;
     }
 
     &:focus-visible {
-        outline: 4px solid #77C2F9;
-    }
-   
-    &:active {
-        color: #007A9C;
+        outline: 4px solid #77c2f9;
     }
 
+    &:active {
+        color: #007a9c;
+    }
 `)

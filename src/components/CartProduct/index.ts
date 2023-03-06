@@ -1,2 +1,3 @@
-export {CartProduct, EnumStyledCartProductBreakPoints} from "./CartProduct";
-export type {Props} from "./CartProduct";
+export { CartProduct } from "./CartProduct"
+export { EnumStyledCartProductBreakPoints } from "./CartProduct.parts"
+export type { Props } from "./CartProduct"
