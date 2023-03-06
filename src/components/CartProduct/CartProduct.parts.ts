@@ -395,6 +395,9 @@ export const StyledProductDescription = WithUiTag(
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 400;
+    color: #151515;
 `)
 export const StyledProductHTMLDescription = WithUiTag(
     "ProductHTMLDescription"
@@ -495,6 +498,7 @@ export const StyledProductPrice = WithUiTag("ProductPrice")(styled.p`
     white-space: nowrap;
     overflow: auto;
     box-sizing: border-box;
+    color: #151515;
 `)
 export const StyledDisabledProductPrice = WithUiTag(
     "DisabledProductPrice"
