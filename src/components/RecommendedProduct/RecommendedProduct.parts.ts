@@ -22,30 +22,27 @@ export const StyledCartProduct = WithUiTag(
     width: 100%;
     max-width: 100%;
     min-width: calc(${breakpoints.mobileSm}px - 40px);
-    min-height: 230px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: flex-start;
     margin: 0;
+    padding: 0;
     margin-bottom: 20px;
-    padding: 27px 20px;
     box-sizing: border-box;
-
     background: #ffffff;
     border: 1px solid #eaeaea;
     border-radius: 6px;
 
-    ${(props) => {
-        if (
-            props.breakpoint! <=
-            EnumStyledRecommendedProductBreakPoints.mobileMd
-        ) {
-            return `
-            padding: 15px;`
-        }
-    }}
-
+    .innerContainer {
+        ${(props) => {
+            if (
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.mobileMd
+            ) {
+                return `
+                    padding: 15px;
+                `
+            }
+        }}
+    }
     .productPriceContainer {
         padding: 0 10px;
         ${(props) => {
@@ -77,8 +74,9 @@ export const StyledCartProduct = WithUiTag(
     .leftFlexBlock {
         ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.mobileMd
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.mobileMd
             ) {
                 return `
                     width: 98px;
@@ -90,8 +88,9 @@ export const StyledCartProduct = WithUiTag(
     .productInfo {
         ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.mobileMd
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.mobileMd
             ) {
                 return `
                   flex-direction: column;`
@@ -102,8 +101,9 @@ export const StyledCartProduct = WithUiTag(
     .productNameContainer {
         ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.tabletMd
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.tabletMd
             ) {
                 return `
                     flex-direction: column;
@@ -116,8 +116,9 @@ export const StyledCartProduct = WithUiTag(
     .productName {
         ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.tabletLg
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.tabletLg
             ) {
                 return `
                     margin-bottom: 40px;
@@ -128,8 +129,9 @@ export const StyledCartProduct = WithUiTag(
         }}
         ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.tabletMd
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.tabletMd
             ) {
                 return `
                     font-size: 16px;
@@ -140,8 +142,9 @@ export const StyledCartProduct = WithUiTag(
         }}
            ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.tabletSm
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.tabletSm
             ) {
                 return `
                     padding-right: 10px;
@@ -151,8 +154,9 @@ export const StyledCartProduct = WithUiTag(
         }}
            ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.mobileMd
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.mobileMd
             ) {
                 return `
                     margin-bottom: 40px;
@@ -164,8 +168,9 @@ export const StyledCartProduct = WithUiTag(
     .input {
         ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.mobileMd
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.mobileMd
             ) {
                 return `
                 margin-bottom: 20px;
@@ -178,8 +183,9 @@ export const StyledCartProduct = WithUiTag(
     .productPrice {
         ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.tabletMd
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.tabletMd
             ) {
                 return `
                   display: none;
@@ -193,8 +199,9 @@ export const StyledCartProduct = WithUiTag(
 
         ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.tabletMd
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.tabletMd
             ) {
                 return `
                     display: block;
@@ -211,8 +218,9 @@ export const StyledCartProduct = WithUiTag(
     .showMore {
         ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.tabletLg
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.tabletLg
             ) {
                 return `
                  width: calc(100% - 50px);
@@ -226,8 +234,9 @@ export const StyledCartProduct = WithUiTag(
     .description {
         ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.tabletMd
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.tabletMd
             ) {
                 return `
                 display: none;
@@ -239,8 +248,9 @@ export const StyledCartProduct = WithUiTag(
     .button {
         ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.tabletLg
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.tabletLg
             ) {
                 return `
                 padding: 0;
@@ -250,8 +260,9 @@ export const StyledCartProduct = WithUiTag(
         }}
         ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledRecommendedProductBreakPoints.mobileMd
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.mobileMd
             ) {
                 return `
                 min-height: 48px;
@@ -260,6 +271,22 @@ export const StyledCartProduct = WithUiTag(
         }}
     }
 `)
+
+export const StyledInnerContainer = WithUiTag(
+    "RecommendedProductInnerContainer"
+)(styled.div`
+    width: 100%;
+    max-width: 100%;
+    min-height: 230px;
+    margin: 0;
+    padding: 27px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    box-sizing: border-box;
+`)
+
 export const StyledLeftFlexBlock = WithUiTag(
     "RecommendedProductLeftBlock"
 )(styled.div`

@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useRef } from "react"
 import {
     StyledContainer,
+    StyledInnerHeaderContainer,
     StyledHeader,
     StyledProductList,
     StyledLeftColumnTitle,
@@ -13,7 +14,7 @@ import {
 } from "../CartProduct/CartProduct.parts"
 import { useTranslation } from "react-i18next"
 import { useBreakpoints } from "../../commons/hooks"
-import { EnumStyledCartProductBreakPoints } from "../CartProduct"
+import { EnumStyledHeaderBreakPoints } from "./CartProductHeader.parts"
 
 export const CartProductHeader: React.FC<PropsWithChildren> = ({
     children,
@@ -21,15 +22,15 @@ export const CartProductHeader: React.FC<PropsWithChildren> = ({
     const containerRef = useRef<HTMLDivElement | null>(null)
     const { t } = useTranslation()
 
-    const breakpoint = useBreakpoints<EnumStyledCartProductBreakPoints>(
+    const breakpoint = useBreakpoints<EnumStyledHeaderBreakPoints>(
         containerRef,
         [
-            EnumStyledCartProductBreakPoints.mobileSm,
-            EnumStyledCartProductBreakPoints.mobileMd,
-            EnumStyledCartProductBreakPoints.tabletSm,
-            EnumStyledCartProductBreakPoints.tabletMd,
-            EnumStyledCartProductBreakPoints.tabletLg,
-            EnumStyledCartProductBreakPoints.desktopSm,
+            EnumStyledHeaderBreakPoints.mobileSm,
+            EnumStyledHeaderBreakPoints.mobileMd,
+            EnumStyledHeaderBreakPoints.tabletSm,
+            EnumStyledHeaderBreakPoints.tabletMd,
+            EnumStyledHeaderBreakPoints.tabletLg,
+            EnumStyledHeaderBreakPoints.desktopSm,
         ]
     )
 
@@ -40,20 +41,22 @@ export const CartProductHeader: React.FC<PropsWithChildren> = ({
                 breakpoint={breakpoint}
                 className="header"
             >
-                <StyledLeftFlexBlock className="leftFlexBlock">
-                    <StyledLeftColumnTitle className="leftColumnTitle">
-                        <span>{t("product")}</span>
-                    </StyledLeftColumnTitle>
-                </StyledLeftFlexBlock>
+                <StyledInnerHeaderContainer className="innerContainer">
+                    <StyledLeftFlexBlock className="leftFlexBlock">
+                        <StyledLeftColumnTitle className="leftColumnTitle">
+                            <span>{t("product")}</span>
+                        </StyledLeftColumnTitle>
+                    </StyledLeftFlexBlock>
 
-                <StyledRightFlexBlock className="rightFlexBlock">
-                    <StyledCenterColumnTitle className="centerColumnTitle">
-                        <p>{t("qty")}</p>
-                    </StyledCenterColumnTitle>
-                    <StyledRightColumnTitle className="rightColumnTitle">
-                        <p>{t("price")}</p>
-                    </StyledRightColumnTitle>
-                </StyledRightFlexBlock>
+                    <StyledRightFlexBlock className="rightFlexBlock">
+                        <StyledCenterColumnTitle className="centerColumnTitle">
+                            <p>{t("qty")}</p>
+                        </StyledCenterColumnTitle>
+                        <StyledRightColumnTitle className="rightColumnTitle">
+                            <p>{t("price")}</p>
+                        </StyledRightColumnTitle>
+                    </StyledRightFlexBlock>
+                </StyledInnerHeaderContainer>
             </StyledHeader>
             <StyledProductList>{children}</StyledProductList>
         </StyledContainer>

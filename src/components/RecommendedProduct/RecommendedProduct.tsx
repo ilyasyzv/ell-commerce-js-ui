@@ -2,6 +2,7 @@ import React, { useState, useRef, useMemo, useEffect, useCallback } from "react"
 import { Product, Variant } from "ell-commerce-sdk"
 import {
     StyledCartProduct,
+    StyledInnerContainer,
     StyledImage,
     StyledProductInfo,
     StyledProductNameContainer,
@@ -134,99 +135,106 @@ export const RecommendedProduct: React.FC<Props> = ({
 
     return (
         <StyledCartProduct key={id} ref={containerRef} breakpoint={breakpoint}>
-            <StyledLeftFlexBlock className="leftFlexBlock">
-                <StyledImage
-                    className="image"
-                    src={image?.imageUrl || noImageSrc}
-                    alt={image?.altText || ""}
-                />
-            </StyledLeftFlexBlock>
+            <StyledInnerContainer className="innerContainer">
+                <StyledLeftFlexBlock className="leftFlexBlock">
+                    <StyledImage
+                        className="image"
+                        src={image?.imageUrl || noImageSrc}
+                        alt={image?.altText || ""}
+                    />
+                </StyledLeftFlexBlock>
 
-            <StyledRightFlexBlock>
-                <StyledProductInfo className="productInfo">
-                    <StyledProductNameContainer className="productNameContainer">
-                        <StyledProductName className="productName">
-                            <StyledProductTitle>
-                                {cutText(name, MAX_PRODUCT_NAME_DISPLAY_LENGTH)}
-                            </StyledProductTitle>
-                            <StyledProductPrice className="productPriceMobile">
+                <StyledRightFlexBlock>
+                    <StyledProductInfo className="productInfo">
+                        <StyledProductNameContainer className="productNameContainer">
+                            <StyledProductName className="productName">
+                                <StyledProductTitle>
+                                    {cutText(
+                                        name,
+                                        MAX_PRODUCT_NAME_DISPLAY_LENGTH
+                                    )}
+                                </StyledProductTitle>
+                                <StyledProductPrice className="productPriceMobile">
+                                    {formatPrice(price, currency)}
+                                </StyledProductPrice>
+                                <StyledProductDescription
+                                    className="description"
+                                    id="description-block"
+                                >
+                                    {expanded
+                                        ? parsedDescription
+                                        : parsedShortDescription}
+                                </StyledProductDescription>
+                                <StyledShowMoreBtn
+                                    className="showMore"
+                                    onClick={() =>
+                                        setExpanded((prevState) => !prevState)
+                                    }
+                                    aria-expanded={expanded}
+                                    aria-controls="description-block"
+                                >
+                                    <span className="showMoreLabel">
+                                        {expanded
+                                            ? t("show_less")
+                                            : t("show_more")}
+                                        <i>
+                                            {expanded ? (
+                                                <ArrowControlsUp
+                                                    aria-hidden={true}
+                                                />
+                                            ) : (
+                                                <ArrowControlsDown
+                                                    aria-hidden={true}
+                                                />
+                                            )}
+                                        </i>
+                                    </span>
+                                </StyledShowMoreBtn>
+                            </StyledProductName>
+
+                            <StyledInput className="input">
+                                <input
+                                    ref={inputRef}
+                                    onKeyDown={onKeydown}
+                                    type="number"
+                                    className={
+                                        message.type === "Error"
+                                            ? "cart-product-input error"
+                                            : "cart-product-input"
+                                    }
+                                    disabled={maxPurchaseQuantity === 1}
+                                    defaultValue={quantity}
+                                    min={minPurchaseQuantity}
+                                    max={maxPurchaseQuantity}
+                                    onChange={(ev) => onInputChange(ev)}
+                                    aria-label="Quantity of product"
+                                />
+                                {isInvalid && (
+                                    <Message
+                                        id="errorMessage"
+                                        text={message.text}
+                                        type={message.type}
+                                    />
+                                )}
+                            </StyledInput>
+                        </StyledProductNameContainer>
+                        <StyledProductPriceContainer className="productPriceContainer">
+                            <StyledProductPrice className="productPrice">
                                 {formatPrice(price, currency)}
                             </StyledProductPrice>
-                            <StyledProductDescription
-                                className="description"
-                                id="description-block"
-                            >
-                                {expanded
-                                    ? parsedDescription
-                                    : parsedShortDescription}
-                            </StyledProductDescription>
-                            <StyledShowMoreBtn
-                                className="showMore"
-                                onClick={() =>
-                                    setExpanded((prevState) => !prevState)
+                            <StyledButton
+                                className="button"
+                                aria-label={`${t("add_to_cart")} ${name}`}
+                                onClick={(ev: any) =>
+                                    onAddToCart(ev, product, quantity)
                                 }
-                                aria-expanded={expanded}
-                                aria-controls="description-block"
                             >
-                                <span className="showMoreLabel">
-                                    {expanded ? t("show_less") : t("show_more")}
-                                    <i>
-                                        {expanded ? (
-                                            <ArrowControlsUp
-                                                aria-hidden={true}
-                                            />
-                                        ) : (
-                                            <ArrowControlsDown
-                                                aria-hidden={true}
-                                            />
-                                        )}
-                                    </i>
-                                </span>
-                            </StyledShowMoreBtn>
-                        </StyledProductName>
-
-                        <StyledInput className="input">
-                            <input
-                                ref={inputRef}
-                                onKeyDown={onKeydown}
-                                type="number"
-                                className={
-                                    message.type === "Error"
-                                        ? "cart-product-input error"
-                                        : "cart-product-input"
-                                }
-                                disabled={maxPurchaseQuantity === 1}
-                                defaultValue={quantity}
-                                min={minPurchaseQuantity}
-                                max={maxPurchaseQuantity}
-                                onChange={(ev) => onInputChange(ev)}
-                                aria-label="Quantity of product"
-                            />
-                            {isInvalid && (
-                                <Message
-                                    id="errorMessage"
-                                    text={message.text}
-                                    type={message.type}
-                                />
-                            )}
-                        </StyledInput>
-                    </StyledProductNameContainer>
-                    <StyledProductPriceContainer className="productPriceContainer">
-                        <StyledProductPrice className="productPrice">
-                            {formatPrice(price, currency)}
-                        </StyledProductPrice>
-                        <StyledButton
-                            className="button"
-                            aria-label={`${t("add_to_cart")} ${name}`}
-                            onClick={(ev: any) =>
-                                onAddToCart(ev, product, quantity)
-                            }
-                        >
-                            {t("add_to_cart")}
-                        </StyledButton>
-                    </StyledProductPriceContainer>
-                </StyledProductInfo>
-            </StyledRightFlexBlock>
+                                {t("add_to_cart")}
+                            </StyledButton>
+                        </StyledProductPriceContainer>
+                    </StyledProductInfo>
+                </StyledRightFlexBlock>
+            </StyledInnerContainer>
         </StyledCartProduct>
     )
 }

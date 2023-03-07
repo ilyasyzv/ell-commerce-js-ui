@@ -1,10 +1,18 @@
 import styled from "styled-components"
 import { breakpoints } from "../../commons/constants"
 import WithUiTag from "../../commons/components"
-import { EnumStyledCartProductBreakPoints } from "../CartProduct/CartProduct.parts"
+
+export enum EnumStyledHeaderBreakPoints {
+    mobileSm = 301,
+    mobileMd = 354,
+    tabletSm = 670,
+    tabletMd = 770,
+    tabletLg = 950,
+    desktopSm = 1126,
+}
 
 interface StyledCartProductProps {
-    readonly breakpoint: EnumStyledCartProductBreakPoints | undefined
+    readonly breakpoint: EnumStyledHeaderBreakPoints | undefined
 }
 
 export const StyledContainer = WithUiTag(
@@ -26,34 +34,32 @@ export const StyledContainer = WithUiTag(
 export const StyledHeader = WithUiTag(
     "CartProductHeader"
 )(styled.div<StyledCartProductProps>`
-    padding: 20px;
-    padding-top: 0;
+    padding: 0;
     margin: 0;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
 
-    ${(props) => {
-        if (props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd) {
-            return `
-          padding: 15px;
-          `
-        }
-    }}
+    .innerContainer {
+        ${(props) => {
+            if (props.breakpoint! <= EnumStyledHeaderBreakPoints.mobileMd) {
+                return `
+                    padding: 15px;
+                `
+            }
+        }}
+    }
 
     .centerColumnTitle {
         ${(props) => {
             switch (props.breakpoint) {
-                case EnumStyledCartProductBreakPoints.tabletMd: {
+                case EnumStyledHeaderBreakPoints.tabletMd: {
                     return `
                     padding: 0 10px;
                     padding-left: 15px;
                 `
                 }
-                case EnumStyledCartProductBreakPoints.tabletSm: {
+                case EnumStyledHeaderBreakPoints.tabletSm: {
                     return `
                     padding: 0 10px;
                     padding-left: 15px;
@@ -64,10 +70,9 @@ export const StyledHeader = WithUiTag(
         }}
 
         ${(props) => {
-            if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
-            ) {
-                return `font-size: 0;`
+            if (props.breakpoint! <= EnumStyledHeaderBreakPoints.mobileMd) {
+                return `font-size: 0;
+                `
             }
         }}
     }
@@ -76,8 +81,7 @@ export const StyledHeader = WithUiTag(
         p {
             ${(props) => {
                 if (
-                    props.breakpoint! <=
-                    EnumStyledCartProductBreakPoints.desktopSm
+                    props.breakpoint! <= EnumStyledHeaderBreakPoints.desktopSm
                 ) {
                     return `
               padding-right: 0;
@@ -88,20 +92,20 @@ export const StyledHeader = WithUiTag(
 
         ${(props) => {
             switch (props.breakpoint) {
-                case EnumStyledCartProductBreakPoints.tabletSm: {
+                case EnumStyledHeaderBreakPoints.tabletSm: {
                     return `
                     max-width: calc(90px + 20px);
                     width: calc(90px + 20px);
                 `
                 }
-                case EnumStyledCartProductBreakPoints.mobileMd: {
+                case EnumStyledHeaderBreakPoints.mobileMd: {
                     return `
                     max-width: calc(90px + 20px);
                     width: calc(90px + 20px);
                     padding-right: 5px;
                 `
                 }
-                case EnumStyledCartProductBreakPoints.mobileSm: {
+                case EnumStyledHeaderBreakPoints.mobileSm: {
                     return `
                     display: none;
                 `
@@ -110,6 +114,21 @@ export const StyledHeader = WithUiTag(
         }}
     }
 `)
+
+export const StyledInnerHeaderContainer = WithUiTag(
+    "HeaderInnerContainer"
+)(styled.div`
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    padding-top: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+`)
+
 export const StyledTitle = WithUiTag("CartProductTitle")(styled.div`
     text-transform: uppercase;
     font-weight: 700;

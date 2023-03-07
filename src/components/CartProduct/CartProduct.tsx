@@ -2,6 +2,7 @@ import React, { useCallback, useRef, useState, useMemo, useEffect } from "react"
 import { CartItem, Currency } from "ell-commerce-sdk"
 import {
     StyledCartProduct,
+    StyledInnerContainer,
     StyledImage,
     StyledProductInfo,
     StyledProductNameContainer,
@@ -70,7 +71,9 @@ export const CartProduct: React.FC<Props> = ({
     const inputRef = useRef<HTMLInputElement | null>(null)
     const [value, setValue] = useState(item.quantity)
     const [isInvalid, setIsInvalid] = useState(false)
-    const [isDisabled, setIsDisabled] = useState(maxPurchaseQuantity === item.quantity)
+    const [isDisabled, setIsDisabled] = useState(
+        maxPurchaseQuantity === item.quantity
+    )
     const [message, setMessage] = useState({ text: "", type: "" })
     const { t } = useTranslation()
 
@@ -148,110 +151,117 @@ export const CartProduct: React.FC<Props> = ({
             ref={containerRef}
             breakpoint={breakpoint}
         >
-            <StyledLeftFlexBlock className={"leftFlexBlock"}>
-                <StyledImage
-                    role="presentation"
-                    className={"image"}
-                    src={item.imageUrl || noImageSrc}
-                    alt=""
-                />
-            </StyledLeftFlexBlock>
+            <StyledInnerContainer className="innerContainer">
+                <StyledLeftFlexBlock className={"leftFlexBlock"}>
+                    <StyledImage
+                        role="presentation"
+                        className={"image"}
+                        src={item.imageUrl || noImageSrc}
+                        alt=""
+                    />
+                </StyledLeftFlexBlock>
 
-            <StyledRightFlexBlock>
-                <StyledProductInfo className={"productInfo"}>
-                    <StyledProductNameContainer
-                        className={"productNameContainer"}
-                    >
-                        <StyledProductName className={"productName"}>
-                            <StyledProductTitle>
-                                {cutText(
-                                    item.name,
-                                    MAX_PRODUCT_NAME_DISPLAY_LENGTH
+                <StyledRightFlexBlock>
+                    <StyledProductInfo className={"productInfo"}>
+                        <StyledProductNameContainer
+                            className={"productNameContainer"}
+                        >
+                            <StyledProductName className={"productName"}>
+                                <StyledProductTitle>
+                                    {cutText(
+                                        item.name,
+                                        MAX_PRODUCT_NAME_DISPLAY_LENGTH
+                                    )}
+                                </StyledProductTitle>
+                                {hasDescription && item.shortDescription && (
+                                    <StyledProductDescription>
+                                        {parsedShortDescription}
+                                    </StyledProductDescription>
                                 )}
-                            </StyledProductTitle>
-                            {hasDescription && item.shortDescription && (
-                                <StyledProductDescription>
-                                    {parsedShortDescription}
-                                </StyledProductDescription>
-                            )}
-                        </StyledProductName>
-                        <StyledInput className={"input"}>
-                            <input
-                                ref={inputRef}
-                                type="number"
-                                onKeyDown={onKeydown}
-                                className={
-                                    message.type === "Error"
-                                        ? "cart-product-input error"
-                                        : "cart-product-input"
-                                }
-                                disabled={isDisabled}
-                                defaultValue={value}
-                                min={minPurchaseQuantity}
-                                max={maxPurchaseQuantity}
-                                onChange={(ev) =>
-                                    onInputDebounceChange(ev, item)
-                                }
-                                aria-label="Quantity of product"
-                            />
-                            {isInvalid && (
-                                <Message
-                                    id="errorMessage"
-                                    text={message.text}
-                                    type={message.type}
-                                />
-                            )}
-                        </StyledInput>
-                    </StyledProductNameContainer>
-                    <StyledProductPriceContainer
-                        className={"productPriceContainer"}
-                    >
-                        {item.totalOriginalPrice === item.totalSalePrice && (
-                            <StyledProductPrice className={"productPrice"}>
-                                {formatPrice(item.totalOriginalPrice, currency)}
-                            </StyledProductPrice>
-                        )}
-                        {item.totalOriginalPrice !== item.totalSalePrice && (
-                            <StyledDiscountWrapper
-                                className={"discountWrapper"}
-                            >
-                                {item.totalSalePrice >= 0 && (
-                                    <StyledProductPrice
-                                        className={
-                                            "discount-price-container productPrice"
-                                        }
-                                    >
-                                        {formatPrice(
-                                            item.totalSalePrice,
-                                            currency
-                                        )}
-                                    </StyledProductPrice>
-                                )}
-                                <StyledDisabledProductPrice
+                            </StyledProductName>
+                            <StyledInput className={"input"}>
+                                <input
+                                    ref={inputRef}
+                                    type="number"
+                                    onKeyDown={onKeydown}
                                     className={
-                                        "discount-price-container disabledProductPrice"
+                                        message.type === "Error"
+                                            ? "cart-product-input error"
+                                            : "cart-product-input"
                                     }
-                                >
+                                    disabled={isDisabled}
+                                    defaultValue={value}
+                                    min={minPurchaseQuantity}
+                                    max={maxPurchaseQuantity}
+                                    onChange={(ev) =>
+                                        onInputDebounceChange(ev, item)
+                                    }
+                                    aria-label="Quantity of product"
+                                />
+                                {isInvalid && (
+                                    <Message
+                                        id="errorMessage"
+                                        text={message.text}
+                                        type={message.type}
+                                    />
+                                )}
+                            </StyledInput>
+                        </StyledProductNameContainer>
+                        <StyledProductPriceContainer
+                            className={"productPriceContainer"}
+                        >
+                            {item.totalOriginalPrice ===
+                                item.totalSalePrice && (
+                                <StyledProductPrice className={"productPrice"}>
                                     {formatPrice(
                                         item.totalOriginalPrice,
                                         currency
                                     )}
-                                </StyledDisabledProductPrice>
-                            </StyledDiscountWrapper>
-                        )}
-                        <StyledButton
-                            className={"button"}
-                            aria-label={`${t("remove")} ${item.name}`}
-                            onClick={(ev: any) => onDelete(ev, item.id)}
-                        >
-                            <i>
-                                <BucketSvg aria-hidden={true} />
-                            </i>
-                            {t("remove")}
-                        </StyledButton>
-                    </StyledProductPriceContainer>
-                </StyledProductInfo>
-            </StyledRightFlexBlock>
+                                </StyledProductPrice>
+                            )}
+                            {item.totalOriginalPrice !==
+                                item.totalSalePrice && (
+                                <StyledDiscountWrapper
+                                    className={"discountWrapper"}
+                                >
+                                    {item.totalSalePrice >= 0 && (
+                                        <StyledProductPrice
+                                            className={
+                                                "discount-price-container productPrice"
+                                            }
+                                        >
+                                            {formatPrice(
+                                                item.totalSalePrice,
+                                                currency
+                                            )}
+                                        </StyledProductPrice>
+                                    )}
+                                    <StyledDisabledProductPrice
+                                        className={
+                                            "discount-price-container disabledProductPrice"
+                                        }
+                                    >
+                                        {formatPrice(
+                                            item.totalOriginalPrice,
+                                            currency
+                                        )}
+                                    </StyledDisabledProductPrice>
+                                </StyledDiscountWrapper>
+                            )}
+                            <StyledButton
+                                className={"button"}
+                                aria-label={`${t("remove")} ${item.name}`}
+                                onClick={(ev: any) => onDelete(ev, item.id)}
+                            >
+                                <i>
+                                    <BucketSvg aria-hidden={true} />
+                                </i>
+                                {t("remove")}
+                            </StyledButton>
+                        </StyledProductPriceContainer>
+                    </StyledProductInfo>
+                </StyledRightFlexBlock>
+            </StyledInnerContainer>
         </StyledCartProduct>
     )
 }

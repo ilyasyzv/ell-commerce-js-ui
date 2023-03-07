@@ -22,32 +22,32 @@ export const StyledCartProduct = WithUiTag(
     width: 100%;
     max-width: 100%;
     min-width: calc(${breakpoints.mobileSm}px - 40px);
-    min-height: 230px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: flex-start;
     margin: 0;
+    padding: 0;
     margin-bottom: 20px;
-    padding: 27px 20px;
     box-sizing: border-box;
-
     background: #ffffff;
     border: 1px solid #eaeaea;
     border-radius: 6px;
 
-    ${(props) => {
-        if (props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd) {
-            return `
-            padding: 15px;
-            `
-        }
-    }}
+    .innerContainer {
+        ${(props) => {
+            if (
+                props.breakpoint &&
+                props.breakpoint <= EnumStyledCartProductBreakPoints.mobileMd
+            ) {
+                return `
+                    padding: 15px;
+                `
+            }
+        }}
+    }
 
     .leftFlexBlock {
         ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+                props.breakpoint &&
+                props.breakpoint <= EnumStyledCartProductBreakPoints.mobileMd
             ) {
                 return `
                     width: 98px;
@@ -60,7 +60,8 @@ export const StyledCartProduct = WithUiTag(
     .image {
         ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+                props.breakpoint &&
+                props.breakpoint <= EnumStyledCartProductBreakPoints.mobileMd
             ) {
                 return `max-height: 150px;`
             }
@@ -70,7 +71,8 @@ export const StyledCartProduct = WithUiTag(
     .productInfo {
         ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileSm
+                props.breakpoint &&
+                props.breakpoint <= EnumStyledCartProductBreakPoints.mobileSm
             ) {
                 return `flex-direction: column;`
             }
@@ -170,7 +172,8 @@ export const StyledCartProduct = WithUiTag(
     .productDescription {
         ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+                props.breakpoint &&
+                props.breakpoint <= EnumStyledCartProductBreakPoints.mobileMd
             ) {
                 return `display: none;`
             }
@@ -180,7 +183,8 @@ export const StyledCartProduct = WithUiTag(
     .input {
         ${(props) => {
             if (
-                props.breakpoint! <= EnumStyledCartProductBreakPoints.mobileMd
+                props.breakpoint &&
+                props.breakpoint <= EnumStyledCartProductBreakPoints.mobileMd
             ) {
                 return `
                     margin-bottom: 10px;
@@ -225,8 +229,8 @@ export const StyledCartProduct = WithUiTag(
 
         ${(props) => {
             if (
-                props.breakpoint! <=
-                EnumStyledCartProductBreakPoints.mobileSm
+                props.breakpoint &&
+                props.breakpoint <= EnumStyledCartProductBreakPoints.mobileSm
             ) {
                 return `
                     text-align: left;
@@ -239,7 +243,8 @@ export const StyledCartProduct = WithUiTag(
         padding-right: 0;
         ${(props) => {
             if (
-                props.breakpoint! === EnumStyledCartProductBreakPoints.mobileSm
+                props.breakpoint &&
+                props.breakpoint === EnumStyledCartProductBreakPoints.mobileSm
             ) {
                 return `text-align: left;`
             }
@@ -314,6 +319,22 @@ export const StyledCartProduct = WithUiTag(
         }}
     }
 `)
+
+export const StyledInnerContainer = WithUiTag(
+    "CartProductInnerContainer"
+)(styled.div`
+    width: 100%;
+    max-width: 100%;
+    min-height: 230px;
+    margin: 0;
+    padding: 27px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    box-sizing: border-box;
+`)
+
 export const StyledLeftFlexBlock = WithUiTag("LeftFlexBlock")(styled.div`
     width: 112px;
     min-width: 112px;

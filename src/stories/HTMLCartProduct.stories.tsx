@@ -58,5 +58,5 @@ export const WithHeaders = Template.bind({})
 WithHeaders.args = {
     items: mock.items,
     currency: mock.currency,
-    htmlDescription: mock.items.map(item => item.description)
+    htmlDescription: mock.items.map((item) => item.description),
 }

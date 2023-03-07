@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useMemo, useState } from "react"
+import { MutableRefObject, useLayoutEffect, useMemo, useState } from "react"
 
 export const useBreakpoints = <T>(
     ref: MutableRefObject<any>,
@@ -27,7 +27,7 @@ export const useBreakpoints = <T>(
         [ref.current]
     )
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (ref.current) {
             observer.observe(ref.current)
         }
