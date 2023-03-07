@@ -1,7 +1,7 @@
 import React from "react"
 import { ComponentStory } from "@storybook/react"
+import { action } from "@storybook/addon-actions"
 import { RecommendedBundle } from "../components/RecommendedBundle"
-import { Product } from "ell-commerce-sdk"
 import { getDefaultMocks } from "./mocks"
 
 export default {
@@ -37,7 +37,5 @@ FirstStory.args = {
     },
     backgroundImageUrl:
         "https://mcdn.wallpapersafari.com/medium/38/7/fhixbC.jpg",
-    onAddButtonClick: (data: Product) => {
-        console.log(data)
-    },
+    onAddButtonClick: action("Click Button"),
 }
