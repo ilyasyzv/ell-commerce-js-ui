@@ -1,5 +1,5 @@
 import React from "react"
-import { Cart } from "ell-commerce-sdk"
+import { Cart } from "@pearson-ell/commerce-sdk"
 import { StyledShoppingCartIcon } from "./ShoppingCartIcon.parts"
 import { CartIconSvg } from "../../commons/svgs"
 

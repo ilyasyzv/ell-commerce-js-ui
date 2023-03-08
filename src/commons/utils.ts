@@ -1,5 +1,5 @@
 import { MutableRefObject } from "react"
-import { CurrencySymbolPosition, Currency } from "ell-commerce-sdk"
+import { CurrencySymbolPosition, Currency } from "@pearson-ell/commerce-sdk"
 
 export const onInputDebounce = <F extends (...args: any) => any>(
     inputFunction: F,

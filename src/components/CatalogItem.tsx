@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import parse from "html-react-parser"
-import { Product } from "ell-commerce-sdk"
+import { Product } from "@pearson-ell/commerce-sdk"
 import styled from "styled-components"
 
 const StyledCatalogItem = styled.tr`

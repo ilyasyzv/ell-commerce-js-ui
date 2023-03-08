@@ -1,6 +1,6 @@
 {
   "name": "@pearson-ell/commerce-ui",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "ELL eCommerce components library for react",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -24,6 +24,7 @@
   "types": "dist/esm/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.20.12",
+    "@pearson-ell/commerce-sdk": "^1.1.25",
     "@rollup/plugin-commonjs": "^24.0.0",
     "@rollup/plugin-image": "^3.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
@@ -45,7 +46,6 @@
     "axios": "^1.2.2",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.3.0",
-    "ell-commerce-sdk": "^1.1.21",
     "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard-with-typescript": "^24.0.0",
@@ -74,7 +74,7 @@
     "typescript": "^4.9.4"
   },
   "peerDependencies": {
-    "ell-commerce-sdk": "^1.1.21",
+    "@pearson-ell/commerce-sdk": "^1.1.25",
     "i18next": "^22.4.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

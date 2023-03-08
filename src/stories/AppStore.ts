@@ -1,6 +1,12 @@
 import { makeAutoObservable, runInAction } from "mobx"
-import { Cart, CartItem, ELLCommerce, Product, Variant } from "ell-commerce-sdk"
-import { Currency } from "ell-commerce-sdk/dist/cjs/models/Currency"
+import {
+    Cart,
+    CartItem,
+    ELLCommerce,
+    Product,
+    Variant,
+} from "@pearson-ell/commerce-sdk"
+import { Currency } from "@pearson-ell/commerce-sdk/dist/cjs/models/Currency"
 
 const COUNTRY_ISO = "US"
 

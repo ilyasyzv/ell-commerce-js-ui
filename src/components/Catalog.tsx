@@ -1,6 +1,6 @@
 import React from "react"
 import { CatalogItem } from "./CatalogItem"
-import { Product } from "ell-commerce-sdk"
+import { Product } from "@pearson-ell/commerce-sdk"
 import styled from "styled-components"
 
 const StyledCatalog = styled.div`

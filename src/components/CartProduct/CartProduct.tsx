@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState, useMemo, useEffect } from "react"
-import { CartItem, Currency } from "ell-commerce-sdk"
+import { CartItem, Currency } from "@pearson-ell/commerce-sdk"
 import {
     StyledCartProduct,
     StyledInnerContainer,

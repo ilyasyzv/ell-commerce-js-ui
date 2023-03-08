@@ -1,4 +1,4 @@
-import { Cart } from "ell-commerce-sdk"
+import { Cart } from "@pearson-ell/commerce-sdk"
 import React, { useState } from "react"
 import styled from "styled-components"
 import { MAIN_COLOR } from "../commons/colors"

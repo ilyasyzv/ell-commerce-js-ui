@@ -6,7 +6,7 @@ import {
     CartQty,
     EmptyCart,
 } from "../components"
-import { CartItem } from "ell-commerce-sdk"
+import { CartItem } from "@pearson-ell/commerce-sdk"
 import styled from "styled-components"
 import { observer } from "mobx-react"
 import { AppStore } from "./AppStore"

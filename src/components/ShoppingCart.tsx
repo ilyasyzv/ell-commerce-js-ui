@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Cart, CartItem } from "ell-commerce-sdk"
+import { Cart, CartItem } from "@pearson-ell/commerce-sdk"
 import styled from "styled-components"
 
 const StyledShoppingCart = styled.div.attrs(() => ({
