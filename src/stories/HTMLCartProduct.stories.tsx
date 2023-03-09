@@ -47,6 +47,7 @@ const Template: ComponentStory<typeof HTMLCartProduct> = (args) => {
                         )
                     }}
                     htmlDescription={args.htmlDescription[i]}
+                    isHighlighted={args.isHighlighted![i]}
                 />
             ))}
         </CartProductHeader>
@@ -59,4 +60,5 @@ WithHeaders.args = {
     items: mock.items,
     currency: mock.currency,
     htmlDescription: mock.items.map((item) => item.description),
+    isHighlighted: Array(mock.items.length).fill(false),
 }

@@ -49,6 +49,7 @@ export type Props = {
     hasDescription?: boolean
     debounceChangeQty?: number
     isBusy?: boolean
+    isHighlighted?: boolean
 }
 
 export const CartProduct: React.FC<Props> = ({
@@ -59,6 +60,7 @@ export const CartProduct: React.FC<Props> = ({
     hasDescription = false,
     debounceChangeQty = DEBOUNCE_INTERVAL,
     isBusy = false,
+    isHighlighted = false,
 }) => {
     const minPurchaseQuantity = item.minPurchaseQuantity || 1
     const maxPurchaseQuantity = item.maxPurchaseQuantity
@@ -150,6 +152,7 @@ export const CartProduct: React.FC<Props> = ({
             key={item.id}
             ref={containerRef}
             breakpoint={breakpoint}
+            className={isHighlighted ? "highlighted" : ""}
         >
             <StyledInnerContainer className="innerContainer">
                 <StyledLeftFlexBlock className={"leftFlexBlock"}>

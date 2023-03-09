@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof CartProduct> = (args) => {
 
     return (
         <CartProductHeader>
-            {products.map((item) => (
+            {products.map((item, i) => (
                 <CartProduct
                     key={item.id}
                     item={item}
@@ -50,6 +50,7 @@ const Template: ComponentStory<typeof CartProduct> = (args) => {
                         )
                     }}
                     hasDescription={args.hasDescription}
+                    isHighlighted={args.isHighlighted![i]}
                 />
             ))}
         </CartProductHeader>
@@ -64,6 +65,7 @@ WithHeaders.args = {
     currency: mock.currency,
     debounceChangeQty: DEBOUNCE_INTERVAL,
     hasDescription: false,
+    isHighlighted: Array(mock.items.length).fill(false),
 }
 
 TestImageHeightStory.args = {
@@ -71,4 +73,5 @@ TestImageHeightStory.args = {
     currency: mock.currency,
     debounceChangeQty: 250,
     hasDescription: false,
+    isHighlighted: Array(mock.items.length).fill(false),
 }
