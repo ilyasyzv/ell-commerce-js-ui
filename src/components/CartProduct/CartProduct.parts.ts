@@ -108,7 +108,7 @@ export const StyledCartProduct = WithUiTag(
                 case EnumStyledCartProductBreakPoints.mobileSm: {
                     return `
                         padding: 0 10px;
-                        padding-left: 15px;
+                        padding-left: 10px;
                         padding-right: 0;
                         flex-direction: column;
                         width: 100%;
@@ -206,8 +206,8 @@ export const StyledCartProduct = WithUiTag(
                 }
                 case EnumStyledCartProductBreakPoints.mobileMd: {
                     return `
-                        max-width: calc(90px + 20px);
-                        width: calc(90px + 20px);
+                        max-width: calc(90px + 10px);
+                        width: calc(90px + 10px);
                         padding-right: 5px;
                     `
                 }

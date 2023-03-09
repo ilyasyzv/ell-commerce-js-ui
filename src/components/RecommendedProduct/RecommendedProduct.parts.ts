@@ -12,12 +12,12 @@ export enum EnumStyledRecommendedProductBreakPoints {
     desktopMd = 1050,
 }
 
-interface StyledCartProductProps {
+interface StyledRecommendedProductProps {
     readonly breakpoint: EnumStyledRecommendedProductBreakPoints | undefined
 }
-export const StyledCartProduct = WithUiTag(
+export const StyledRecommendedProduct = WithUiTag(
     "RecommendedProduct"
-)(styled.div<StyledCartProductProps>`
+)(styled.div<StyledRecommendedProductProps>`
     font-family: "OpenSans", sans-serif;
     width: 100%;
     max-width: 100%;
@@ -62,7 +62,6 @@ export const StyledCartProduct = WithUiTag(
                 }
                 case EnumStyledRecommendedProductBreakPoints.mobileSm: {
                     return `
-                        padding: 5px 10px;
                         flex-direction: row;
                         flex-wrap: nowrap;
                     `
@@ -108,7 +107,8 @@ export const StyledCartProduct = WithUiTag(
                 return `
                     flex-direction: column;
                     padding: 0 10px;
-                    padding-left: 15px;`
+                    padding-left: 15px;
+                    `
             }
         }}
     }
@@ -121,7 +121,6 @@ export const StyledCartProduct = WithUiTag(
                     EnumStyledRecommendedProductBreakPoints.tabletLg
             ) {
                 return `
-                    margin-bottom: 40px;
                     max-width: 65%;
                     padding-right: 50px;
                     `
@@ -137,6 +136,7 @@ export const StyledCartProduct = WithUiTag(
                     font-size: 16px;
                     width: 100%;
                     max-width: 100%;
+                    margin-bottom: 15px;
                     `
             }
         }}
@@ -148,7 +148,7 @@ export const StyledCartProduct = WithUiTag(
             ) {
                 return `
                     padding-right: 10px;
-                    margin-bottom: 35px;
+                    margin-bottom: 15px;
                     `
             }
         }}
@@ -159,7 +159,7 @@ export const StyledCartProduct = WithUiTag(
                     EnumStyledRecommendedProductBreakPoints.mobileMd
             ) {
                 return `
-                    margin-bottom: 40px;
+                    margin-bottom: 20px;
                     `
             }
         }}
@@ -173,7 +173,7 @@ export const StyledCartProduct = WithUiTag(
                     EnumStyledRecommendedProductBreakPoints.mobileMd
             ) {
                 return `
-                margin-bottom: 20px;
+                margin-bottom: 10px;
                 margin-right: 10px;
                 `
             }
@@ -253,8 +253,18 @@ export const StyledCartProduct = WithUiTag(
                     EnumStyledRecommendedProductBreakPoints.tabletLg
             ) {
                 return `
+                padding: 0 5px;
+                `
+            }
+        }}
+        ${(props) => {
+            if (
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.tabletSm
+            ) {
+                return `
                 padding: 0;
-                width: 100%;
                 `
             }
         }}
@@ -265,6 +275,7 @@ export const StyledCartProduct = WithUiTag(
                     EnumStyledRecommendedProductBreakPoints.mobileMd
             ) {
                 return `
+                padding: 0 5px;
                 min-height: 48px;
                 `
             }

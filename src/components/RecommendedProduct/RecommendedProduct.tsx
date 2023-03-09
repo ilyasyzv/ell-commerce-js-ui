@@ -1,7 +1,7 @@
 import React, { useState, useRef, useMemo, useEffect, useCallback } from "react"
 import { Product, Variant } from "@pearson-ell/commerce-sdk"
 import {
-    StyledCartProduct,
+    StyledRecommendedProduct,
     StyledInnerContainer,
     StyledImage,
     StyledProductInfo,
@@ -134,7 +134,11 @@ export const RecommendedProduct: React.FC<Props> = ({
     )
 
     return (
-        <StyledCartProduct key={id} ref={containerRef} breakpoint={breakpoint}>
+        <StyledRecommendedProduct
+            key={id}
+            ref={containerRef}
+            breakpoint={breakpoint}
+        >
             <StyledInnerContainer className="innerContainer">
                 <StyledLeftFlexBlock className="leftFlexBlock">
                     <StyledImage
@@ -225,9 +229,11 @@ export const RecommendedProduct: React.FC<Props> = ({
                             <StyledButton
                                 className="button"
                                 aria-label={`${t("add_to_cart")} ${name}`}
-                                onClick={(ev: any) =>
-                                    onAddToCart(ev, product, quantity)
-                                }
+                                onClick={(
+                                    ev:
+                                        | React.MouseEvent<HTMLButtonElement>
+                                        | React.KeyboardEvent<HTMLButtonElement>
+                                ) => onAddToCart(ev, product, quantity)}
                             >
                                 {t("add_to_cart")}
                             </StyledButton>
@@ -235,6 +241,6 @@ export const RecommendedProduct: React.FC<Props> = ({
                     </StyledProductInfo>
                 </StyledRightFlexBlock>
             </StyledInnerContainer>
-        </StyledCartProduct>
+        </StyledRecommendedProduct>
     )
 }

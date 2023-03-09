@@ -6,7 +6,7 @@ export enum EnumStyledHeaderBreakPoints {
     mobileSm = 301,
     mobileMd = 354,
     tabletSm = 670,
-    tabletMd = 770,
+    tabletMd = 760,
     tabletLg = 950,
     desktopSm = 1126,
 }
@@ -42,7 +42,10 @@ export const StyledHeader = WithUiTag(
 
     .innerContainer {
         ${(props) => {
-            if (props.breakpoint! <= EnumStyledHeaderBreakPoints.mobileMd) {
+            if (
+                props.breakpoint &&
+                props.breakpoint <= EnumStyledHeaderBreakPoints.mobileMd
+            ) {
                 return `
                     padding: 15px;
                 `
@@ -70,7 +73,10 @@ export const StyledHeader = WithUiTag(
         }}
 
         ${(props) => {
-            if (props.breakpoint! <= EnumStyledHeaderBreakPoints.mobileMd) {
+            if (
+                props.breakpoint &&
+                props.breakpoint <= EnumStyledHeaderBreakPoints.mobileMd
+            ) {
                 return `font-size: 0;
                 `
             }
@@ -81,7 +87,8 @@ export const StyledHeader = WithUiTag(
         p {
             ${(props) => {
                 if (
-                    props.breakpoint! <= EnumStyledHeaderBreakPoints.desktopSm
+                    props.breakpoint &&
+                    props.breakpoint <= EnumStyledHeaderBreakPoints.desktopSm
                 ) {
                     return `
               padding-right: 0;
@@ -100,8 +107,8 @@ export const StyledHeader = WithUiTag(
                 }
                 case EnumStyledHeaderBreakPoints.mobileMd: {
                     return `
-                    max-width: calc(90px + 20px);
-                    width: calc(90px + 20px);
+                    max-width: calc(90px + 10px);
+                    width: calc(90px + 10px);
                     padding-right: 5px;
                 `
                 }
