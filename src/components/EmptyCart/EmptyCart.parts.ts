@@ -1,10 +1,8 @@
-import React from "react"
 import styled from "styled-components"
-import { breakpoints } from "../commons/constants"
-import { EmptyCartSvg } from "../commons/svgs"
-import WithUiTag from "../commons/components"
+import { breakpoints } from "../../commons/constants"
+import WithUiTag from "../../commons/components"
 
-const StyledEmptyCart = WithUiTag("EmptyCart")(styled.div`
+export const StyledEmptyCart = WithUiTag("EmptyCart")(styled.div`
     box-sizing: border-box;
     max-height: 379px;
     max-width: 1025px;
@@ -54,27 +52,3 @@ const StyledEmptyCart = WithUiTag("EmptyCart")(styled.div`
         margin-bottom: 30px;
     }
 `)
-
-interface EmptyCartProps {
-    onBackButtonClick: () => void
-    className?: string
-}
-
-export const EmptyCart: React.FunctionComponent<EmptyCartProps> = (
-    props: EmptyCartProps
-) => {
-    return (
-        <StyledEmptyCart className={props.className}>
-            <EmptyCartSvg className="cart-image" />
-            <p className="text">
-                Your cart is empty. Discover products to add to your cart
-            </p>
-            <button
-                className="button"
-                onClick={() => props.onBackButtonClick()}
-            >
-                Browse products
-            </button>
-        </StyledEmptyCart>
-    )
-}

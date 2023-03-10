@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { Button } from "@storybook/react/demo"
 import React from "react"
-import { changeLanguage } from "../commons/functions"
+import { changeLanguage } from "../../commons/functions"
 
 export const LanguageSelector: FC = () => {
     return (

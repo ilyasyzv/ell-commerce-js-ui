@@ -163,7 +163,7 @@ export const RecommendedProduct: React.FC<Props> = ({
                                 </StyledProductPrice>
                                 <StyledProductDescription
                                     className="description"
-                                    id="description-block"
+                                    id={`${id}-descriptionBlock`}
                                 >
                                     {expanded
                                         ? parsedDescription
@@ -175,7 +175,7 @@ export const RecommendedProduct: React.FC<Props> = ({
                                         setExpanded((prevState) => !prevState)
                                     }
                                     aria-expanded={expanded}
-                                    aria-controls="description-block"
+                                    aria-controls={`${id}-descriptionBlock`}
                                 >
                                     <span className="showMoreLabel">
                                         {expanded

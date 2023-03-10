@@ -1,34 +1,7 @@
 import React, { useState } from "react"
 import parse from "html-react-parser"
 import { Product } from "@pearson-ell/commerce-sdk"
-import styled from "styled-components"
-
-const StyledCatalogItem = styled.tr`
-    box-sizing: border-box;
-
-    .product-price {
-        white-space: nowrap;
-        text-align: right;
-    }
-
-    .product-description {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 600px;
-        padding-right: 24px;
-
-        div {
-            display: flex;
-            flex-flow: column;
-
-            .product-name {
-                font-size: 16px;
-                font-weight: 600;
-            }
-        }
-    }
-`
+import { StyledCatalogItem } from "./CatalogItem.parts"
 
 export interface ICatalogItemProps {
     product: Product

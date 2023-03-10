@@ -7,7 +7,7 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "@storybook/addon-actions",
+    "@storybook/addon-actions"
   ],
   "framework": "@storybook/react",
   "staticDirs": [{ from: '../src/fonts', to: '/fonts' }]

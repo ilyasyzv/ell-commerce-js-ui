@@ -1,13 +1,9 @@
-import { Cart } from "@pearson-ell/commerce-sdk"
-import React, { useState } from "react"
 import styled from "styled-components"
-import { MAIN_COLOR } from "../commons/colors"
-import { breakpoints } from "../commons/constants"
-import { formatPrice } from "../commons/utils"
-import { Trans, useTranslation } from "react-i18next"
-import WithUiTag from "../commons/components"
+import WithUiTag from "../../commons/components"
+import { breakpoints } from "../../commons/constants"
+import { MAIN_COLOR } from "../../commons/colors"
 
-const StyledCartOrderSummary = WithUiTag("CartOrderSummary")(styled.div`
+export const StyledCartOrderSummary = WithUiTag("CartOrderSummary")(styled.div`
     padding: 47px 40px;
     background: #ffffff;
     border: 1px solid #eaeaea;
@@ -80,6 +76,16 @@ const StyledCartOrderSummary = WithUiTag("CartOrderSummary")(styled.div`
             accent-color: ${MAIN_COLOR};
         }
 
+        .visually-hidden {
+            clip: rect(0 0 0 0);
+            clip-path: inset(50%);
+            height: 1px;
+            overflow: hidden;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+        }
+
         span {
             font-weight: 400;
             font-size: 14px;
@@ -139,74 +145,3 @@ const StyledCartOrderSummary = WithUiTag("CartOrderSummary")(styled.div`
         min-width: 429px;
     }
 `)
-
-export interface ICartOrderSummary {
-    className?: string
-    cart: Cart
-    onCheckoutClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
-}
-
-export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
-    className,
-    cart,
-    onCheckoutClick,
-}: ICartOrderSummary) => {
-    const [isDisabled, setIsDisabled] = useState<boolean>(false)
-    const { t } = useTranslation()
-
-    const toogleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const isChecked = e.target.checked
-        setIsDisabled(isChecked)
-    }
-
-    if (!cart) {
-        return <div></div>
-    }
-
-    return (
-        <StyledCartOrderSummary className={className}>
-            <h2>{t("order_summary")}</h2>
-            <div className="price_wrapper">
-                <div>
-                    <span>{t("subtotal")}</span>
-                    <span className="price">
-                        {formatPrice(cart.baseAmount, cart.currency)}
-                    </span>
-                </div>
-                {cart?.discountAmount > 0 && (
-                    <div>
-                        <span>{t("discount")}</span>
-                        <span className="price">
-                            -{formatPrice(cart.discountAmount, cart.currency)}
-                        </span>
-                    </div>
-                )}
-            </div>
-            {cart?.discountAmount > 0 && (
-                <div className="total_wrapper">
-                    <span>{t("total")}</span>
-                    <span>
-                        {formatPrice(cart.preTaxCartAmount, cart.currency)}
-                    </span>
-                </div>
-            )}
-
-            <p className="calculations">{t("final_calculation")}</p>
-            <div className="agreement-wrapper">
-                <input type="checkbox" onChange={toogleCheckbox} />
-                <span>
-                    {t("i_agree")}{" "}
-                    <a>
-                        <Trans
-                            i18nKey={"privacy_policy"}
-                            components={{ b: <b /> }}
-                        />
-                    </a>
-                </span>
-            </div>
-            <button disabled={!isDisabled} onClick={onCheckoutClick}>
-                {t("checkout")}
-            </button>
-        </StyledCartOrderSummary>
-    )
-}

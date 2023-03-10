@@ -17,21 +17,21 @@ import {
     StyledProductTitle,
     StyledDiscountWrapper,
     StyledProductHTMLDescription,
-} from "./CartProduct/CartProduct.parts"
-import noImageSrc from "../assets/images/no-image.png"
-import { cutText, formatPrice, onInputDebounce } from "../commons/utils"
+} from "../CartProduct/CartProduct.parts"
+import noImageSrc from "../../assets/images/no-image.png"
+import { cutText, formatPrice, onInputDebounce } from "../../commons/utils"
 import {
     DEBOUNCE_INTERVAL,
     ALLOWED_KEYS,
     MAX_PRODUCT_NAME_DISPLAY_LENGTH,
-} from "../commons/constants"
-import { BucketSvg } from "../commons/svgs"
-import { Message } from "./Message"
+} from "../../commons/constants"
+import { BucketSvg } from "../../commons/svgs"
+import { Message } from "../Message"
 import parse from "html-react-parser"
 import { useTranslation } from "react-i18next"
-import { useBreakpoints } from "../commons/hooks"
-import { EnumStyledCartProductBreakPoints, Props } from "./CartProduct"
-import { setAriaInvalidAttributes } from "../commons/utils"
+import { useBreakpoints } from "../../commons/hooks"
+import { EnumStyledCartProductBreakPoints, Props } from "../CartProduct"
+import { setAriaInvalidAttributes } from "../../commons/utils"
 
 type HTMLCartProductProps = { htmlDescription: string } & Omit<
     Props,
