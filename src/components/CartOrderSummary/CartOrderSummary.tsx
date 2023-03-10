@@ -1,8 +1,21 @@
 import { Cart } from "@pearson-ell/commerce-sdk"
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import { formatPrice } from "../../commons/utils"
 import { Trans, useTranslation } from "react-i18next"
-import { StyledCartOrderSummary } from "./CartOrderSummary.parts"
+import {
+    CartOrderSummaryComponentBreakPoints,
+    StyledCartOrderAgreementWrapper,
+    StyledCartOrderButton,
+    StyledCartOrderCalculations,
+    StyledCartOrderDiscount,
+    StyledCartOrderHeader,
+    StyledCartOrderPrice,
+    StyledCartOrderPriceWrapper,
+    StyledCartOrderSubtotal,
+    StyledCartOrderSummary,
+    StyledCartOrderTotalWrapper,
+} from "./CartOrderSummary.parts"
+import { useBreakpoints } from "../../commons/hooks"
 
 export interface ICartOrderSummary {
     className?: string
@@ -17,6 +30,14 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
 }: ICartOrderSummary) => {
     const [isDisabled, setIsDisabled] = useState<boolean>(false)
     const { t } = useTranslation()
+    const ref = useRef(null)
+    const breakpoint = useBreakpoints<CartOrderSummaryComponentBreakPoints>(
+        ref,
+        [
+            CartOrderSummaryComponentBreakPoints.mobileMd,
+            CartOrderSummaryComponentBreakPoints.desktopSm,
+        ]
+    )
 
     const toogleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
         const isChecked = e.target.checked
@@ -28,56 +49,71 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
     }
 
     return (
-        <StyledCartOrderSummary className={className}>
-            <h2>{t("order_summary")}</h2>
-            <div className="price_wrapper">
-                <div>
-                    <span>{t("subtotal")}</span>
-                    <span className="price">
-                        {formatPrice(cart.baseAmount, cart.currency)}
-                    </span>
-                </div>
+        <StyledCartOrderSummary
+            className={className}
+            ref={ref}
+            breakpoint={breakpoint}
+        >
+            <div className="inner-wrapper">
+                <StyledCartOrderHeader>
+                    {t("order_summary")}
+                </StyledCartOrderHeader>
+                <StyledCartOrderPriceWrapper>
+                    <StyledCartOrderSubtotal>
+                        <span>{t("subtotal")}</span>
+                        <StyledCartOrderPrice>
+                            {formatPrice(cart.baseAmount, cart.currency)}
+                        </StyledCartOrderPrice>
+                    </StyledCartOrderSubtotal>
+                    {cart?.discountAmount > 0 && (
+                        <StyledCartOrderDiscount>
+                            <span>{t("discount")}</span>
+                            <StyledCartOrderPrice>
+                                -
+                                {formatPrice(
+                                    cart.discountAmount,
+                                    cart.currency
+                                )}
+                            </StyledCartOrderPrice>
+                        </StyledCartOrderDiscount>
+                    )}
+                </StyledCartOrderPriceWrapper>
                 {cart?.discountAmount > 0 && (
-                    <div>
-                        <span>{t("discount")}</span>
-                        <span className="price">
-                            -{formatPrice(cart.discountAmount, cart.currency)}
-                        </span>
-                    </div>
+                    <StyledCartOrderTotalWrapper>
+                        <span>{t("total")}</span>
+                        <StyledCartOrderPrice>
+                            {formatPrice(cart.preTaxCartAmount, cart.currency)}
+                        </StyledCartOrderPrice>
+                    </StyledCartOrderTotalWrapper>
                 )}
-            </div>
-            {cart?.discountAmount > 0 && (
-                <div className="total_wrapper">
-                    <span>{t("total")}</span>
-                    <span>
-                        {formatPrice(cart.preTaxCartAmount, cart.currency)}
+                <StyledCartOrderCalculations>
+                    {t("final_calculation")}
+                </StyledCartOrderCalculations>
+                <StyledCartOrderAgreementWrapper className="agreement-wrapper">
+                    <label
+                        className="visually-hidden"
+                        htmlFor="policiesAgreement"
+                    >
+                        Policies agreement
+                    </label>
+                    <input type="checkbox" onChange={toogleCheckbox} />
+                    <span className="agreement-text">
+                        {t("i_agree")}{" "}
+                        <a>
+                            <Trans
+                                i18nKey={"privacy_policy"}
+                                components={{ b: <b /> }}
+                            />
+                        </a>
                     </span>
-                </div>
-            )}
-
-            <p className="calculations">{t("final_calculation")}</p>
-            <div className="agreement-wrapper">
-                <label className="visually-hidden" htmlFor="policiesAgreement">
-                    Policies agreement
-                </label>
-                <input
-                    id="policiesAgreement"
-                    type="checkbox"
-                    onChange={toogleCheckbox}
-                />
-                <span>
-                    {t("i_agree")}{" "}
-                    <a>
-                        <Trans
-                            i18nKey={"privacy_policy"}
-                            components={{ b: <b /> }}
-                        />
-                    </a>
-                </span>
+                </StyledCartOrderAgreementWrapper>
+                <StyledCartOrderButton
+                    disabled={!isDisabled}
+                    onClick={onCheckoutClick}
+                >
+                    {t("checkout")}
+                </StyledCartOrderButton>
             </div>
-            <button disabled={!isDisabled} onClick={onCheckoutClick}>
-                {t("checkout")}
-            </button>
         </StyledCartOrderSummary>
     )
 }

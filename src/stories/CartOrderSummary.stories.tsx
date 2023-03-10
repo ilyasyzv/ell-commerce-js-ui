@@ -1,5 +1,6 @@
 import React from "react"
 import { ComponentStory } from "@storybook/react"
+import { action } from "@storybook/addon-actions"
 import { CartOrderSummary } from "../components/CartOrderSummary"
 import { getDefaultMocks } from "./mocks"
 
@@ -22,7 +23,5 @@ FirstStory.args = {
         discountAmount: 200,
         preTaxCartAmount: 300,
     },
-    onCheckoutClick: () => {
-        alert("click")
-    },
+    onCheckoutClick: action("Click Checkout Button"),
 }
