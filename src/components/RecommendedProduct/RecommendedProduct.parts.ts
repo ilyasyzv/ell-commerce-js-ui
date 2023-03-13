@@ -390,6 +390,7 @@ export const StyledProductDescription = WithUiTag(
     padding: 0;
     padding-bottom: 20px;
     box-sizing: border-box;
+    overflow-wrap: anywhere;
 `)
 export const StyledShowMoreBtn = WithUiTag(
     "RecommendedProductShowMoreButton"
