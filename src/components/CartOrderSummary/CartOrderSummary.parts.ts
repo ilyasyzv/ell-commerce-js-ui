@@ -4,6 +4,7 @@ import { MAIN_COLOR } from "../../commons/colors"
 
 export enum CartOrderSummaryComponentBreakPoints {
     mobileMd = 388,
+    mobileSm = 335,
     desktopSm = 429,
 }
 
@@ -17,7 +18,6 @@ export const StyledCartOrderSummary = WithUiTag(
     background: #ffffff;
     border: 1px solid #eaeaea;
     border-radius: 6px;
-    max-width: 100%;
     box-sizing: border-box;
     max-width: 796px;
     color: #333333;
@@ -33,6 +33,19 @@ export const StyledCartOrderSummary = WithUiTag(
                     return `padding: 30px 15px;`
                 }
             }
+        }}
+    }
+
+    .button {
+        ${(props) => {
+            if (
+                props.breakpoint &&
+                props.breakpoint >=
+                    CartOrderSummaryComponentBreakPoints.desktopSm
+            ) {
+                return `width: 350px;`
+            }
+            return `width: 100%;`
         }}
     }
 `)
@@ -147,11 +160,11 @@ export const StyledCartOrderAgreementWrapper = WithUiTag(
 
 export const StyledCartOrderButton = WithUiTag("CartOrderButton")(styled.button`
     display: block;
-    width: 100%;
     cursor: pointer;
     padding: 12px;
     border: none;
     border-radius: 40px;
+    margin: 0 auto;
     margin-top: 40px;
     font-weight: 600;
     font-size: 16px;

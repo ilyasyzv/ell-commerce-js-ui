@@ -110,6 +110,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                 <StyledCartOrderButton
                     disabled={!isDisabled}
                     onClick={onCheckoutClick}
+                    className="button"
                 >
                     {t("checkout")}
                 </StyledCartOrderButton>
