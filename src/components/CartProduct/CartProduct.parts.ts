@@ -425,6 +425,7 @@ export const StyledProductDescription = WithUiTag(
     font-size: 14px;
     font-weight: 400;
     color: #151515;
+    overflow-wrap: anywhere;
 `)
 export const StyledProductHTMLDescription = WithUiTag(
     "ProductHTMLDescription"
