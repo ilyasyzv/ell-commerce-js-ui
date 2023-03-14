@@ -14,12 +14,10 @@ export default {
 } as ComponentMeta<typeof CartQty>
 
 //👇 We create a “template” of how args map to rendering
-const Template: ComponentStory<typeof CartQty> = (args) => (
-    <CartQty itemsCount={7} {...args} />
-)
+const Template: ComponentStory<typeof CartQty> = (args) => <CartQty {...args} />
 
 export const FirstStory = Template.bind({})
 
 FirstStory.args = {
-    /*👇 The args you need here will depend on your component */
+    itemsCount: 7,
 }
