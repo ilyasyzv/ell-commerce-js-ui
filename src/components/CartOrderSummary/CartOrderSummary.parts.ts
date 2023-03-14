@@ -23,7 +23,7 @@ export const StyledCartOrderSummary = WithUiTag(
     color: #333333;
     font-family: "OpenSans", sans-serif;
 
-    .inner-wrapper {
+    .order-summary-form {
         ${(props) => {
             switch (props.breakpoint) {
                 case CartOrderSummaryComponentBreakPoints.desktopSm: {
@@ -36,16 +36,20 @@ export const StyledCartOrderSummary = WithUiTag(
         }}
     }
 
-    .button {
+    .checkout-btn,
+    .continue-btn {
         ${(props) => {
             if (
                 props.breakpoint &&
                 props.breakpoint >=
                     CartOrderSummaryComponentBreakPoints.desktopSm
             ) {
-                return `width: 350px;`
+                return `
+                width: 350px;
+                max-width: 350px;`
             }
-            return `width: 100%;`
+            return `width: 100%;
+            max-width: 100%;`
         }}
     }
 `)
@@ -93,6 +97,48 @@ export const StyledCartOrderDiscount = WithUiTag(
     }
 `)
 
+export const StyledCouponInputWrapper = WithUiTag(
+    "CartOrderCouponInputWrapper"
+)(styled.div`
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    :not(:first-child) {
+        padding-top: 15px;
+    }
+
+    .coupon-input-label {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        .coupon-input-label-text {
+            color: #007a9c;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 5px;
+        }
+    }
+
+    .coupon-input {
+        background: #ffffff;
+        border: 1px solid #959595;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-size: 16px;
+        line-height: 1.1;
+        padding: 14px 15px;
+    }
+
+    .coupon-btn {
+        padding: 5px 20px;
+        margin-bottom: 6px;
+        margin-left: 10px;
+    }
+`)
+
 export const StyledCartOrderPrice = WithUiTag("CartOrderPrice")(styled.span`
     font-weight: 600;
     font-size: 16px;
@@ -102,12 +148,31 @@ export const StyledCartOrderTotalWrapper = WithUiTag(
     "CartOrderTotalWrapper"
 )(styled.div`
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
     font-weight: 600;
     font-size: 16px;
     padding-top: 18px;
     padding-bottom: 50px;
+`)
+
+export const StyledTotalLabel = WithUiTag("CartOrderTotalLabel")(styled.div`
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    .label {
+        margin-bottom: 5px;
+    }
+
+    .tax-note {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 1.1;
+        color: #333333;
+    }
 `)
 
 export const StyledCartOrderCalculations = WithUiTag(
@@ -122,23 +187,35 @@ export const StyledCartOrderCalculations = WithUiTag(
     color: #000000;
 `)
 
+export const StyledFormFooter = WithUiTag("CartOrderFormFooter")(styled.div`
+    margin: 0;
+    padding: 0;
+    padding-top: 108px;
+    width: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .continue-btn,
+    .checkout-btn {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .checkout-btn {
+        margin-bottom: 20px;
+        margin-top: 40px;
+    }
+`)
+
 export const StyledCartOrderAgreementWrapper = WithUiTag(
     "CartOrderAgreementWrapper"
 )(styled.div`
-    .visually-hidden {
-        clip: rect(0 0 0 0);
-        clip-path: inset(50%);
-        height: 1px;
-        overflow: hidden;
-        position: absolute;
-        white-space: nowrap;
-        width: 1px;
-    }
-
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    margin-top: 108px;
     color: #151515;
     input {
         accent-color: ${MAIN_COLOR};
@@ -150,32 +227,10 @@ export const StyledCartOrderAgreementWrapper = WithUiTag(
         margin-left: 12px;
         text-align: left;
         line-height: 21px;
-
-        b {
-            text-decoration: underline;
-            cursor: pointer;
-        }
     }
-`)
 
-export const StyledCartOrderButton = WithUiTag("CartOrderButton")(styled.button`
-    display: block;
-    cursor: pointer;
-    padding: 12px;
-    border: none;
-    border-radius: 40px;
-    margin: 0 auto;
-    margin-top: 40px;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    text-align: center;
-    background: #151515;
-    color: #fefefe;
-
-    &[disabled] {
-        background: #e6e6e6;
-        color: #919191;
-        cursor: default;
+    a {
+        font-size: 14px;
+        line-height: 21px;
     }
 `)

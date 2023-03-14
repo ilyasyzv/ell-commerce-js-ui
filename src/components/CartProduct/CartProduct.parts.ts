@@ -568,26 +568,28 @@ export const StyledButton = WithUiTag("Button")(styled.button`
     right: 10px;
     bottom: -15px;
 
-    &:disabled {
-        opacity: 0.6;
-    }
-
-    color: #007fa3;
+    color: #007a9c;
     svg path {
-        fill: #007fa3;
+        fill: #007a9c;
     }
     &:hover {
-        color: #376a86;
+        color: #005d77;
         text-decoration: underline;
         svg path {
-            fill: #376a86;
+            fill: #005d77;
         }
     }
     &:focus-visible {
-        outline: 4px solid #77c2f9;
+        outline: 4px solid #4fa8ff;
     }
     &:active {
-        color: #235c60;
+        color: #004b60;
+        svg path {
+            fill: #004b60;
+        }
+    }
+    &[disabled] {
+        opacity: 0.6;
     }
 
     i {
