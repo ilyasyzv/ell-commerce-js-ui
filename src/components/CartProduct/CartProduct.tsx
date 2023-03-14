@@ -222,12 +222,11 @@ export const CartProduct: React.FC<Props> = ({
                                     )}
                                 </StyledProductPrice>
                             )}
-                            {item.totalOriginalPrice !==
-                                item.totalSalePrice && (
-                                <StyledDiscountWrapper
-                                    className={"discountWrapper"}
-                                >
-                                    {item.totalSalePrice >= 0 && (
+                            {item.totalOriginalPrice !== item.totalSalePrice &&
+                                item.totalSalePrice > 0 && (
+                                    <StyledDiscountWrapper
+                                        className={"discountWrapper"}
+                                    >
                                         <StyledProductPrice
                                             className={
                                                 "discount-price-container productPrice"
@@ -238,19 +237,29 @@ export const CartProduct: React.FC<Props> = ({
                                                 currency
                                             )}
                                         </StyledProductPrice>
-                                    )}
-                                    <StyledDisabledProductPrice
-                                        className={
-                                            "discount-price-container disabledProductPrice"
-                                        }
+                                        <StyledDisabledProductPrice
+                                            className={
+                                                "discount-price-container disabledProductPrice"
+                                            }
+                                        >
+                                            {formatPrice(
+                                                item.totalOriginalPrice,
+                                                currency
+                                            )}
+                                        </StyledDisabledProductPrice>
+                                    </StyledDiscountWrapper>
+                                )}
+                            {item.totalOriginalPrice !== 0 &&
+                                item.totalSalePrice === 0 && (
+                                    <StyledProductPrice
+                                        className={"productPrice"}
                                     >
                                         {formatPrice(
                                             item.totalOriginalPrice,
                                             currency
                                         )}
-                                    </StyledDisabledProductPrice>
-                                </StyledDiscountWrapper>
-                            )}
+                                    </StyledProductPrice>
+                                )}
                             <StyledButton
                                 className={"button"}
                                 aria-label={`${t("remove")} ${item.name}`}
