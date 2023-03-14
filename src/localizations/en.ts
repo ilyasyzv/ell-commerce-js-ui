@@ -29,5 +29,4 @@ export const en = {
     subtotal: "Subtotal",
     discount: "Discount",
     checkout: "Checkout",
-    final_calculation: `*All final calculations will be made at checkout.`,
 }

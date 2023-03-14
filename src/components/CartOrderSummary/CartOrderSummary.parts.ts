@@ -153,7 +153,7 @@ export const StyledCartOrderTotalWrapper = WithUiTag(
     font-weight: 600;
     font-size: 16px;
     padding-top: 18px;
-    padding-bottom: 50px;
+    margin-bottom: 20px;
 `)
 
 export const StyledTotalLabel = WithUiTag("CartOrderTotalLabel")(styled.div`
@@ -165,7 +165,6 @@ export const StyledTotalLabel = WithUiTag("CartOrderTotalLabel")(styled.div`
     .label {
         margin-bottom: 5px;
     }
-
     .tax-note {
         font-style: normal;
         font-weight: 400;
@@ -175,22 +174,10 @@ export const StyledTotalLabel = WithUiTag("CartOrderTotalLabel")(styled.div`
     }
 `)
 
-export const StyledCartOrderCalculations = WithUiTag(
-    "CartOrderCalculations"
-)(styled.p`
-    margin: 0;
-    padding-top: 25px;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    text-align: left;
-    color: #000000;
-`)
-
 export const StyledFormFooter = WithUiTag("CartOrderFormFooter")(styled.div`
     margin: 0;
     padding: 0;
-    padding-top: 108px;
+    padding-top: 10px;
     width: auto;
     max-width: 100%;
     box-sizing: border-box;

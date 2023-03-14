@@ -6,7 +6,6 @@ import {
     CartOrderSummaryComponentBreakPoints,
     StyledFormFooter,
     StyledCartOrderAgreementWrapper,
-    StyledCartOrderCalculations,
     StyledCartOrderDiscount,
     StyledCartOrderHeader,
     StyledCartOrderPrice,
@@ -153,9 +152,6 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                         </StyledCartOrderPrice>
                     </StyledCartOrderTotalWrapper>
                 )}
-                <StyledCartOrderCalculations>
-                    {t("final_calculation")}
-                </StyledCartOrderCalculations>
                 <StyledFormFooter>
                     <StyledCartOrderAgreementWrapper className="agreement-wrapper">
                         <input
@@ -191,13 +187,6 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                                 {policiesLinks[policiesLength - 1].name}
                                 {"."}
                             </Link>
-                            {/* With translation for demo:
-                            
-                            <Link href="/">{t("privacy_policy")}</Link>
-                            {", "}
-                            <Link href="/">{t("refund_policy")}</Link>
-                            {t(" and ")}{" "}
-                            <Link href="/">{t("terms_of_use")}</Link>*/}
                             {/* <a>
                                 <Trans
                                     i18nKey={"privacy_policy"}
