@@ -206,14 +206,14 @@ export const StyledCartProduct = WithUiTag(
             switch (props.breakpoint) {
                 case EnumStyledCartProductBreakPoints.tabletSm: {
                     return `
-                        max-width: calc(90px + 20px);
-                        width: calc(90px + 20px);
+                        max-width: calc(100px + 20px);
+                        width: calc(100px + 20px);
                     `
                 }
                 case EnumStyledCartProductBreakPoints.mobileMd: {
                     return `
-                        max-width: calc(90px + 10px);
-                        width: calc(90px + 10px);
+                        max-width: calc(100px + 10px);
+                        width: calc(100px + 10px);
                         padding-right: 5px;
                     `
                 }
