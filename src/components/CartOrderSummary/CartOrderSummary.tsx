@@ -49,6 +49,7 @@ export interface ICartOrderSummary {
             | React.KeyboardEvent<HTMLLinkElement>,
         linkName: string
     ) => void
+    isDisplayedContinueShoppingBtn?: boolean
 }
 
 export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
@@ -58,6 +59,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
     onContinueShoppingClick,
     policiesLinks,
     policiesLinksCallback,
+    isDisplayedContinueShoppingBtn = true,
 }: ICartOrderSummary) => {
     const [isDisabled, setIsDisabled] = useState<boolean>(true)
     const [couponInputValue, setCouponInputValue] = useState<string>("")
@@ -309,13 +311,15 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                         disabled={isDisabled}
                         onClick={(ev) => onSubmit(ev)}
                     />
-                    <Button
-                        className="continue-btn"
-                        variant={Variant.tertiary}
-                        type="button"
-                        label={t(" Continue shopping")}
-                        onClick={(ev) => onContinueShopping(ev)}
-                    />
+                    {isDisplayedContinueShoppingBtn && (
+                        <Button
+                            className="continue-btn"
+                            variant={Variant.tertiary}
+                            type="button"
+                            label={t(" Continue shopping")}
+                            onClick={(ev) => onContinueShopping(ev)}
+                        />
+                    )}
                 </StyledFormFooter>
             </form>
         </StyledCartOrderSummary>

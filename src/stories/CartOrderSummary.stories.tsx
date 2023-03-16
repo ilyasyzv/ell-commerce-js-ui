@@ -24,11 +24,12 @@ FirstStory.args = {
         preTaxCartAmount: 300,
     },
     onCheckoutClick: action("Click Checkout Button"),
-    onContinueShopping: console.log("click continue shopping button"),
+    onContinueShoppingClick: action("click continue shopping button"),
     policiesLinks: [
         { name: "Terms of Use" },
         { name: "Privacy Policy" },
         { name: "Refund Policy" },
     ],
     policiesLinksCallback: console.log("click policie link"),
+    isDisplayedContinueShoppingBtn: false,
 }
