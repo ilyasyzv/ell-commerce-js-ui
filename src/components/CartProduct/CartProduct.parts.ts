@@ -589,6 +589,7 @@ export const StyledButton = WithUiTag("Button")(styled.button`
     }
     &[disabled] {
         opacity: 0.6;
+        cursor: default;
     }
 
     i {

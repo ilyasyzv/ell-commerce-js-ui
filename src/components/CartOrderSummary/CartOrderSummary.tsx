@@ -1,5 +1,5 @@
 import { Cart } from "@pearson-ell/commerce-sdk"
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { formatPrice } from "../../commons/utils"
 import { useTranslation } from "react-i18next"
 import {
@@ -14,15 +14,19 @@ import {
     StyledCartOrderSummary,
     StyledCartOrderTotalWrapper,
     StyledTotalLabel,
+    StyledCouponBlock,
     StyledCouponInputWrapper,
+    StyledCartOrderCouponDiscount,
 } from "./CartOrderSummary.parts"
 import { useBreakpoints } from "../../commons/hooks"
 import { Button, Variant } from "../Button"
-import { Link } from "../Link"
+import { Input } from "../Input"
+import { getPolicieLink } from "./CartOrderSummary.utils"
+import { COUPON_INPUT_LIMIT, COUPON_INPUT_MAX_LEN } from "./constants"
 
-type PolicieLink = {
+export type PolicieLink = {
     name: string
-    url: string
+    url?: string
 }
 
 export interface ICartOrderSummary {
@@ -39,6 +43,12 @@ export interface ICartOrderSummary {
             | React.KeyboardEvent<HTMLButtonElement>
     ) => void
     policiesLinks: PolicieLink[]
+    policiesLinksCallback?: (
+        e:
+            | React.MouseEvent<HTMLLinkElement>
+            | React.KeyboardEvent<HTMLLinkElement>,
+        linkName: string
+    ) => void
 }
 
 export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
@@ -47,13 +57,20 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
     onCheckoutClick,
     onContinueShoppingClick,
     policiesLinks,
+    policiesLinksCallback,
 }: ICartOrderSummary) => {
     const [isDisabled, setIsDisabled] = useState<boolean>(true)
+    const [couponInputValue, setCouponInputValue] = useState<string>("")
+    const [couponsApplied, setCouponsApplied] = useState<string[]>([])
+    const [isCouponInputShown, setIsCouponInputShown] = useState<boolean>(
+        couponsApplied.length === 0
+    )
     const policiesLength = policiesLinks.length
     const { t } = useTranslation()
-    const ref = useRef(null)
+    const containerRef = useRef(null)
+    const conuponInputRef = useRef<HTMLInputElement | null>(null)
     const breakpoint = useBreakpoints<CartOrderSummaryComponentBreakPoints>(
-        ref,
+        containerRef,
         [
             CartOrderSummaryComponentBreakPoints.mobileMd,
             CartOrderSummaryComponentBreakPoints.desktopSm,
@@ -86,6 +103,40 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
         setIsDisabled(!isChecked)
     }
 
+    const onPolicieLinkClick = (
+        e:
+            | React.MouseEvent<HTMLLinkElement>
+            | React.KeyboardEvent<HTMLLinkElement>,
+        linkName: string
+    ) => {
+        e.preventDefault()
+        if (policiesLinksCallback) {
+            policiesLinksCallback(e, linkName)
+        }
+    }
+
+    const onCouponInputChage = (ev: React.ChangeEvent<HTMLInputElement>) => {
+        ev.preventDefault()
+
+        // validate input - WIP
+
+        setCouponInputValue(ev.target.value)
+    }
+
+    const onCouponApply = (
+        ev:
+            | React.MouseEvent<HTMLButtonElement>
+            | React.KeyboardEvent<HTMLButtonElement>
+        // couponCode:string
+    ) => {
+        ev.preventDefault()
+        // API call
+        // .then(() => {
+        // setCouponsApplied((prevState) => [...prevState, couponCode])
+        // setIsCouponInputShown(false)
+        // })
+    }
+
     if (!cart) {
         return <div></div>
     }
@@ -93,7 +144,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
     return (
         <StyledCartOrderSummary
             className={className}
-            ref={ref}
+            ref={containerRef}
             breakpoint={breakpoint}
         >
             <form className="order-summary-form">
@@ -119,23 +170,76 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                             </StyledCartOrderPrice>
                         </StyledCartOrderDiscount>
                     )}
-                    <StyledCouponInputWrapper>
-                        <label className="coupon-input-label">
-                            <span className="coupon-input-label-text">
-                                {t("Enter discount code")}
-                            </span>
-                            <input className="coupon-input" type="text" />
-                        </label>
 
+                    {[...new Set(couponsApplied)].map((cp) => (
+                        <StyledCartOrderCouponDiscount key={cp}>
+                            <p className="coupon-discount-label">
+                                {t("coupon_discount")}
+                                <span className="coupon-code">{cp}</span>
+                            </p>
+
+                            <Button
+                                className="coupon-remove-btn"
+                                variant={Variant.linkLike}
+                                type="button"
+                                label={t("remove")}
+                                onClick={() =>
+                                    setCouponsApplied((prevState) =>
+                                        prevState.filter((item) => item !== cp)
+                                    )
+                                }
+                            />
+                            <StyledCartOrderPrice>
+                                -
+                                {formatPrice(
+                                    cart.discountAmount,
+                                    cart.currency
+                                )}
+                            </StyledCartOrderPrice>
+                        </StyledCartOrderCouponDiscount>
+                    ))}
+
+                    <StyledCouponBlock>
                         <Button
-                            className="coupon-btn"
-                            variant={Variant.tertiary}
+                            className="enter-coupon-button"
+                            variant={Variant.linkLike}
                             type="button"
-                            label={t("Apply")}
-                            disabled={true}
-                            onClick={(ev) => console.log(ev)}
+                            label={t("enter_discount_code")}
+                            aria-expanded={isCouponInputShown}
+                            aria-controls="couponInput"
+                            onClick={() =>
+                                setIsCouponInputShown((prevState) => !prevState)
+                            }
                         />
-                    </StyledCouponInputWrapper>
+
+                        <StyledCouponInputWrapper
+                            className={isCouponInputShown ? "" : "hidden"}
+                            id="couponInput"
+                        >
+                            <Input
+                                inputRef={conuponInputRef}
+                                className="coupon-input"
+                                type="text"
+                                maxLength={COUPON_INPUT_MAX_LEN}
+                                // pattern="[a-zA-Z0-9_\ -]"
+                                value={couponInputValue}
+                                name={t("enter_discount_code") as string}
+                                onChange={(ev) => onCouponInputChage(ev)}
+                                isInvalid={false}
+                                errorMessage={null}
+                            />
+                            <Button
+                                className="coupon-btn"
+                                variant={Variant.tertiary}
+                                type="button"
+                                label={t("Apply")}
+                                disabled={
+                                    couponInputValue.length < COUPON_INPUT_LIMIT
+                                }
+                                onClick={(ev) => onCouponApply(ev)}
+                            />
+                        </StyledCouponInputWrapper>
+                    </StyledCouponBlock>
                 </StyledCartOrderPriceWrapper>
                 {cart?.discountAmount > 0 && (
                     <StyledCartOrderTotalWrapper>
@@ -165,28 +269,29 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                                 .slice(0, policiesLength - 1)
                                 .map((link, index) => {
                                     return (
-                                        <Link
-                                            key={link.name}
-                                            href={link.url}
-                                            rel="noopener noreferrer"
-                                        >
-                                            {link.name}
+                                        <span key={link.name}>
+                                            {getPolicieLink(
+                                                link,
+                                                onPolicieLinkClick
+                                            )}{" "}
                                             {index === policiesLength - 2
                                                 ? ""
                                                 : ", "}
-                                        </Link>
+                                        </span>
                                     )
                                 })}
                             {t(" and ")}{" "}
-                            <Link
-                                key={policiesLinks[policiesLength - 1].name}
-                                href={policiesLinks[policiesLength - 1].url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                {policiesLinks[policiesLength - 1].name}
-                                {"."}
-                            </Link>
+                            {
+                                <span
+                                    key={policiesLinks[policiesLength - 1].name}
+                                >
+                                    {getPolicieLink(
+                                        policiesLinks[policiesLength - 1],
+                                        onPolicieLinkClick
+                                    )}
+                                </span>
+                            }
+                            {"."}
                             {/* <a>
                                 <Trans
                                     i18nKey={"privacy_policy"}
@@ -209,7 +314,6 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                         variant={Variant.tertiary}
                         type="button"
                         label={t(" Continue shopping")}
-                        disabled={false}
                         onClick={(ev) => onContinueShopping(ev)}
                     />
                 </StyledFormFooter>

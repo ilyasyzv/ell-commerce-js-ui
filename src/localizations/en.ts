@@ -17,7 +17,6 @@ export const en = {
     continue_shopping: "Continue shopping",
 
     i_agree: "By proceeding, I agree that I have read and accept the",
-    // privacy_policy: `<b>Privacy Policy, Refund Policy</b> and <b>Terms of Use</b>`,
     privacy_policy: "Privacy Policy",
     refund_policy: "Refund Policy",
     terms_of_use: "Terms of Use",
@@ -28,5 +27,6 @@ export const en = {
     tax: "Tax",
     subtotal: "Subtotal",
     discount: "Discount",
+    coupon_discount: "Coupon Discount",
     checkout: "Checkout",
 }

@@ -2,6 +2,7 @@ import styled from "styled-components"
 import WithUiTag from "../../commons/components"
 
 export const StyledButton = styled.button`
+    font-family: "OpenSans", sans-serif;
     border: 2px solid transparent;
     box-shadow: none;
     box-sizing: border-box;
@@ -62,6 +63,32 @@ export const TertiaryButton = WithUiTag("TertiaryButton")(
             color: #919191;
             border: 2px solid #e6e6e6;
             background: transparent;
+        }
+    `
+)
+
+export const LinkLikeButton = WithUiTag("LinkLikeButton")(
+    styled(StyledButton)`
+        color: #007a9c;
+        background: transparent;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.5;
+        border-radius: 0;
+        border: none;
+
+        &:hover {
+            color: #005d77;
+            text-decoration: underline;
+        }
+        &:focus-visible {
+            outline: 4px solid #4fa8ff;
+        }
+        &:active {
+            color: #004b60;
+        }
+        &[disabled] {
+            opacity: 0.6;
         }
     `
 )

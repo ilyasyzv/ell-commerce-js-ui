@@ -26,8 +26,9 @@ FirstStory.args = {
     onCheckoutClick: action("Click Checkout Button"),
     onContinueShopping: console.log("click continue shopping button"),
     policiesLinks: [
-        { name: "Terms of Use", url: "/" },
-        { name: "Privacy Policy", url: "/" },
-        { name: "Refund Policy", url: "/" },
+        { name: "Terms of Use" },
+        { name: "Privacy Policy" },
+        { name: "Refund Policy" },
     ],
+    policiesLinksCallback: console.log("click policie link"),
 }

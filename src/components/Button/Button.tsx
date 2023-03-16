@@ -6,13 +6,14 @@ export enum Variant {
     primary = "primary",
     secondary = "secondary",
     tertiary = "tertiary",
+    linkLike = "linkLike",
 }
 
 export type Props = {
     variant: Variant
     type: "button" | "submit" | "reset" | undefined
     label: string
-    disabled: boolean | undefined
+    disabled?: boolean
     onClick: (
         ev:
             | React.MouseEvent<HTMLButtonElement>

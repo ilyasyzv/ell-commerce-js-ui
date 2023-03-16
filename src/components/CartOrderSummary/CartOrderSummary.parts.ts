@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import WithUiTag from "../../commons/components"
 import { MAIN_COLOR } from "../../commons/colors"
 
@@ -65,7 +65,7 @@ export const StyledCartOrderHeader = WithUiTag("CartOrderHeader")(styled.h2`
 export const StyledCartOrderPriceWrapper = WithUiTag(
     "CartOrderPriceWrapper"
 )(styled.div`
-    padding-bottom: 58px;
+    padding-bottom: 38px;
     :has(div:nth-child(2)) {
         padding-bottom: 30px;
     }
@@ -86,6 +86,39 @@ export const StyledCartOrderSubtotal = WithUiTag(
     }
 `)
 
+export const StyledCartOrderCouponDiscount = WithUiTag(
+    "CartOrderSubtotal"
+)(styled.div`
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    :not(:first-child) {
+        padding-top: 15px;
+    }
+    .coupon-discount-label {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+    }
+    .coupon-code {
+        color: #7f8384;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 1.1;
+        padding: 4px 0;
+    }
+    .coupon-remove-btn {
+        margin-right: auto;
+        padding: 5px 10px;
+    }
+`)
+
 export const StyledCartOrderDiscount = WithUiTag(
     "CartOrderDiscount"
 )(styled.div`
@@ -97,47 +130,49 @@ export const StyledCartOrderDiscount = WithUiTag(
     }
 `)
 
-export const StyledCouponInputWrapper = WithUiTag(
+export const StyledCouponBlock = WithUiTag(
     "CartOrderCouponInputWrapper"
 )(styled.div`
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+    flex-direction: column;
     flex-wrap: wrap;
+
     :not(:first-child) {
-        padding-top: 15px;
+        padding-top: 10px;
     }
 
-    .coupon-input-label {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-
-        .coupon-input-label-text {
-            color: #007a9c;
-            font-weight: 600;
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 5px;
-        }
-    }
-
-    .coupon-input {
-        background: #ffffff;
-        border: 1px solid #959595;
-        border-radius: 4px;
-        text-transform: uppercase;
-        font-size: 16px;
-        line-height: 1.1;
-        padding: 14px 15px;
-    }
-
-    .coupon-btn {
-        padding: 5px 20px;
-        margin-bottom: 6px;
-        margin-left: 10px;
+    .enter-coupon-button {
+        align-self: flex-start;
+        margin: 0;
+        margin-bottom: 5px;
+        padding: 5px;
+        padding-left: 0;
     }
 `)
+
+export const StyledCouponInputWrapper = WithUiTag(
+    "CartOrderCouponInputWrapper"
+)(
+    styled.div(
+        ({ className }) => css`
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: ${className === "hidden" ? "none" : "flex"};
+            align-items: center;
+            flex-wrap: wrap;
+
+            .coupon-btn {
+                padding: 5px 20px;
+                margin-bottom: 20px;
+                margin-left: 10px;
+            }
+            .coupon-input {
+                flex: 1;
+            }
+        `
+    )
+)
 
 export const StyledCartOrderPrice = WithUiTag("CartOrderPrice")(styled.span`
     font-weight: 600;

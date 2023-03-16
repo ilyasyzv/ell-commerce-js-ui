@@ -4,7 +4,7 @@ import { StyledLink } from "./Link.parts"
 export type Props = {
     rel?: string
     className?: string
-    clickHandler?: (
+    onClick?: (
         ev:
             | React.MouseEvent<HTMLLinkElement>
             | React.KeyboardEvent<HTMLLinkElement>
@@ -22,7 +22,7 @@ export const Link: React.FC<Props> = ({
     href,
     target,
     label,
-    clickHandler,
+    onClick,
     disabled,
 }) => {
     return (
@@ -32,7 +32,7 @@ export const Link: React.FC<Props> = ({
             target={target}
             disabled={disabled}
             aria-label={label}
-            onClick={clickHandler}
+            onClick={onClick}
         >
             {children}
         </StyledLink>

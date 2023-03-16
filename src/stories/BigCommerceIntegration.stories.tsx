@@ -154,10 +154,13 @@ const ObserverComponent: FC<IObserverComponentsProps> = observer(
                             cart={store.cart}
                             onCheckoutClick={onCheckout}
                             policiesLinks={[
-                                { name: "Terms of Use", url: "/" },
-                                { name: "Privacy Policy", url: "/" },
-                                { name: "Refund Policy", url: "/" },
+                                { name: "Terms of Use" },
+                                { name: "Privacy Policy" },
+                                { name: "Refund Policy" },
                             ]}
+                            policiesLinksCallback={() =>
+                                console.log("Policie link clicked")
+                            }
                         ></CartOrderSummary>
                     </>
                 )}
