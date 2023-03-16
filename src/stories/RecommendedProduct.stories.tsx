@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react"
 
 import { RecommendedProduct } from "../components/RecommendedProduct"
 import { getRecommendedProductMocks } from "./mocks"
+import { action } from "@storybook/addon-actions"
 
 export default {
     title: "RecommendedProduct",
@@ -17,9 +18,7 @@ const Template: ComponentStory<typeof RecommendedProduct> = (args) => {
                 <RecommendedProduct
                     key={item.id}
                     product={item}
-                    onAddToCart={() => {
-                        console.log(`${item.id} added to cart`)
-                    }}
+                    onAddToCart={action("onAddToCart")}
                 />
             ))}
         </>

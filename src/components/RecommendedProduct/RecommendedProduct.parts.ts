@@ -8,13 +8,66 @@ export enum EnumStyledRecommendedProductBreakPoints {
     tabletSm = 525,
     tabletMd = 666,
     tabletLg = 693,
-    desktopSm = 945,
+    desktopSm = 838,
     desktopMd = 1050,
 }
 
 interface StyledRecommendedProductProps {
     readonly breakpoint: EnumStyledRecommendedProductBreakPoints | undefined
 }
+
+const extraInputWidth: Set<EnumStyledRecommendedProductBreakPoints> = new Set([
+    EnumStyledRecommendedProductBreakPoints.tabletMd,
+    EnumStyledRecommendedProductBreakPoints.mobileMd,
+    EnumStyledRecommendedProductBreakPoints.mobileSm,
+])
+
+const getWidthInput = (props: StyledRecommendedProductProps) => {
+    return props.breakpoint && extraInputWidth.has(props.breakpoint)
+        ? "width: 103px;"
+        : "width: 96px;"
+}
+
+const getWidthVariants = (props: StyledRecommendedProductProps) => {
+    switch (props.breakpoint) {
+        case EnumStyledRecommendedProductBreakPoints.desktopSm: {
+            return "width: 118px;"
+        }
+        case EnumStyledRecommendedProductBreakPoints.tabletLg: {
+            return "width: 96px;"
+        }
+        case EnumStyledRecommendedProductBreakPoints.tabletMd: {
+            return `width: 103px;`
+        }
+        case EnumStyledRecommendedProductBreakPoints.tabletSm: {
+            return "width: 96px;"
+        }
+        case EnumStyledRecommendedProductBreakPoints.mobileMd: {
+            return `width: 103px;`
+        }
+        case EnumStyledRecommendedProductBreakPoints.mobileSm: {
+            return `width: 103px;`
+        }
+        default: {
+            return "width: 150px;"
+        }
+    }
+}
+const getMarginsVariants = (
+    breakpoint: EnumStyledRecommendedProductBreakPoints
+) => {
+    if (
+        breakpoint <= EnumStyledRecommendedProductBreakPoints.tabletMd &&
+        breakpoint >= EnumStyledRecommendedProductBreakPoints.mobileMd
+    ) {
+        return `margin-right: 15px;`
+    }
+
+    return breakpoint === EnumStyledRecommendedProductBreakPoints.mobileSm
+        ? `margin-bottom: 17px;`
+        : `margin-bottom: 23px;`
+}
+
 export const StyledRecommendedProduct = WithUiTag(
     "RecommendedProduct"
 )(styled.div<StyledRecommendedProductProps>`
@@ -165,21 +218,6 @@ export const StyledRecommendedProduct = WithUiTag(
         }}
     }
 
-    .input {
-        ${(props) => {
-            if (
-                props.breakpoint &&
-                props.breakpoint <=
-                    EnumStyledRecommendedProductBreakPoints.mobileMd
-            ) {
-                return `
-                margin-bottom: 10px;
-                margin-right: 10px;
-                `
-            }
-        }}
-    }
-
     .productPrice {
         ${(props) => {
             if (
@@ -243,6 +281,48 @@ export const StyledRecommendedProduct = WithUiTag(
                 `
             }
         }}
+    }
+
+    .input {
+        flex-direction: column;
+        align-items: flex-end;
+        ${(props) => {
+            if (
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.mobileMd
+            ) {
+                return `
+                margin-bottom: 10px;
+                margin-right: 10px;
+                `
+            }
+        }}
+
+        ${(props) => {
+            if (
+                props.breakpoint &&
+                props.breakpoint <=
+                    EnumStyledRecommendedProductBreakPoints.tabletMd &&
+                props.breakpoint >=
+                    EnumStyledRecommendedProductBreakPoints.mobileMd
+            ) {
+                return `
+                 flex-direction: row;
+                 align-items: flex-start;
+                `
+            }
+        }}
+    }
+
+    .variants {
+        ${(props) => getWidthVariants(props)}
+        ${(props) =>
+            props.breakpoint ? getMarginsVariants(props.breakpoint) : ""}
+    }
+
+    .cart-product-input {
+        ${(props) => getWidthInput(props)}
     }
 
     .button {
@@ -477,19 +557,19 @@ export const StyledShowMoreBtn = WithUiTag(
         }
     }
 `)
-export const StyledInput = WithUiTag("RecommendedProductInput")(styled.div`
+export const StyledInput = WithUiTag(
+    "RecommendedProductInput"
+)(styled.div<StyledRecommendedProductProps>`
     position: relative;
     margin-right: 10%;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column;
     padding-bottom: 20px;
-    position: relative;
+    flex-wrap: nowrap;
 
     .cart-product-input {
         outline: none;
         box-sizing: border-box;
-        width: 96px;
         height: 48px;
         color: #333333;
         background: #ffffff;
@@ -499,7 +579,6 @@ export const StyledInput = WithUiTag("RecommendedProductInput")(styled.div`
         font-weight: 400;
         font-size: 16px;
         line-height: 150%;
-        align-self: flex-start;
         margin-bottom: 5px;
 
         &:hover {

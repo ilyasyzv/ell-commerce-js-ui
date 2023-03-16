@@ -28,20 +28,6 @@ const getHeight = (breakpoint: number | undefined) => {
     }
 }
 
-const getPositionValue = (breakpoint: number | undefined) => {
-    switch (breakpoint) {
-        case RecommendedBundleComponentBreakPoints.small: {
-            return `top: 71px`
-        }
-        case RecommendedBundleComponentBreakPoints.medium: {
-            return `top: 68px`
-        }
-        case RecommendedBundleComponentBreakPoints.large: {
-            return `top: 90px`
-        }
-    }
-}
-
 export const StyledContainer = WithUiTag(
     "RecommendedBundleContainer"
 )(styled.div<StyledContainerProps>`
@@ -58,14 +44,11 @@ export const StyledContainer = WithUiTag(
     .header {
         ${(props) => getHeight(props.breakpoint)}
     }
-
-    .image-container {
-        ${(props) => getPositionValue(props.breakpoint)}
-    }
 `)
 export const StyledHeader = WithUiTag(
     "RecommendedBundleHeader"
 )(styled.div<StyledHeaderProps>`
+    position: relative;
     padding: 0;
     margin: 0;
     background-image: url(${(props) => props.backgroundImageUrl || ""});
@@ -79,7 +62,7 @@ export const StyledImgContainer = WithUiTag(
     margin: 0;
     position: absolute;
     left: 30px;
-    top: 90px;
+    bottom: -17px;
 
     img {
         max-width: 88px;

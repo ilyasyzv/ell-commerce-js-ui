@@ -331,7 +331,6 @@ export const StyledInnerContainer = WithUiTag(
 )(styled.div`
     width: 100%;
     max-width: 100%;
-    min-height: 230px;
     margin: 0;
     padding: 27px 20px;
     display: flex;

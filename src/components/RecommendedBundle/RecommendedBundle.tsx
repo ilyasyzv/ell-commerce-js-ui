@@ -49,14 +49,16 @@ export const RecommendedBundle: React.FC<IRecommendedBundle> = (
                 backgroundImageUrl={
                     background ? background.imageUrl : backgroundImageUrl
                 }
-            />
-            <StyledImgContainer className="image-container">
-                {thumbNail ? (
-                    <img src={thumbNail.imageUrl} alt={thumbNail.altText} />
-                ) : (
-                    <img src={noImageSrc} alt={"imageAlt"} />
-                )}
-            </StyledImgContainer>
+            >
+                <StyledImgContainer className="image-container">
+                    {thumbNail ? (
+                        <img src={thumbNail.imageUrl} alt={thumbNail.altText} />
+                    ) : (
+                        <img src={noImageSrc} alt={"imageAlt"} />
+                    )}
+                </StyledImgContainer>
+            </StyledHeader>
+
             <StyledProductInfoContainer>
                 {data?.name && <span>{cutText(data.name, 20)}</span>}
                 <span>{formatPrice(data?.price, data?.currency)}</span>

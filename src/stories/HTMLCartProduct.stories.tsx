@@ -60,5 +60,5 @@ WithHeaders.args = {
     items: mock.items,
     currency: mock.currency,
     htmlDescription: mock.items.map((item) => item.description),
-    isHighlighted: Array(mock.items.length).fill(false),
+    isHighlighted: Array.from({ length: mock.items.length }).fill(false),
 }

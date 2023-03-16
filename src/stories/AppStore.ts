@@ -36,6 +36,7 @@ export class AppStore {
             this.isBusy = true
         })
         this.products = await this.getProducts()
+        console.log("Products:", this.products)
         this.cart = await this.getCart(this.products[0].currency)
 
         for (const [index, item] of this.products.entries()) {

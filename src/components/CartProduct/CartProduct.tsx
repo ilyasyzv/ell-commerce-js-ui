@@ -177,7 +177,9 @@ export const CartProduct: React.FC<Props> = ({
                                     )}
                                 </StyledProductTitle>
                                 {hasDescription && item.shortDescription && (
-                                    <StyledProductDescription className={"productDescription"}>
+                                    <StyledProductDescription
+                                        className={"productDescription"}
+                                    >
                                         {parsedShortDescription}
                                     </StyledProductDescription>
                                 )}

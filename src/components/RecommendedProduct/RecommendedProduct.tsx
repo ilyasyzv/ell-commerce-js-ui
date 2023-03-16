@@ -29,6 +29,7 @@ import { Message } from "../Message"
 import parse from "html-react-parser"
 import { useTranslation } from "react-i18next"
 import { useBreakpoints } from "../../commons/hooks"
+import { SelectVariant } from "../SelectVariant/SelectVariant"
 
 type Props = {
     product: Product
@@ -55,6 +56,7 @@ export const RecommendedProduct: React.FC<Props> = ({
         maxPurchaseQuantity,
         images,
         currency,
+        variants,
     } = product
     const image = images.find((img) => img.isThumbnail)
     const minPurchaseQuantity = product.minPurchaseQuantity || 1
@@ -62,6 +64,13 @@ export const RecommendedProduct: React.FC<Props> = ({
     const parsedShortDescription = useMemo(
         () => parse(shortDescription),
         [shortDescription]
+    )
+    const selectedVariant = useRef<Variant | undefined>()
+    const onChangeVariants = useCallback(
+        (variant: Variant | undefined) => {
+            selectedVariant.current = variant
+        },
+        [selectedVariant]
     )
 
     const containerRef = useRef<HTMLDivElement | null>(null)
@@ -195,8 +204,14 @@ export const RecommendedProduct: React.FC<Props> = ({
                                     </span>
                                 </StyledShowMoreBtn>
                             </StyledProductName>
-
                             <StyledInput className="input">
+                                {variants?.length > 0 ? (
+                                    <SelectVariant
+                                        onChange={onChangeVariants}
+                                        className={"variants"}
+                                        variants={variants}
+                                    ></SelectVariant>
+                                ) : null}
                                 <input
                                     ref={inputRef}
                                     onKeyDown={onKeydown}
@@ -233,7 +248,14 @@ export const RecommendedProduct: React.FC<Props> = ({
                                     ev:
                                         | React.MouseEvent<HTMLButtonElement>
                                         | React.KeyboardEvent<HTMLButtonElement>
-                                ) => onAddToCart(ev, product, quantity)}
+                                ) =>
+                                    onAddToCart(
+                                        ev,
+                                        product,
+                                        quantity,
+                                        selectedVariant.current
+                                    )
+                                }
                             >
                                 {t("add_to_cart")}
                             </StyledButton>

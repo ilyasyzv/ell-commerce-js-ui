@@ -65,7 +65,7 @@ WithHeaders.args = {
     currency: mock.currency,
     debounceChangeQty: DEBOUNCE_INTERVAL,
     hasDescription: false,
-    isHighlighted: Array(mock.items.length).fill(false),
+    isHighlighted: Array.from({ length: mock.items.length }).fill(false),
 }
 
 TestImageHeightStory.args = {
@@ -73,5 +73,5 @@ TestImageHeightStory.args = {
     currency: mock.currency,
     debounceChangeQty: 250,
     hasDescription: false,
-    isHighlighted: Array(mock.items.length).fill(false),
+    isHighlighted: Array.from({ length: mock.items.length }).fill(false),
 }
