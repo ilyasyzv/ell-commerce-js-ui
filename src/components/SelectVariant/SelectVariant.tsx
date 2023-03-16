@@ -62,11 +62,7 @@ export const SelectVariant: FC<ISelectVariant> = ({
 
     return (
         <VariantContainer className={className}>
-            <div
-                className="select-custom"
-                aria-hidden="true"
-                onClick={onSelectClick}
-            >
+            <div className="select-custom" onClick={onSelectClick}>
                 <span className="select-value">
                     {selectedItem?.shortName ?? "Version:"}
                 </span>
