@@ -154,7 +154,7 @@ export const RecommendedProduct: React.FC<Props> = ({
             EnumStyledRecommendedProductBreakPoints.desktopMd,
         ]
     )
-    console.log(isDisabledAddToCart)
+
     return (
         <StyledRecommendedProduct
             key={id}
