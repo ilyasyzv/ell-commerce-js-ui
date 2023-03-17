@@ -57,10 +57,17 @@ export const RecommendedProduct: React.FC<Props> = ({
         images,
         currency,
         variants,
+        programName,
     } = product
     const image = images.find((img) => img.isThumbnail)
     const minPurchaseQuantity = product.minPurchaseQuantity || 1
     const parsedDescription = useMemo(() => parse(description), [description])
+
+    const productName = useMemo(
+        () => (variants?.length ? programName ?? name : name),
+        [variants, name, programName]
+    )
+
     const parsedShortDescription = useMemo(
         () => parse(shortDescription),
         [shortDescription]
@@ -169,7 +176,7 @@ export const RecommendedProduct: React.FC<Props> = ({
                             <StyledProductName className="productName">
                                 <StyledProductTitle>
                                     {cutText(
-                                        name,
+                                        productName,
                                         MAX_PRODUCT_NAME_DISPLAY_LENGTH
                                     )}
                                 </StyledProductTitle>

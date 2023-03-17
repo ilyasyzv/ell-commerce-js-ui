@@ -122,6 +122,7 @@ export const getRecommendedProductMocks = () => {
                 sku: "",
                 minPurchaseQuantity: 1,
                 maxPurchaseQuantity: 3,
+                programName: "Program PTE Academic",
             },
             {
                 images: [
@@ -154,6 +155,7 @@ export const getRecommendedProductMocks = () => {
                 sku: "",
                 minPurchaseQuantity: 1,
                 maxPurchaseQuantity: 15,
+                programName: "Program PTE Academic",
             },
             {
                 images: [
@@ -251,6 +253,7 @@ export const getRecommendedProductMocks = () => {
                         programName: "",
                     },
                 ],
+                programName: "Program PTE Academic",
             },
         ],
         locale: "en-US",

@@ -662,6 +662,8 @@ export const StyledButton = WithUiTag("RecommendedProductButton")(styled.button`
     &:disabled {
         cursor: default;
         opacity: 0.6;
+        color: #a2a2a2;
+        border-color: #e9e9e9;
     }
 
     color: #007a9c;
@@ -675,7 +677,7 @@ export const StyledButton = WithUiTag("RecommendedProductButton")(styled.button`
         outline: 4px solid #77c2f9;
     }
 
-    &:active {
+    &:active :not(:disabled) {
         color: #007a9c;
     }
 `)
