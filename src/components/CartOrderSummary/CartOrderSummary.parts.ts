@@ -6,6 +6,7 @@ export enum CartOrderSummaryComponentBreakPoints {
     mobileMd = 388,
     mobileSm = 335,
     desktopSm = 429,
+    desktopMd = 560,
 }
 
 interface IStyledCartOrderSummary {
@@ -20,17 +21,43 @@ export const StyledCartOrderSummary = WithUiTag(
     border-radius: 6px;
     box-sizing: border-box;
     max-width: 796px;
+    min-width: 200px;
     color: #333333;
     font-family: "OpenSans", sans-serif;
 
     .order-summary-form {
+        padding: 47px 40px;
         ${(props) => {
             switch (props.breakpoint) {
                 case CartOrderSummaryComponentBreakPoints.desktopSm: {
-                    return `padding: 47px 40px;`
+                    return `
+                    padding: 47px 40px;`
                 }
                 case CartOrderSummaryComponentBreakPoints.mobileMd: {
-                    return `padding: 30px 15px;`
+                    return `
+                    padding: 30px 15px;`
+                }
+                case CartOrderSummaryComponentBreakPoints.mobileSm: {
+                    return `
+                    padding: 30px 15px;`
+                }
+            }
+        }}
+    }
+    .coupon-block {
+        ${(props) => {
+            switch (props.breakpoint) {
+                case CartOrderSummaryComponentBreakPoints.desktopMd: {
+                    return `padding-bottom: 40px;`
+                }
+                case CartOrderSummaryComponentBreakPoints.desktopSm: {
+                    return `padding-bottom: 50px;`
+                }
+                case CartOrderSummaryComponentBreakPoints.mobileMd: {
+                    return `padding-bottom: 50px;`
+                }
+                case CartOrderSummaryComponentBreakPoints.mobileSm: {
+                    return `padding-bottom: 75px;`
                 }
             }
         }}
@@ -65,10 +92,6 @@ export const StyledCartOrderHeader = WithUiTag("CartOrderHeader")(styled.h2`
 export const StyledCartOrderPriceWrapper = WithUiTag(
     "CartOrderPriceWrapper"
 )(styled.div`
-    padding-bottom: 38px;
-    :has(div:nth-child(2)) {
-        padding-bottom: 30px;
-    }
     padding-top: 36px;
     font-size: 16px;
     font-weight: 400;
@@ -137,6 +160,7 @@ export const StyledCouponBlock = WithUiTag(
     flex-direction: column;
     flex-wrap: wrap;
 
+    position: relative;
     :not(:first-child) {
         padding-top: 10px;
     }
@@ -148,6 +172,11 @@ export const StyledCouponBlock = WithUiTag(
         padding: 5px;
         padding-left: 0;
     }
+    #errorMessage {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
 `)
 
 export const StyledCouponInputWrapper = WithUiTag(
@@ -158,13 +187,14 @@ export const StyledCouponInputWrapper = WithUiTag(
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            display: ${className === "hidden" ? "none" : "flex"};
+            display: ${className === "coupon-input-wrapper hidden"
+                ? "none"
+                : "flex"};
             align-items: center;
             flex-wrap: wrap;
 
             .coupon-btn {
                 padding: 5px 20px;
-                margin-bottom: 20px;
                 margin-left: 10px;
             }
             .coupon-input {

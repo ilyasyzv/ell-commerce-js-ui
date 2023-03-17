@@ -1,4 +1,4 @@
-import { Cart } from "@pearson-ell/commerce-sdk"
+import { Cart, CartCoupon } from "@pearson-ell/commerce-sdk"
 import React, { useState, useRef } from "react"
 import { formatPrice } from "../../commons/utils"
 import { useTranslation } from "react-i18next"
@@ -22,7 +22,12 @@ import { useBreakpoints } from "../../commons/hooks"
 import { Button, Variant } from "../Button"
 import { Input } from "../Input"
 import { getPolicieLink } from "./CartOrderSummary.utils"
-import { COUPON_INPUT_LIMIT, COUPON_INPUT_MAX_LEN } from "./constants"
+import {
+    // ERROR_MESSAGE,
+    COUPON_INPUT_LIMIT,
+    COUPON_INPUT_MAX_LEN,
+} from "./constants"
+import { MessageProps } from "../Message"
 
 export type PolicieLink = {
     name: string
@@ -62,8 +67,14 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
     isDisplayedContinueShoppingBtn = true,
 }: ICartOrderSummary) => {
     const [isDisabled, setIsDisabled] = useState<boolean>(true)
+    const [isCouponInputInvalid, setIsCouponInputInvalid] =
+        useState<boolean>(false)
+    const [couponErrorMessage, setCouponErrorMessage] =
+        useState<MessageProps | null>(null)
     const [couponInputValue, setCouponInputValue] = useState<string>("")
-    const [couponsApplied, setCouponsApplied] = useState<string[]>([])
+    const [couponsApplied, setCouponsApplied] = useState<CartCoupon[]>(
+        cart?.coupons || []
+    )
     const [isCouponInputShown, setIsCouponInputShown] = useState<boolean>(
         couponsApplied.length === 0
     )
@@ -74,8 +85,10 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
     const breakpoint = useBreakpoints<CartOrderSummaryComponentBreakPoints>(
         containerRef,
         [
+            CartOrderSummaryComponentBreakPoints.mobileSm,
             CartOrderSummaryComponentBreakPoints.mobileMd,
             CartOrderSummaryComponentBreakPoints.desktopSm,
+            CartOrderSummaryComponentBreakPoints.desktopMd,
         ]
     )
 
@@ -119,9 +132,14 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
 
     const onCouponInputChage = (ev: React.ChangeEvent<HTMLInputElement>) => {
         ev.preventDefault()
-
-        // validate input - WIP
-
+        if (isCouponInputInvalid) {
+            setCouponErrorMessage(null)
+            setIsCouponInputInvalid((prevState) => !prevState)
+        }
+        const reg = /^[\w -]*$/i
+        if (ev.target.value.match(reg) === null) {
+            return
+        }
         setCouponInputValue(ev.target.value)
     }
 
@@ -129,13 +147,25 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
         ev:
             | React.MouseEvent<HTMLButtonElement>
             | React.KeyboardEvent<HTMLButtonElement>
-        // couponCode:string
     ) => {
         ev.preventDefault()
+        if (couponsApplied.some((cp) => cp.code === couponInputValue)) {
+            setIsCouponInputInvalid(true)
+            setCouponErrorMessage({
+                id: "duplicateCouponErrorMessage",
+                text: `Discount code ${couponInputValue} has already been applied`,
+                type: "Error",
+            })
+            return
+        }
         // API call
         // .then(() => {
-        // setCouponsApplied((prevState) => [...prevState, couponCode])
+        // setCouponsApplied((prevState) => [...prevState, couponInputValue])
         // setIsCouponInputShown(false)
+        // })
+        //.catch((e) => {
+        // setIsCouponInputInvalid(true)
+        // setCouponErrorMessage(ERROR_MESSAGE)
         // })
     }
 
@@ -174,10 +204,10 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                     )}
 
                     {[...new Set(couponsApplied)].map((cp) => (
-                        <StyledCartOrderCouponDiscount key={cp}>
+                        <StyledCartOrderCouponDiscount key={cp.id}>
                             <p className="coupon-discount-label">
                                 {t("coupon_discount")}
-                                <span className="coupon-code">{cp}</span>
+                                <span className="coupon-code">{cp.code}</span>
                             </p>
 
                             <Button
@@ -187,21 +217,23 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                                 label={t("remove")}
                                 onClick={() =>
                                     setCouponsApplied((prevState) =>
-                                        prevState.filter((item) => item !== cp)
+                                        prevState.filter(
+                                            (item) => item.id !== cp.id
+                                        )
                                     )
                                 }
                             />
                             <StyledCartOrderPrice>
                                 -
                                 {formatPrice(
-                                    cart.discountAmount,
+                                    cp.discountedAmount,
                                     cart.currency
                                 )}
                             </StyledCartOrderPrice>
                         </StyledCartOrderCouponDiscount>
                     ))}
 
-                    <StyledCouponBlock>
+                    <StyledCouponBlock className="coupon-block">
                         <Button
                             className="enter-coupon-button"
                             variant={Variant.linkLike}
@@ -215,7 +247,11 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                         />
 
                         <StyledCouponInputWrapper
-                            className={isCouponInputShown ? "" : "hidden"}
+                            className={
+                                isCouponInputShown
+                                    ? "coupon-input-wrapper"
+                                    : "coupon-input-wrapper hidden"
+                            }
                             id="couponInput"
                         >
                             <Input
@@ -223,12 +259,11 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                                 className="coupon-input"
                                 type="text"
                                 maxLength={COUPON_INPUT_MAX_LEN}
-                                // pattern="[a-zA-Z0-9_\ -]"
                                 value={couponInputValue}
                                 name={t("enter_discount_code") as string}
                                 onChange={(ev) => onCouponInputChage(ev)}
-                                isInvalid={false}
-                                errorMessage={null}
+                                isInvalid={isCouponInputInvalid}
+                                errorMessage={couponErrorMessage}
                             />
                             <Button
                                 className="coupon-btn"
@@ -236,7 +271,9 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                                 type="button"
                                 label={t("Apply")}
                                 disabled={
-                                    couponInputValue.length < COUPON_INPUT_LIMIT
+                                    couponInputValue.length <
+                                        COUPON_INPUT_LIMIT ||
+                                    isCouponInputInvalid
                                 }
                                 onClick={(ev) => onCouponApply(ev)}
                             />

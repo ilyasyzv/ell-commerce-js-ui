@@ -10,7 +10,6 @@ export const StyledInputWrapper = WithUiTag("InputWrapper")(styled.div`
     flex-direction: column;
     margin: 0;
     padding: 0;
-    padding-bottom: 20px;
     box-sizing: border-box;
 `)
 
@@ -29,15 +28,21 @@ export const StyledInput = WithUiTag("Input")(styled.input<IStyledInput>`
     ${(props) => {
         if (props.invalid) {
             return `
-            border: 2px solid #D30018;
+            border: 1px solid transparent;
+            outline: 2px solid #D30018;
             `
         }
     }}
-
-    &:hover {
-        background: #ffffff;
-        border: 1px solid #151515;
-    }
+    ${(props) => {
+        if (!props.invalid) {
+            return `
+            &:hover {
+                background: #ffffff;
+                border: 1px solid #151515;
+            }
+            `
+        }
+    }}
     &:focus-visible {
         background: #ffffff;
         border: 1px solid transparent;

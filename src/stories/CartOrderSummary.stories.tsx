@@ -22,6 +22,8 @@ FirstStory.args = {
         baseAmount: 500,
         discountAmount: 200,
         preTaxCartAmount: 300,
+        taxIncluded: false,
+        coupons: [],
     },
     onCheckoutClick: action("Click Checkout Button"),
     onContinueShoppingClick: action("click continue shopping button"),
