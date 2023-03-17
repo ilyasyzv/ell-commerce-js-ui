@@ -660,12 +660,13 @@ export const StyledButton = WithUiTag("RecommendedProductButton")(styled.button`
     box-sizing: border-box;
 
     &:disabled {
+        cursor: default;
         opacity: 0.6;
     }
 
     color: #007a9c;
 
-    &:hover {
+    &:hover:enabled {
         color: #ffffff;
         background: #007a9c;
     }

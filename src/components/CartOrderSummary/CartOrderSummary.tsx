@@ -1,5 +1,5 @@
 import { Cart } from "@pearson-ell/commerce-sdk"
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef } from "react"
 import { formatPrice } from "../../commons/utils"
 import { useTranslation } from "react-i18next"
 import {

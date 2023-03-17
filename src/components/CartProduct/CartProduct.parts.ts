@@ -350,7 +350,7 @@ export const StyledLeftFlexBlock = WithUiTag("LeftFlexBlock")(styled.div`
     box-sizing: border-box;
 `)
 export const StyledImage = WithUiTag("Image")(styled.img`
-    max-width: 100%;
+    width: 100%;
     height: auto;
 `)
 export const StyledRightFlexBlock = WithUiTag("RightFlexBlock")(styled.div`

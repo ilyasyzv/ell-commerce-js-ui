@@ -65,7 +65,7 @@ export const StyledImgContainer = WithUiTag(
     bottom: -17px;
 
     img {
-        max-width: 88px;
+        max-width: 112px;
     }
 `)
 export const StyledProductInfoContainer = WithUiTag(

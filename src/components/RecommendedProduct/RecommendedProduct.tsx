@@ -65,13 +65,19 @@ export const RecommendedProduct: React.FC<Props> = ({
         () => parse(shortDescription),
         [shortDescription]
     )
-    const selectedVariant = useRef<Variant | undefined>()
+    const [selectedVariant, setSelectedVariant] = useState<
+        Variant | undefined
+    >()
     const onChangeVariants = useCallback(
         (variant: Variant | undefined) => {
-            selectedVariant.current = variant
+            setSelectedVariant(variant)
         },
         [selectedVariant]
     )
+
+    const isDisabledAddToCart = useMemo(() => {
+        return variants?.length ? !selectedVariant : false
+    }, [variants, selectedVariant])
 
     const containerRef = useRef<HTMLDivElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
@@ -141,7 +147,7 @@ export const RecommendedProduct: React.FC<Props> = ({
             EnumStyledRecommendedProductBreakPoints.desktopMd,
         ]
     )
-
+    console.log(isDisabledAddToCart)
     return (
         <StyledRecommendedProduct
             key={id}
@@ -242,6 +248,7 @@ export const RecommendedProduct: React.FC<Props> = ({
                                 {formatPrice(price, currency)}
                             </StyledProductPrice>
                             <StyledButton
+                                disabled={isDisabledAddToCart}
                                 className="button"
                                 aria-label={`${t("add_to_cart")} ${name}`}
                                 onClick={(
@@ -253,7 +260,7 @@ export const RecommendedProduct: React.FC<Props> = ({
                                         ev,
                                         product,
                                         quantity,
-                                        selectedVariant.current
+                                        selectedVariant
                                     )
                                 }
                             >
