@@ -39,6 +39,6 @@ FirstStory.args = {
         { name: "Refund Policy" },
     ],
     policiesLinksCallback: console.log("click policie link"),
-    isDisplayedContinueShoppingBtn: false,
+    isDisplayedContinueShoppingBtn: true,
     isDisplayedCouponInput: true,
 }
