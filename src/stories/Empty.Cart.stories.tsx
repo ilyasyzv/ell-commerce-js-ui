@@ -1,6 +1,7 @@
 import React from "react"
 
 import { ComponentStory, ComponentMeta } from "@storybook/react"
+import { action } from "@storybook/addon-actions"
 import { EmptyCart } from "../components"
 
 export default {
@@ -14,4 +15,6 @@ const Template: ComponentStory<typeof EmptyCart> = (args) => {
 
 export const FirstStory = Template.bind({})
 
-FirstStory.args = {}
+FirstStory.args = {
+    onBackButtonClick: action('Redirect to Product catalogue')
+}
