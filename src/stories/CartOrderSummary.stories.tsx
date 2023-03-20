@@ -23,7 +23,13 @@ FirstStory.args = {
         discountAmount: 200,
         preTaxCartAmount: 300,
         taxIncluded: false,
-        coupons: [],
+        coupons: [
+            {
+                id: "1",
+                code: "1",
+                discountedAmount: 10,
+            },
+        ],
     },
     onCheckoutClick: action("Click Checkout Button"),
     onContinueShoppingClick: action("click continue shopping button"),
@@ -34,4 +40,5 @@ FirstStory.args = {
     ],
     policiesLinksCallback: console.log("click policie link"),
     isDisplayedContinueShoppingBtn: false,
+    isDisplayedCouponInput: true,
 }

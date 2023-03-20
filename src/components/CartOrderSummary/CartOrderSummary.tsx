@@ -56,6 +56,7 @@ export interface ICartOrderSummary {
         linkName: string
     ) => void
     isDisplayedContinueShoppingBtn?: boolean
+    isDisplayedCouponInput?: boolean
 }
 
 export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
@@ -66,6 +67,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
     policiesLinks,
     policiesLinksCallback,
     isDisplayedContinueShoppingBtn = true,
+    isDisplayedCouponInput = true,
 }: ICartOrderSummary) => {
     const [isDisabled, setIsDisabled] = useState<boolean>(true)
     const [isCouponInputInvalid, setIsCouponInputInvalid] =
@@ -77,7 +79,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
         cart?.coupons || []
     )
     const [isCouponInputShown, setIsCouponInputShown] = useState<boolean>(
-        couponsApplied.length === 0
+        couponsApplied.length === 0 || isDisplayedCouponInput
     )
     const policiesLength = policiesLinks.length
     const { t } = useTranslation()
