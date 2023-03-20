@@ -3,12 +3,12 @@ import { breakpoints } from "../../commons/constants"
 import WithUiTag from "../../commons/components"
 
 export enum EnumStyledCartProductBreakPoints {
-    mobileSm = 300,
-    mobileMd = 353,
-    tabletSm = 669,
-    tabletMd = 759,
-    tabletLg = 949,
-    desktopSm = 1125,
+    mobileSm = 299,
+    mobileMd = 352,
+    tabletSm = 668,
+    tabletMd = 758,
+    tabletLg = 948,
+    desktopSm = 1124,
 }
 
 interface StyledCartProductProps {
