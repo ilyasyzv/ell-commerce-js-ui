@@ -6,7 +6,6 @@ export enum CartOrderSummaryComponentBreakPoints {
     mobileMd = 388,
     mobileSm = 335,
     desktopSm = 429,
-    desktopMd = 560,
 }
 
 interface IStyledCartOrderSummary {
@@ -25,8 +24,7 @@ export const StyledCartOrderSummary = WithUiTag(
     color: #333333;
     font-family: "OpenSans", sans-serif;
 
-    .order-summary-form {
-        padding: 47px 40px;
+    .order-summary-block {
         ${(props) => {
             switch (props.breakpoint) {
                 case CartOrderSummaryComponentBreakPoints.desktopSm: {
@@ -40,24 +38,6 @@ export const StyledCartOrderSummary = WithUiTag(
                 case CartOrderSummaryComponentBreakPoints.mobileSm: {
                     return `
                     padding: 30px 15px;`
-                }
-            }
-        }}
-    }
-    .coupon-block {
-        ${(props) => {
-            switch (props.breakpoint) {
-                case CartOrderSummaryComponentBreakPoints.desktopMd: {
-                    return `padding-bottom: 40px;`
-                }
-                case CartOrderSummaryComponentBreakPoints.desktopSm: {
-                    return `padding-bottom: 50px;`
-                }
-                case CartOrderSummaryComponentBreakPoints.mobileMd: {
-                    return `padding-bottom: 50px;`
-                }
-                case CartOrderSummaryComponentBreakPoints.mobileSm: {
-                    return `padding-bottom: 75px;`
                 }
             }
         }}
@@ -172,11 +152,17 @@ export const StyledCouponBlock = WithUiTag(
         padding: 5px;
         padding-left: 0;
     }
-    #errorMessage {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-    }
+`)
+
+export const StyledCouponErrorMessage = WithUiTag(
+    "CartOrderCouponErrorMessage"
+)(styled.div`
+    min-height: 40px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
 `)
 
 export const StyledCouponInputWrapper = WithUiTag(
@@ -239,7 +225,7 @@ export const StyledTotalLabel = WithUiTag("CartOrderTotalLabel")(styled.div`
     }
 `)
 
-export const StyledFormFooter = WithUiTag("CartOrderFormFooter")(styled.div`
+export const StyledFooter = WithUiTag("CartOrderSummaryFooter")(styled.div`
     margin: 0;
     padding: 0;
     padding-top: 10px;

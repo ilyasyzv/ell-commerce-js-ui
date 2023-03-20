@@ -4,7 +4,7 @@ import { formatPrice } from "../../commons/utils"
 import { useTranslation } from "react-i18next"
 import {
     CartOrderSummaryComponentBreakPoints,
-    StyledFormFooter,
+    StyledFooter,
     StyledCartOrderAgreementWrapper,
     StyledCartOrderDiscount,
     StyledCartOrderHeader,
@@ -17,6 +17,7 @@ import {
     StyledCouponBlock,
     StyledCouponInputWrapper,
     StyledCartOrderCouponDiscount,
+    StyledCouponErrorMessage,
 } from "./CartOrderSummary.parts"
 import { useBreakpoints } from "../../commons/hooks"
 import { Button, Variant } from "../Button"
@@ -27,7 +28,7 @@ import {
     COUPON_INPUT_LIMIT,
     COUPON_INPUT_MAX_LEN,
 } from "./constants"
-import { MessageProps } from "../Message"
+import { Message, MessageProps } from "../Message"
 
 export type PolicieLink = {
     name: string
@@ -88,7 +89,6 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
             CartOrderSummaryComponentBreakPoints.mobileSm,
             CartOrderSummaryComponentBreakPoints.mobileMd,
             CartOrderSummaryComponentBreakPoints.desktopSm,
-            CartOrderSummaryComponentBreakPoints.desktopMd,
         ]
     )
 
@@ -179,7 +179,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
             ref={containerRef}
             breakpoint={breakpoint}
         >
-            <form className="order-summary-form">
+            <div className="order-summary-block">
                 <StyledCartOrderHeader>
                     {t("order_summary")}
                 </StyledCartOrderHeader>
@@ -240,7 +240,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                             type="button"
                             label={t("enter_discount_code")}
                             aria-expanded={isCouponInputShown}
-                            aria-controls="couponInput"
+                            aria-controls="couponInputBlock"
                             onClick={() =>
                                 setIsCouponInputShown((prevState) => !prevState)
                             }
@@ -252,9 +252,10 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                                     ? "coupon-input-wrapper"
                                     : "coupon-input-wrapper hidden"
                             }
-                            id="couponInput"
+                            id="couponInputBlock"
                         >
                             <Input
+                                id="couponInput"
                                 inputRef={conuponInputRef}
                                 className="coupon-input"
                                 type="text"
@@ -263,7 +264,6 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                                 name={t("enter_discount_code") as string}
                                 onChange={(ev) => onCouponInputChage(ev)}
                                 isInvalid={isCouponInputInvalid}
-                                errorMessage={couponErrorMessage}
                             />
                             <Button
                                 className="coupon-btn"
@@ -279,6 +279,15 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                             />
                         </StyledCouponInputWrapper>
                     </StyledCouponBlock>
+                    <StyledCouponErrorMessage>
+                        {isCouponInputInvalid && couponErrorMessage && (
+                            <Message
+                                id="couponInput-errorMessage"
+                                type={"Error"}
+                                text={couponErrorMessage?.text}
+                            />
+                        )}
+                    </StyledCouponErrorMessage>
                 </StyledCartOrderPriceWrapper>
                 {cart?.discountAmount > 0 && (
                     <StyledCartOrderTotalWrapper>
@@ -295,7 +304,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                         </StyledCartOrderPrice>
                     </StyledCartOrderTotalWrapper>
                 )}
-                <StyledFormFooter>
+                <StyledFooter>
                     <StyledCartOrderAgreementWrapper className="agreement-wrapper">
                         <input
                             type="checkbox"
@@ -343,7 +352,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                     <Button
                         className="checkout-btn"
                         variant={Variant.secondary}
-                        type="submit"
+                        type="button"
                         label={t("checkout")}
                         disabled={isDisabled}
                         onClick={(ev) => onSubmit(ev)}
@@ -357,8 +366,8 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                             onClick={(ev) => onContinueShopping(ev)}
                         />
                     )}
-                </StyledFormFooter>
-            </form>
+                </StyledFooter>
+            </div>
         </StyledCartOrderSummary>
     )
 }

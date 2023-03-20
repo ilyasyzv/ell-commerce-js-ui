@@ -5,11 +5,17 @@ export type MessageProps = {
     id: string
     text: string
     type: string
+    className?: string
 }
 
-export const Message: React.FC<MessageProps> = ({ id, text, type }) => {
+export const Message: React.FC<MessageProps> = ({
+    id,
+    text,
+    type,
+    className,
+}) => {
     return (
-        <StyledMessage id={id}>
+        <StyledMessage id={id} className={className}>
             <p
                 className="messageText"
                 style={

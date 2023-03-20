@@ -18,7 +18,7 @@ import { setAriaInvalidAttributes } from "../../commons/utils"
 
 type Props = {
     type: "text" | "email" | "number"
-    id?: string
+    id: string
     name: string
     min?: string
     max?: string
@@ -108,7 +108,7 @@ export const Input: React.FC<Props> = ({
             )}
             {isInvalid && errorMessage && (
                 <Message
-                    id="errorMessage"
+                    id={`${id}-errorMessage`}
                     text={errorMessage.text}
                     type={errorMessage.type}
                 />
