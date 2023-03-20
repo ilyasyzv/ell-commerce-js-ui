@@ -22,7 +22,7 @@ import {
 import { useBreakpoints } from "../../commons/hooks"
 import { Button, Variant } from "../Button"
 import { Input } from "../Input"
-import { getPolicieLink } from "./CartOrderSummary.utils"
+import { getFormattedPoliciesString } from "./CartOrderSummary.utils"
 import {
     // ERROR_MESSAGE,
     COUPON_INPUT_LIMIT,
@@ -81,7 +81,6 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
     const [isCouponInputShown, setIsCouponInputShown] = useState<boolean>(
         couponsApplied.length === 0 || isDisplayedCouponInput
     )
-    const policiesLength = policiesLinks.length
     const { t } = useTranslation()
     const containerRef = useRef(null)
     const conuponInputRef = useRef<HTMLInputElement | null>(null)
@@ -315,34 +314,11 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                         />
                         <span className="agreement-text" id="agreementText">
                             {t("i_agree")}{" "}
-                            {policiesLinks
-                                .slice(0, policiesLength - 1)
-                                .map((link, index) => {
-                                    return (
-                                        <span key={link.name}>
-                                            {getPolicieLink(
-                                                link,
-                                                onPolicieLinkClick
-                                            )}{" "}
-                                            {index === policiesLength - 2
-                                                ? ""
-                                                : ", "}
-                                        </span>
-                                    )
-                                })}
-                            {t(" and ")}{" "}
-                            {
-                                <span
-                                    key={policiesLinks[policiesLength - 1].name}
-                                >
-                                    {getPolicieLink(
-                                        policiesLinks[policiesLength - 1],
-                                        onPolicieLinkClick
-                                    )}
-                                </span>
-                            }
-                            {"."}
-                            {/* <a>
+                            {getFormattedPoliciesString(
+                                policiesLinks,
+                                onPolicieLinkClick
+                            )}
+                            {/* Reminder about translation: <a>
                                 <Trans
                                     i18nKey={"privacy_policy"}
                                     components={{ b: <b /> }}
