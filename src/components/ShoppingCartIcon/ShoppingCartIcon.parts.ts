@@ -2,47 +2,55 @@ import styled from "styled-components"
 import WithUiTag from "../../commons/components"
 
 export const StyledShoppingCartIcon = WithUiTag("ShoppingCartIcon")(styled.div`
-    display: block;
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     width: 32px;
-    height: auto;
+    height: 32px;
     text-align: center;
     box-sizing: border-box;
+
+    @media screen and (max-width: 640px) {
+        width: calc(32px * 0.75);
+        height: calc(32px * 0.75);
+    }
 
     .cart-icon {
         z-index: 1;
         cursor: pointer;
-        width: 24px;
-        height: 24px;
-        display: inline-block;
-        vertical-align: middle;
+        width: 75%;
+        height: 75%;
     }
     .total-items {
-        box-sizing: border-box;
-        position: absolute;
+        min-width: 65.625%;
+        height: 65.625%;
         padding: 1.5px;
-        top: -10px;
-        right: -6px;
-        font-weight: 400;
-        font-size: 0.75rem;
-        line-height: 1;
-        background-color: #9e007e;
-        color: #ffffff;
         border: 2.25px solid #ffffff;
         border-radius: 50%;
-        height: 21px;
-        min-width: 21px;
         display: flex;
         justify-content: center;
         align-items: center;
+        position: absolute;
+        top: -9px;
+        right: -7px;
+        z-index: 20;
+        box-sizing: border-box;
+        font-size: 0.75rem;
+        font-weight: 400;
+        line-height: 1;
+        color: #ffffff;
+        background-color: #9e007e;
+
+        @media screen and (max-width: 640px) {
+            top: -6px;
+            right: -5px;
+        }
     }
 
     .more-nine {
         font-size: 0.7rem;
-    }
-
-    @media screen and (max-width: 640px) {
-        transform: scale(75%);
     }
 
     .items-popup {

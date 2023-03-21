@@ -452,6 +452,7 @@ export const StyledProductName = WithUiTag("RecommendedProductName")(styled.div`
 export const StyledProductTitle = WithUiTag(
     "RecommendedProductLeftBlock"
 )(styled.p`
+    font-size: 18px;
     width: 100%;
     max-width: 100%;
     margin: 0;
@@ -501,7 +502,7 @@ export const StyledShowMoreBtn = WithUiTag(
     left: 0;
 
     &:hover {
-        color: #376a86;
+        color: #005D77;
         .showMoreLabel {
             text-decoration: underline;
         }
@@ -643,6 +644,7 @@ export const StyledButton = WithUiTag("RecommendedProductButton")(styled.button`
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-family: "Open Sans", sans-serif;
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;

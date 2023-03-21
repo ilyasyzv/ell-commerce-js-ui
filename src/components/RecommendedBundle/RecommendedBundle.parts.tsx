@@ -80,7 +80,7 @@ export const StyledProductInfoContainer = WithUiTag(
     font-weight: 600;
     font-size: 16px;
 
-    .product-name {
+    .product-name, .product-price {
         color: #151515;
     }
 `)
