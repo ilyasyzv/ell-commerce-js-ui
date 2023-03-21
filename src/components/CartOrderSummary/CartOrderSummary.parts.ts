@@ -25,12 +25,9 @@ export const StyledCartOrderSummary = WithUiTag(
     font-family: "OpenSans", sans-serif;
 
     .order-summary-block {
+        padding: 47px 40px;
         ${(props) => {
             switch (props.breakpoint) {
-                case CartOrderSummaryComponentBreakPoints.desktopSm: {
-                    return `
-                    padding: 47px 40px;`
-                }
                 case CartOrderSummaryComponentBreakPoints.mobileMd: {
                     return `
                     padding: 30px 15px;`
@@ -39,6 +36,22 @@ export const StyledCartOrderSummary = WithUiTag(
                     return `
                     padding: 30px 15px;`
                 }
+            }
+        }}
+    }
+
+    .coupon-block {
+        max-width: 352px;
+        ${(props) => {
+            if (
+                props.breakpoint &&
+                props.breakpoint <=
+                    CartOrderSummaryComponentBreakPoints.mobileMd
+            ) {
+                return `
+                width: 100%;
+                max-width: 100%;
+                `
             }
         }}
     }
@@ -139,7 +152,6 @@ export const StyledCouponBlock = WithUiTag(
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-
     position: relative;
     :not(:first-child) {
         padding-top: 10px;
