@@ -51,8 +51,11 @@ export const RecommendedBundle: React.FC<IRecommendedBundle> = (
                 }
             >
                 <StyledImgContainer className="image-container">
-                    {thumbNail ? (
-                        <img src={thumbNail.imageUrl} alt={thumbNail.altText} />
+                    {thumbNail?.imageUrl ? (
+                        <img
+                            src={thumbNail?.imageUrl}
+                            alt={thumbNail?.altText || "imageAlt"}
+                        />
                     ) : (
                         <img src={noImageSrc} alt={"imageAlt"} />
                     )}
