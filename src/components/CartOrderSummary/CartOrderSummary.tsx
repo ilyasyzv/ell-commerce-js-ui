@@ -290,21 +290,19 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                         )}
                     </StyledCouponErrorMessage>
                 </StyledCartOrderPriceWrapper>
-                {cart?.discountAmount > 0 && (
-                    <StyledCartOrderTotalWrapper>
-                        <StyledTotalLabel>
-                            <span className="label">{t("total")}</span>
-                            <span className="tax-note">
-                                {cart.taxIncluded ? t("include") : t("exclude")}{" "}
-                                {t("Tax")}
-                            </span>
-                        </StyledTotalLabel>
+                <StyledCartOrderTotalWrapper>
+                    <StyledTotalLabel>
+                        <span className="label">{t("total")}</span>
+                        <span className="tax-note">
+                            {cart.taxIncluded ? t("include") : t("exclude")}{" "}
+                            {t("Tax")}
+                        </span>
+                    </StyledTotalLabel>
 
-                        <StyledCartOrderPrice>
-                            {formatPrice(cart.preTaxCartAmount, cart.currency)}
-                        </StyledCartOrderPrice>
-                    </StyledCartOrderTotalWrapper>
-                )}
+                    <StyledCartOrderPrice>
+                        {formatPrice(cart.preTaxCartAmount, cart.currency)}
+                    </StyledCartOrderPrice>
+                </StyledCartOrderTotalWrapper>
                 <StyledFooter>
                     <StyledCartOrderAgreementWrapper className="agreement-wrapper">
                         <input
