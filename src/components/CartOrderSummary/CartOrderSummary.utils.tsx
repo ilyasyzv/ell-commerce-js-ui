@@ -42,7 +42,7 @@ export const getFormattedPoliciesString = (
             {links.slice(0, len - 1).map((link, index) => {
                 return (
                     <span key={link.name}>
-                        {getPolicieLink(link, callback)}{" "}
+                        {getPolicieLink(link, callback)}
                         {index === len - 2 ? "" : ", "}
                     </span>
                 )
