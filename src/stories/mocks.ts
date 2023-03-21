@@ -97,7 +97,7 @@ export const getRecommendedProductMocks = () => {
                         imageUrl:
                             "https://cdn11.bigcommerce.com/s-12tro8kxte/products/121/images/380/logo__49359__42513.1667493278.386.513.jpg?c=1&_gl=1*1l5ngse*_ga*NDkyNDgxODE3LjE2NzUwOTAzMTY.*_ga_WS2VZYPC6G*MTY3NzIzNDEwMC4xMy4xLjE2NzcyMzQ1MjAuNDIuMC4w&_ga=2.175560929.2118956873.1677234101-492481817.1675090316",
                         isDefault: false,
-                        isThumbnail: true,
+                        isThumbNail: true,
                         altText: "",
                     },
                 ],
@@ -130,7 +130,7 @@ export const getRecommendedProductMocks = () => {
                         imageUrl:
                             "https://cdn11.bigcommerce.com/s-12tro8kxte/products/111/images/371/smithjournal1.1654040855.220.290.jpg?c=1",
                         isDefault: false,
-                        isThumbnail: true,
+                        isThumbNail: true,
                         altText: "",
                     },
                 ],
@@ -163,7 +163,7 @@ export const getRecommendedProductMocks = () => {
                         imageUrl:
                             "https://cdn11.bigcommerce.com/s-12tro8kxte/products/121/images/380/logo__49359__42513.1667493278.386.513.jpg?c=1&_gl=1*1l5ngse*_ga*NDkyNDgxODE3LjE2NzUwOTAzMTY.*_ga_WS2VZYPC6G*MTY3NzIzNDEwMC4xMy4xLjE2NzcyMzQ1MjAuNDIuMC4w&_ga=2.175560929.2118956873.1677234101-492481817.1675090316",
                         isDefault: false,
-                        isThumbnail: true,
+                        isThumbNail: true,
                         altText: "",
                     },
                 ],

@@ -65,7 +65,7 @@ export const CartProduct: React.FC<Props> = ({
     const minPurchaseQuantity = item.minPurchaseQuantity || 1
     const maxPurchaseQuantity = item.maxPurchaseQuantity
     const parsedShortDescription = useMemo(
-        () => parse(item.shortDescription),
+        () => parse(item.shortDescription ?? ""),
         [item.shortDescription]
     )
 

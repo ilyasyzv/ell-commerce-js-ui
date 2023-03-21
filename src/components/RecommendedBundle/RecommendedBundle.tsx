@@ -35,11 +35,11 @@ export const RecommendedBundle: React.FC<IRecommendedBundle> = (
     )
 
     const thumbNail = data.images
-        ? data.images.find((i) => i.isThumbnail)
+        ? data.images.find((i) => i.isThumbNail)
         : null
     const background =
         (!backgroundImageUrl || backgroundImageUrl === "") && data.images
-            ? data.images.find((i) => i.isDefault)
+            ? data.images.find((i) => !i.isThumbNail)
             : null
 
     return (
@@ -60,7 +60,11 @@ export const RecommendedBundle: React.FC<IRecommendedBundle> = (
             </StyledHeader>
 
             <StyledProductInfoContainer>
-                {data?.name && <span className="product-name">{cutText(data.name, 20)}</span>}
+                {data?.name && (
+                    <span className="product-name">
+                        {cutText(data.name, 20)}
+                    </span>
+                )}
                 <span>{formatPrice(data?.price, data?.currency)}</span>
             </StyledProductInfoContainer>
             {data?.shortDescription && (

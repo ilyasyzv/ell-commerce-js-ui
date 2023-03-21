@@ -59,7 +59,7 @@ export const RecommendedProduct: React.FC<Props> = ({
         variants,
         programName,
     } = product
-    const image = images.find((img) => img.isThumbnail)
+    const image = images.find((img) => img.isThumbNail)
     const minPurchaseQuantity = product.minPurchaseQuantity || 1
     const parsedDescription = useMemo(() => parse(description), [description])
 

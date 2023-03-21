@@ -1,14 +1,15 @@
 import { makeAutoObservable, runInAction } from "mobx"
+import Config from "./config.json"
 import {
     Cart,
     CartItem,
     ELLCommerce,
     Product,
+    ProductVariantQuantity,
     Variant,
 } from "@pearson-ell/commerce-sdk"
-import { Currency } from "@pearson-ell/commerce-sdk/dist/cjs/models/Currency"
 
-const COUNTRY_ISO = "US"
+const COUNTRY_ISO = "GB"
 
 export interface Features {
     disablePopup: boolean
@@ -28,7 +29,11 @@ export class AppStore {
 
     constructor() {
         makeAutoObservable(this)
-        this.ellCommerce = ELLCommerce.getInstance(this.fakeToken)
+        this.ellCommerce = ELLCommerce.getInstance({
+            getTokenFunction: () => this.fakeToken(),
+            essServicesUri: "https://api-ecommerce.ignite-dev.com/",
+            defaultCountryISO2: COUNTRY_ISO,
+        })
     }
 
     async init(count?: number) {
@@ -36,8 +41,11 @@ export class AppStore {
             this.isBusy = true
         })
         this.products = await this.getProducts()
+        this.products = this.products.filter(
+            (p) => p.id !== 140 && p.id !== 142
+        )
         console.log("Products:", this.products)
-        this.cart = await this.getCart(this.products[0].currency)
+        this.cart = await this.getCart()
 
         for (const [index, item] of this.products.entries()) {
             await this.addToCart(item)
@@ -52,9 +60,7 @@ export class AppStore {
     }
 
     async getProducts(): Promise<Product[]> {
-        return await this.ellCommerce
-            .ProductService()
-            .getProducts("Barracuda", "US")
+        return await this.ellCommerce.ProductService().getProducts("Barracuda")
     }
 
     restoreFeatures() {
@@ -74,9 +80,13 @@ export class AppStore {
     }
 
     async addToCart(product: Product, variant?: Variant) {
-        let newCart = null
-        const service = await this.ellCommerce.CartService()
+        let newCart: any = null
+        const service = this.ellCommerce.CartService()
         try {
+            const cartItem = new ProductVariantQuantity()
+            cartItem.quantity = 1
+            cartItem.productId = product.id
+            cartItem.variantId = variant ? variant.id : 0
             if (this.cart) {
                 const updateItem = this.cart.items.find(
                     (i) => i.productId === product.id
@@ -85,34 +95,19 @@ export class AppStore {
                     updateItem &&
                     updateItem.quantity < updateItem.maxPurchaseQuantity
                 ) {
-                    updateItem.quantity = updateItem.quantity + 1
+                    cartItem.quantity = updateItem.quantity + 1
                     newCart = await service.updateCartItem(
                         this.cart.id,
-                        updateItem,
-                        COUNTRY_ISO
+                        updateItem.id,
+                        cartItem
                     )
                 } else {
-                    const newItem = new CartItem(product.type)
-                    newItem.quantity = 1
-                    newItem.productId = product.id
-                    newItem.variantId = variant ? variant.id : 0
-                    newCart = await service.addCartItem(
-                        this.cart.id,
-                        newItem,
-                        COUNTRY_ISO
-                    )
+                    newCart = await service.addCartItem(this.cart.id, cartItem)
                 }
             } else {
-                const newItem = new CartItem(product.type)
-                newItem.quantity = 1
-                newItem.productId = product.id
-                newItem.variantId = variant ? variant.id : 0
-                newCart = await service.createCart(
-                    2,
-                    [newItem],
-                    COUNTRY_ISO,
-                    product.currency
-                )
+                newCart = await service.createCart(this.fakeCustomer(), [
+                    cartItem,
+                ])
             }
             this.cart = newCart
             sessionStorage.setItem(storageKeysEnum.ShoppingCartId, newCart.id)
@@ -121,14 +116,21 @@ export class AppStore {
         }
     }
 
-    async getCart(currency: Currency): Promise<Cart | undefined> {
+    async getCart(): Promise<Cart | undefined> {
+        const cart = await this.ellCommerce
+            .CartService()
+            .getCartByUser(this.fakeCustomer())
+        if (cart) {
+            await this.clearCart(cart.id)
+        }
+
         return await this.ellCommerce
             .CartService()
-            .createCart(2, [], COUNTRY_ISO, currency)
+            .createCart(this.fakeCustomer(), [])
     }
 
     async clearCart(cartId: string) {
-        await this.ellCommerce.CartService().deleteCart(cartId, COUNTRY_ISO)
+        await this.ellCommerce.CartService().deleteCart(cartId)
         this.cart = undefined
         sessionStorage.removeItem(storageKeysEnum.ShoppingCartId)
     }
@@ -136,13 +138,13 @@ export class AppStore {
     async getCheckoutUrl(cartId: string): Promise<string> {
         return await this.ellCommerce
             .CartService()
-            .getCheckoutUrl(cartId, 2, COUNTRY_ISO)
+            .getCheckoutUrl(this.fakeCustomer(), cartId)
     }
 
     async deleteCartItem(cartId: string, itemId: string) {
         const cart = await this.ellCommerce
             .CartService()
-            .deleteCartItem(cartId, itemId, COUNTRY_ISO)
+            .deleteCartItem(cartId, itemId)
         this.cart = cart
     }
 
@@ -150,14 +152,21 @@ export class AppStore {
         if (!this.cart) {
             return
         }
-
+        const cartItem = new ProductVariantQuantity()
+        cartItem.quantity = item.quantity
+        cartItem.productId = item.productId
+        cartItem.variantId = item.variantId
         const cart = await this.ellCommerce
             .CartService()
-            .updateCartItem(this.cart.id, item, COUNTRY_ISO)
+            .updateCartItem(this.cart.id, item.id, cartItem)
         this.cart = cart
     }
 
     fakeToken(): string {
-        return "abcde"
+        return Config.token
+    }
+
+    fakeCustomer(): string {
+        return Config.userId
     }
 }

@@ -16,5 +16,5 @@ const Template: ComponentStory<typeof EmptyCart> = (args) => {
 export const FirstStory = Template.bind({})
 
 FirstStory.args = {
-    onBackButtonClick: action('Redirect to Product catalogue')
+    onBackButtonClick: action("Redirect to Product catalogue"),
 }
