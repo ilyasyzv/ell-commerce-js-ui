@@ -61,7 +61,7 @@ export const RecommendedBundle: React.FC<IRecommendedBundle> = (
 
             <StyledProductInfoContainer>
                 {data?.name && <span className="product-name">{cutText(data.name, 20)}</span>}
-                <span>{formatPrice(data?.price, data?.currency)}</span>
+                <span className="product-price">{formatPrice(data?.price, data?.currency)}</span>
             </StyledProductInfoContainer>
             {data?.shortDescription && (
                 <StyledDescriptionContainer>
