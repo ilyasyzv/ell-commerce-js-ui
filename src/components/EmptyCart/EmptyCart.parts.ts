@@ -32,15 +32,11 @@ export const StyledEmptyCart = WithUiTag("EmptyCart")(styled.div`
 
     .button {
         font-family: "OpenSans", sans-serif;
-        cursor: pointer;
         padding: 12px 20px;
-        color: #fefefe;
         font-weight: 600;
         font-size: 16px;
         line-height: 150%;
-        background: #151515;
         border-radius: 40px;
-        border: none;
     }
 
     @media screen and (max-width: ${breakpoints.tabletSm}px) {
