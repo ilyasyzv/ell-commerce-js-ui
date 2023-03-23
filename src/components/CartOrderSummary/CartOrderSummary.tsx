@@ -165,28 +165,25 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
             return
         }
         applyCouponCode(cart.id, { code: couponInputValue })
-        .then((cart) => {
-            setCouponsApplied(cart.coupons)
-            setIsCouponInputShown(false)
-        })
-        .catch((e: AxiosError) => {
-            console.log(e)
-            setIsCouponInputInvalid(true)
-            setCouponErrorMessage({
-                id: "errorMessage", 
-                text: "You entered an invalid discount code. Please check the code and try again.", 
-                type: "Error"
+            .then((cart) => {
+                setCouponsApplied(cart.coupons)
+                setIsCouponInputShown(false)
             })
-        })
+            .catch((error: AxiosError) => {
+                console.log(error)
+                setIsCouponInputInvalid(true)
+                setCouponErrorMessage({
+                    id: "errorMessage",
+                    text: "You entered an invalid discount code. Please check the code and try again.",
+                    type: "Error",
+                })
+            })
     }
 
     const onCouponRemove = (coupon: CartCoupon) => {
-        withdrawCouponCode(cart.id, coupon.code)
-        .then(() => {
+        withdrawCouponCode(cart.id, coupon.code).then(() => {
             setCouponsApplied((prevState) =>
-                prevState.filter(
-                    (item) => item.id !== coupon.id
-                )
+                prevState.filter((item) => item.id !== coupon.id)
             )
         })
     }

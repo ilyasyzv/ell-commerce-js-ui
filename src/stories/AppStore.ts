@@ -7,7 +7,7 @@ import {
     Product,
     ProductVariantQuantity,
     Variant,
-    CouponCode
+    CouponCode,
 } from "@pearson-ell/commerce-sdk"
 
 const COUNTRY_ISO = "GB"

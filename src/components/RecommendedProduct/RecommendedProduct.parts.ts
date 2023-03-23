@@ -502,7 +502,7 @@ export const StyledShowMoreBtn = WithUiTag(
     left: 0;
 
     &:hover {
-        color: #005D77;
+        color: #005d77;
         .showMoreLabel {
             text-decoration: underline;
         }
