@@ -7,6 +7,7 @@ import {
     Product,
     ProductVariantQuantity,
     Variant,
+    CouponCode
 } from "@pearson-ell/commerce-sdk"
 
 const COUNTRY_ISO = "GB"
@@ -160,6 +161,22 @@ export class AppStore {
             .CartService()
             .updateCartItem(this.cart.id, item.id, cartItem)
         this.cart = cart
+    }
+
+    async applyCouponCode(cartId: string, coupon: CouponCode): Promise<Cart> {
+        const response = await this.ellCommerce
+            .CartService()
+            .applyCoupon(cartId, coupon)
+
+        return response
+    }
+
+    async withdrawCouponCode(cartId: string, coupon: string): Promise<Cart> {
+        const response = await this.ellCommerce
+            .CartService()
+            .removeCoupon(cartId, coupon)
+
+        return response
     }
 
     fakeToken(): string {

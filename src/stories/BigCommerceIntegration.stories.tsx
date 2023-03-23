@@ -6,7 +6,7 @@ import {
     CartQty,
     EmptyCart,
 } from "../components"
-import { CartItem } from "@pearson-ell/commerce-sdk"
+import { CartItem, CouponCode } from "@pearson-ell/commerce-sdk"
 import styled from "styled-components"
 import { observer } from "mobx-react"
 import { AppStore } from "./AppStore"
@@ -126,6 +126,14 @@ const ObserverComponent: FC<IObserverComponentsProps> = observer(
             setIsLoading(false)
         }
 
+        const applyCouponCode = async (cartId: string, coupon: CouponCode) => {
+            return await store.applyCouponCode(cartId, coupon)
+        }
+
+        const withdrawCouponCode = async (cartId: string, coupon: string) => {
+            return await store.withdrawCouponCode(cartId, coupon)
+        }
+
         return (
             <StyledContainer>
                 {!store.cart || store.cart.items.length === 0 ? (
@@ -161,6 +169,8 @@ const ObserverComponent: FC<IObserverComponentsProps> = observer(
                             policiesLinksCallback={() =>
                                 console.log("Policie link clicked")
                             }
+                            applyCouponCode={applyCouponCode}
+                            withdrawCouponCode={withdrawCouponCode}
                         ></CartOrderSummary>
                     </>
                 )}

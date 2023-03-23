@@ -1,4 +1,4 @@
-import { Cart, CartCoupon } from "@pearson-ell/commerce-sdk"
+import { Cart, CartCoupon, CouponCode } from "@pearson-ell/commerce-sdk"
 import React, { useState, useRef } from "react"
 import { formatPrice } from "../../commons/utils"
 import { useTranslation } from "react-i18next"
@@ -29,6 +29,7 @@ import {
     COUPON_INPUT_MAX_LEN,
 } from "./constants"
 import { Message, MessageProps } from "../Message"
+import { AxiosError } from "axios"
 
 export type PolicieLink = {
     name: string
@@ -57,6 +58,8 @@ export interface ICartOrderSummary {
     ) => void
     isDisplayedContinueShoppingBtn?: boolean
     isDisplayedCouponInput?: boolean
+    applyCouponCode: (cartId: string, coupon: CouponCode) => Promise<Cart>
+    withdrawCouponCode: (cartId: string, coupon: string) => Promise<Cart>
 }
 
 export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
@@ -68,6 +71,8 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
     policiesLinksCallback,
     isDisplayedContinueShoppingBtn = true,
     isDisplayedCouponInput = true,
+    applyCouponCode,
+    withdrawCouponCode,
 }: ICartOrderSummary) => {
     const [isDisabled, setIsDisabled] = useState<boolean>(true)
     const [isCouponInputInvalid, setIsCouponInputInvalid] =
@@ -159,15 +164,31 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
             })
             return
         }
-        // API call
-        // .then(() => {
-        // setCouponsApplied((prevState) => [...prevState, couponInputValue])
-        // setIsCouponInputShown(false)
-        // })
-        //.catch((e) => {
-        // setIsCouponInputInvalid(true)
-        // setCouponErrorMessage(ERROR_MESSAGE)
-        // })
+        applyCouponCode(cart.id, { code: couponInputValue })
+        .then((cart) => {
+            setCouponsApplied(cart.coupons)
+            setIsCouponInputShown(false)
+        })
+        .catch((e: AxiosError) => {
+            console.log(e)
+            setIsCouponInputInvalid(true)
+            setCouponErrorMessage({
+                id: "errorMessage", 
+                text: "You entered an invalid discount code. Please check the code and try again.", 
+                type: "Error"
+            })
+        })
+    }
+
+    const onCouponRemove = (coupon: CartCoupon) => {
+        withdrawCouponCode(cart.id, coupon.code)
+        .then(() => {
+            setCouponsApplied((prevState) =>
+                prevState.filter(
+                    (item) => item.id !== coupon.id
+                )
+            )
+        })
     }
 
     if (!cart) {
@@ -216,13 +237,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                                 variant={Variant.linkLike}
                                 type="button"
                                 label={t("remove")}
-                                onClick={() =>
-                                    setCouponsApplied((prevState) =>
-                                        prevState.filter(
-                                            (item) => item.id !== cp.id
-                                        )
-                                    )
-                                }
+                                onClick={() => onCouponRemove(cp)}
                             />
                             <StyledCartOrderPrice>
                                 -
