@@ -644,7 +644,7 @@ export const StyledButton = WithUiTag("RecommendedProductButton")(styled.button`
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-family: "Open Sans", sans-serif;
+    font-family: "OpenSans", sans-serif;
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;
