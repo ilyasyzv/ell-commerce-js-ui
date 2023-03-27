@@ -247,52 +247,56 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                         </StyledCartOrderCouponDiscount>
                     ))}
 
-                    <StyledCouponBlock className="coupon-block">
-                        <Button
-                            className="enter-coupon-button"
-                            variant={Variant.linkLike}
-                            type="button"
-                            label={t("enter_discount_code")}
-                            aria-expanded={isCouponInputShown}
-                            aria-controls="couponInputBlock"
-                            onClick={() =>
-                                setIsCouponInputShown((prevState) => !prevState)
-                            }
-                        />
-
-                        <StyledCouponInputWrapper
-                            className={
-                                isCouponInputShown
-                                    ? "coupon-input-wrapper"
-                                    : "coupon-input-wrapper hidden"
-                            }
-                            id="couponInputBlock"
-                        >
-                            <Input
-                                id="couponInput"
-                                inputRef={conuponInputRef}
-                                className="coupon-input"
-                                type="text"
-                                maxLength={COUPON_INPUT_MAX_LEN}
-                                value={couponInputValue}
-                                name={t("enter_discount_code") as string}
-                                onChange={(ev) => onCouponInputChage(ev)}
-                                isInvalid={isCouponInputInvalid}
-                            />
+                    {isDisplayedCouponInput && (
+                        <StyledCouponBlock className="coupon-block">
                             <Button
-                                className="coupon-btn"
-                                variant={Variant.tertiary}
+                                className="enter-coupon-button"
+                                variant={Variant.linkLike}
                                 type="button"
-                                label={t("Apply")}
-                                disabled={
-                                    couponInputValue.length <
-                                        COUPON_INPUT_LIMIT ||
-                                    isCouponInputInvalid
+                                label={t("enter_discount_code")}
+                                aria-expanded={isCouponInputShown}
+                                aria-controls="couponInputBlock"
+                                onClick={() =>
+                                    setIsCouponInputShown(
+                                        (prevState) => !prevState
+                                    )
                                 }
-                                onClick={(ev) => onCouponApply(ev)}
                             />
-                        </StyledCouponInputWrapper>
-                    </StyledCouponBlock>
+
+                            <StyledCouponInputWrapper
+                                className={
+                                    isCouponInputShown
+                                        ? "coupon-input-wrapper"
+                                        : "coupon-input-wrapper hidden"
+                                }
+                                id="couponInputBlock"
+                            >
+                                <Input
+                                    id="couponInput"
+                                    inputRef={conuponInputRef}
+                                    className="coupon-input"
+                                    type="text"
+                                    maxLength={COUPON_INPUT_MAX_LEN}
+                                    value={couponInputValue}
+                                    name={t("enter_discount_code") as string}
+                                    onChange={(ev) => onCouponInputChage(ev)}
+                                    isInvalid={isCouponInputInvalid}
+                                />
+                                <Button
+                                    className="coupon-btn"
+                                    variant={Variant.tertiary}
+                                    type="button"
+                                    label={t("Apply")}
+                                    disabled={
+                                        couponInputValue.length <
+                                            COUPON_INPUT_LIMIT ||
+                                        isCouponInputInvalid
+                                    }
+                                    onClick={(ev) => onCouponApply(ev)}
+                                />
+                            </StyledCouponInputWrapper>
+                        </StyledCouponBlock>
+                    )}
                     <StyledCouponErrorMessage>
                         {isCouponInputInvalid && couponErrorMessage && (
                             <Message
