@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { FC } from "react"
 import { VariantContainer } from "./SelectVariant.parts"
 import { ArrowControlsDown } from "../../commons/svgs"
@@ -20,6 +20,13 @@ export const SelectVariant: FC<ISelectVariant> = ({
     const [isOpen, setIsOpen] = useState(false)
     const [selectedItem, setSelectedItem] = useState(defaultValue)
     const optionsRef = useRef(null)
+    const sortVariants = useMemo(
+        () =>
+            [...variants].sort((a: Variant, b: Variant) => {
+                return a.shortName.localeCompare(b.shortName)
+            }),
+        [variants]
+    )
 
     const onSelectClick = useCallback(() => {
         setIsOpen((prev) => !prev)
@@ -78,7 +85,7 @@ export const SelectVariant: FC<ISelectVariant> = ({
                 >
                     Version:
                 </div>
-                {variants.map((item) => (
+                {sortVariants.map((item) => (
                     <div
                         className="select-option"
                         key={item.id}
