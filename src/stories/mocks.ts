@@ -202,8 +202,10 @@ export const getRecommendedProductMocks = () => {
                             decimalPlaces: 2,
                         },
                         images: [],
-                        description: "",
-                        shortDescription: "",
+                        description:
+                            "<p style='color:black;font-size:12px; line-height: 1.1;'>The Question Bank helps you build your confidence and develop your English skills.</p><p style='color:black;font-size:12px; line-height: 1.1;'>With 300 questions and answers broken down by each PTE Academic task type, you can work at your own pace to practice, and target the skills you most want to improve.</p><p style='color:black;font-size:12px; line-height: 1.1;'>How It helps you</p><ul style='color:black;font-size:12px; line-height: 1.1;'><li>300 authentically written PTE Academic questions and answers to build your skills and strengthen your performance</li><li>Each question is timed and formatted to simulate a test experience</li><li>Easy navigation gives you the flexibility to move between the questions you want to focus on</li><li>Answer explanations help you to understand the reasons behind each answer</li><li>Sample audio or written answers to help you learn what an effective answer is and adjust your own responses</li></ul>",
+                        shortDescription:
+                            "<p style='color:black;font-size:12px; line-height: 1.1;margin: 0; padding: 0;'>The Question Bank helps you build your confidence and develop your English skills.</p>",
                         shortName: "A",
                         price: 54_321,
                         basePrice: 54_321,
@@ -223,8 +225,11 @@ export const getRecommendedProductMocks = () => {
                             decimalPlaces: 2,
                         },
                         images: [],
-                        description: "",
-                        shortDescription: "",
+                        description:
+                            "<p style='color:black;font-size:12px; line-height: 1.1;'>The Question Bank helps you build your confidence and develop your English skills.</p><p style='color:black;font-size:12px; line-height: 1.1;'>With 300 questions and answers broken down by each PTE Academic task type, you can work at your own pace to practice, and target the skills you most want to improve.</p><p style='color:black;font-size:12px; line-height: 1.1;'>How It helps you</p><ul style='color:black;font-size:12px; line-height: 1.1;'><li>300 authentically written PTE Academic questions and answers to build your skills and strengthen your performance</li><li>Each question is timed and formatted to simulate a test experience</li><li>Easy navigation gives you the flexibility to move between the questions you want to focus on</li><li>Answer explanations help you to understand the reasons behind each answer</li><li>Sample audio or written answers to help you learn what an effective answer is and adjust your own responses</li></ul>",
+                        shortDescription:
+                            "<p style='color:black;font-size:12px; line-height: 1.1;margin: 0; padding: 0;'>The Question Bank helps you build your confidence and develop your English skills.</p>",
+
                         shortName: "B",
                         price: 54_321,
                         basePrice: 54_321,
@@ -244,8 +249,11 @@ export const getRecommendedProductMocks = () => {
                             decimalPlaces: 2,
                         },
                         images: [],
-                        description: "",
-                        shortDescription: "",
+                        description:
+                            "<p style='color:black;font-size:12px; line-height: 1.1;'>The Question Bank helps you build your confidence and develop your English skills.</p><p style='color:black;font-size:12px; line-height: 1.1;'>With 300 questions and answers broken down by each PTE Academic task type, you can work at your own pace to practice, and target the skills you most want to improve.</p><p style='color:black;font-size:12px; line-height: 1.1;'>How It helps you</p><ul style='color:black;font-size:12px; line-height: 1.1;'><li>300 authentically written PTE Academic questions and answers to build your skills and strengthen your performance</li><li>Each question is timed and formatted to simulate a test experience</li><li>Easy navigation gives you the flexibility to move between the questions you want to focus on</li><li>Answer explanations help you to understand the reasons behind each answer</li><li>Sample audio or written answers to help you learn what an effective answer is and adjust your own responses</li></ul>",
+                        shortDescription:
+                            "<p style='color:black;font-size:12px; line-height: 1.1;margin: 0; padding: 0;'>The Question Bank helps you build your confidence and develop your English skills.</p>",
+
                         shortName: "C",
                         price: 54_321,
                         basePrice: 54_321,

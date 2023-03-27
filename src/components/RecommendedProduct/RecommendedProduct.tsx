@@ -51,8 +51,6 @@ export const RecommendedProduct: React.FC<Props> = ({
         id,
         name,
         price,
-        description,
-        shortDescription,
         maxPurchaseQuantity,
         images,
         currency,
@@ -61,6 +59,14 @@ export const RecommendedProduct: React.FC<Props> = ({
     } = product
     const image = images.find((img) => img.isThumbNail)
     const minPurchaseQuantity = product.minPurchaseQuantity || 1
+
+    const description = variants?.length
+        ? variants[0].description
+        : product.description
+    const shortDescription = variants?.length
+        ? variants[0].shortDescription
+        : product.shortDescription
+
     const parsedDescription = useMemo(() => parse(description), [description])
 
     const productName = useMemo(
