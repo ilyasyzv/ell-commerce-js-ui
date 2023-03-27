@@ -2,3 +2,5 @@ node_modules
 dist
 .npmrc
 storybook-static
+
+src/stories/config.json
