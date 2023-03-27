@@ -79,11 +79,7 @@ export const StyledProductInfoContainer = WithUiTag(
     justify-content: space-between;
     font-weight: 600;
     font-size: 16px;
-
-    .product-name,
-    .product-price {
-        color: #151515;
-    }
+    color: #151515;
 `)
 export const StyledDescriptionContainer = WithUiTag(
     "RecommendedBundleDescriptionContainer"
