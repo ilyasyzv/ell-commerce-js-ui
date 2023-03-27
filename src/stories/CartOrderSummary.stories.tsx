@@ -32,13 +32,15 @@ FirstStory.args = {
         ],
     },
     onCheckoutClick: action("Click Checkout Button"),
-    onContinueShoppingClick: action("click continue shopping button"),
+    onContinueShoppingClick: action("Click Continue Shopping Button"),
     policiesLinks: [
         { name: "Terms of Use" },
         { name: "Privacy Policy" },
         { name: "Refund Policy" },
     ],
-    policiesLinksCallback: console.log("click policie link"),
+    policiesLinksCallback: console.log("Click Policy Link"),
     isDisplayedContinueShoppingBtn: true,
     isDisplayedCouponInput: true,
+    applyCouponCode: action("Click Apply Coupon"),
+    withdrawCouponCode: action("Click Remove Coupon")
 }

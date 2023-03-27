@@ -18,6 +18,7 @@ import {
     StyledCouponInputWrapper,
     StyledCartOrderCouponDiscount,
     StyledCouponErrorMessage,
+    StyledCartOrderCouponPrice,
 } from "./CartOrderSummary.parts"
 import { useBreakpoints } from "../../commons/hooks"
 import { Button, Variant } from "../Button"
@@ -236,13 +237,13 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                                 label={t("remove")}
                                 onClick={() => onCouponRemove(cp)}
                             />
-                            <StyledCartOrderPrice>
+                            <StyledCartOrderCouponPrice>
                                 -
                                 {formatPrice(
                                     cp.discountedAmount,
                                     cart.currency
                                 )}
-                            </StyledCartOrderPrice>
+                            </StyledCartOrderCouponPrice>
                         </StyledCartOrderCouponDiscount>
                     ))}
 

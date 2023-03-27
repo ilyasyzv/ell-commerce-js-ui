@@ -103,7 +103,7 @@ export const StyledCartOrderSubtotal = WithUiTag(
 `)
 
 export const StyledCartOrderCouponDiscount = WithUiTag(
-    "CartOrderSubtotal"
+    "CartOrderCoupon"
 )(styled.div`
     display: flex;
     align-items: baseline;
@@ -203,6 +203,11 @@ export const StyledCouponInputWrapper = WithUiTag(
 )
 
 export const StyledCartOrderPrice = WithUiTag("CartOrderPrice")(styled.span`
+    font-weight: 600;
+    font-size: 16px;
+`)
+
+export const StyledCartOrderCouponPrice = WithUiTag("CartOrderCouponPrice")(styled.span`
     font-weight: 600;
     font-size: 16px;
 `)
