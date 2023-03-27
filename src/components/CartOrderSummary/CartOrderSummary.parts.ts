@@ -192,6 +192,7 @@ export const StyledCouponInputWrapper = WithUiTag(
             flex-wrap: wrap;
 
             .coupon-btn {
+                font-size: 14px;
                 padding: 5px 20px;
                 margin-left: 10px;
             }
