@@ -85,7 +85,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
         cart?.coupons || []
     )
     const [isCouponInputShown, setIsCouponInputShown] = useState<boolean>(
-        couponsApplied.length === 0 || isDisplayedCouponInput
+        couponsApplied.length === 0
     )
     const { t } = useTranslation()
     const containerRef = useRef(null)
@@ -169,6 +169,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
             .then((cart) => {
                 setCouponsApplied(cart.coupons)
                 setIsCouponInputShown(false)
+                setCouponInputValue("")
             })
             .catch((error: AxiosError) => {
                 console.log(error)
@@ -186,6 +187,9 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
             setCouponsApplied((prevState) =>
                 prevState.filter((item) => item.id !== coupon.id)
             )
+            if (cart?.coupons.length === 0) {
+                setIsCouponInputShown(true)
+            }
         })
     }
 
@@ -246,23 +250,21 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                             </StyledCartOrderCouponPrice>
                         </StyledCartOrderCouponDiscount>
                     ))}
-
-                    {isDisplayedCouponInput && (
-                        <StyledCouponBlock className="coupon-block">
-                            <Button
-                                className="enter-coupon-button"
-                                variant={Variant.linkLike}
-                                type="button"
-                                label={t("enter_discount_code")}
-                                aria-expanded={isCouponInputShown}
-                                aria-controls="couponInputBlock"
-                                onClick={() =>
-                                    setIsCouponInputShown(
-                                        (prevState) => !prevState
-                                    )
-                                }
-                            />
-
+                    <StyledCouponBlock className="coupon-block">
+                        <Button
+                            className="enter-coupon-button"
+                            variant={Variant.linkLike}
+                            type="button"
+                            label={t("enter_discount_code")}
+                            aria-expanded={isCouponInputShown}
+                            aria-controls="couponInputBlock"
+                            onClick={() =>
+                                setIsCouponInputShown(
+                                    (prevState) => !prevState
+                                )
+                            }
+                        />
+                        {isDisplayedCouponInput && (
                             <StyledCouponInputWrapper
                                 className={
                                     isCouponInputShown
@@ -295,8 +297,8 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                                     onClick={(ev) => onCouponApply(ev)}
                                 />
                             </StyledCouponInputWrapper>
-                        </StyledCouponBlock>
-                    )}
+                        )}
+                    </StyledCouponBlock>
                     <StyledCouponErrorMessage>
                         {isCouponInputInvalid && couponErrorMessage && (
                             <Message
