@@ -27,10 +27,7 @@ export const StyledInput = WithUiTag("Input")(styled.input<IStyledInput>`
 
     ${(props) => {
         if (props.invalid) {
-            return `
-            border: 1px solid transparent;
-            outline: 2px solid #D30018;
-            `
+            return `border: 2px solid #D30018;`
         }
     }}
     ${(props) => {
