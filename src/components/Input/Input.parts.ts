@@ -42,8 +42,7 @@ export const StyledInput = WithUiTag("Input")(styled.input<IStyledInput>`
     }}
     &:focus-visible {
         background: #ffffff;
-        border: 1px solid transparent;
-        outline: 2px solid #151515;
+        border: 2px solid #151515;
     }
     &[disabled] {
         color: #919191;
