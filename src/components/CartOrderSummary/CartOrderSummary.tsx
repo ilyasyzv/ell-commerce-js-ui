@@ -167,7 +167,10 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
         }
         applyCouponCode(cart.id, { code: couponInputValue })
             .then((cart) => {
-                setCouponsApplied(cart.coupons)
+                setCouponsApplied([...couponsApplied, ...cart.coupons.map((cp) => {
+                    return {...cp, discountedAmount: cart.discountAmount}
+                })
+            ])
                 setIsCouponInputShown(false)
                 setCouponInputValue("")
             })
@@ -187,7 +190,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
             setCouponsApplied((prevState) =>
                 prevState.filter((item) => item.id !== coupon.id)
             )
-            if (cart?.coupons.length === 0) {
+            if (couponsApplied.length === 1) {
                 setIsCouponInputShown(true)
             }
         })
