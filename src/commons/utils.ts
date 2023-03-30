@@ -23,7 +23,6 @@ export const formatPrice = (price: number, currency: Currency) => {
     const {
         decimalPlaces,
         decimalToken,
-        isoCode,
         symbol,
         symbolPosition,
         thousandsToken,
@@ -40,10 +39,6 @@ export const formatPrice = (price: number, currency: Currency) => {
 
     if (decimalPlaces > 0) {
         formattedPrice += decimalToken + decimalPart.padEnd(decimalPlaces, "0")
-    }
-
-    if (isoCode) {
-        formattedPrice += ` ${isoCode}`
     }
 
     return symbolPosition === CurrencySymbolPosition.Right

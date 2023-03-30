@@ -17,14 +17,12 @@ export const EmptyCart: React.FunctionComponent<EmptyCartProps> = (
     return (
         <StyledEmptyCart className={props.className}>
             <EmptyCartSvg className="cart-image" />
-            <p className="text">
-                Your cart is empty. Discover products to add to your cart
-            </p>
+            <p className="text">{t("cart_is_empty")}</p>
             <Button
                 className="button"
                 variant={Variant.secondary}
                 type="button"
-                label={t("Browse products")}
+                label={t("browse_products")}
                 onClick={() => props.onBackButtonClick()}
             />
         </StyledEmptyCart>

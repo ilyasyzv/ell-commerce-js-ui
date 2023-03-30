@@ -47,7 +47,7 @@ export const getFormattedPoliciesString = (
                     </span>
                 )
             })}
-            {len > 1 && t(" and ")}
+            {len > 1 && t("and")}
             {
                 <span key={links[len - 1].name}>
                     {getPolicieLink(links[len - 1], callback)}

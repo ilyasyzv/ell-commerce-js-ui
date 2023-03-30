@@ -209,7 +209,9 @@ export const StyledCartOrderPrice = WithUiTag("CartOrderPrice")(styled.span`
     font-size: 16px;
 `)
 
-export const StyledCartOrderCouponPrice = WithUiTag("CartOrderCouponPrice")(styled.span`
+export const StyledCartOrderCouponPrice = WithUiTag(
+    "CartOrderCouponPrice"
+)(styled.span`
     white-space: nowrap;
     font-weight: 600;
     font-size: 16px;

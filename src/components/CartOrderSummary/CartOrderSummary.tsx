@@ -160,7 +160,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
             setIsCouponInputInvalid(true)
             setCouponErrorMessage({
                 id: "duplicateCouponErrorMessage",
-                text: `Discount code ${couponInputValue} has already been applied`,
+                text: t("already_applied_coupon", { couponInputValue }),
                 type: "Error",
             })
             return
@@ -176,7 +176,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                 setIsCouponInputInvalid(true)
                 setCouponErrorMessage({
                     id: "errorMessage",
-                    text: "You entered an invalid discount code. Please check the code and try again.",
+                    text: t("invalid_coupon"),
                     type: "Error",
                 })
             })
@@ -234,13 +234,15 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                                 <span className="coupon-code">{cp.code}</span>
                             </p>
 
-                            <Button
-                                className="coupon-remove-btn"
-                                variant={Variant.linkLike}
-                                type="button"
-                                label={t("remove")}
-                                onClick={() => onCouponRemove(cp)}
-                            />
+                            {isDisplayedCouponInput && (
+                                <Button
+                                    className="coupon-remove-btn"
+                                    variant={Variant.linkLike}
+                                    type="button"
+                                    label={t("remove")}
+                                    onClick={() => onCouponRemove(cp)}
+                                />
+                            )}
                             <StyledCartOrderCouponPrice>
                                 -
                                 {formatPrice(
@@ -250,21 +252,22 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                             </StyledCartOrderCouponPrice>
                         </StyledCartOrderCouponDiscount>
                     ))}
-                    <StyledCouponBlock className="coupon-block">
-                        <Button
-                            className="enter-coupon-button"
-                            variant={Variant.linkLike}
-                            type="button"
-                            label={t("enter_discount_code")}
-                            aria-expanded={isCouponInputShown}
-                            aria-controls="couponInputBlock"
-                            onClick={() =>
-                                setIsCouponInputShown(
-                                    (prevState) => !prevState
-                                )
-                            }
-                        />
-                        {isDisplayedCouponInput && (
+                    {isDisplayedCouponInput && (
+                        <StyledCouponBlock className="coupon-block">
+                            <Button
+                                className="enter-coupon-button"
+                                variant={Variant.linkLike}
+                                type="button"
+                                label={t("enter_discount_code")}
+                                aria-expanded={isCouponInputShown}
+                                aria-controls="couponInputBlock"
+                                onClick={() =>
+                                    setIsCouponInputShown(
+                                        (prevState) => !prevState
+                                    )
+                                }
+                            />
+
                             <StyledCouponInputWrapper
                                 className={
                                     isCouponInputShown
@@ -288,7 +291,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                                     className="coupon-btn"
                                     variant={Variant.tertiary}
                                     type="button"
-                                    label={t("Apply")}
+                                    label={t("apply")}
                                     disabled={
                                         couponInputValue.length <
                                             COUPON_INPUT_LIMIT ||
@@ -297,8 +300,8 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                                     onClick={(ev) => onCouponApply(ev)}
                                 />
                             </StyledCouponInputWrapper>
-                        )}
-                    </StyledCouponBlock>
+                        </StyledCouponBlock>
+                    )}
                     <StyledCouponErrorMessage>
                         {isCouponInputInvalid && couponErrorMessage && (
                             <Message
@@ -311,7 +314,12 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                 </StyledCartOrderPriceWrapper>
                 <StyledCartOrderTotalWrapper>
                     <StyledTotalLabel>
-                        <span className="label">{t("total")}</span>
+                        <span className="label">
+                            {t("total")}{" "}
+                            {cart.currency?.isoCode
+                                ? `(${cart.currency?.isoCode})`
+                                : null}
+                        </span>
                         <span className="tax-note">
                             {cart.taxIncluded ? t("include") : t("exclude")}{" "}
                             {t("Tax")}
@@ -357,7 +365,7 @@ export const CartOrderSummary: React.FC<ICartOrderSummary> = ({
                             className="continue-btn"
                             variant={Variant.tertiary}
                             type="button"
-                            label={t(" Continue shopping")}
+                            label={t("continue_shopping")}
                             onClick={(ev) => onContinueShopping(ev)}
                         />
                     )}

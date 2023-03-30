@@ -12,6 +12,8 @@ import { observer } from "mobx-react"
 import { AppStore } from "./AppStore"
 import { ComponentStoryFn } from "@storybook/react/dist/ts3.9/client/preview/types-6-3"
 import { Oval } from "react-loader-spinner"
+import { LanguageSelector } from "../components/LanguageSelector"
+import { action } from "@storybook/addon-actions"
 export default {
     title: "BigCommerceIntegration",
 }
@@ -59,6 +61,7 @@ const Template: ComponentStoryFn<typeof CartOrderSummary> = () => {
 
     return (
         <>
+            <LanguageSelector></LanguageSelector>
             <StyledButtons>
                 <button onClick={() => prepareData()} disabled={isLoading}>
                     Prepare Data for all product{" "}
@@ -166,9 +169,9 @@ const ObserverComponent: FC<IObserverComponentsProps> = observer(
                                 { name: "Privacy Policy" },
                                 { name: "Refund Policy" },
                             ]}
-                            policiesLinksCallback={() =>
-                                console.log("Policie link clicked")
-                            }
+                            policiesLinksCallback={action(
+                                "Policie link clicked"
+                            )}
                             applyCouponCode={applyCouponCode}
                             withdrawCouponCode={withdrawCouponCode}
                         ></CartOrderSummary>

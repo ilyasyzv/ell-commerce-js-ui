@@ -26,7 +26,7 @@ FirstStory.args = {
         coupons: [
             {
                 id: "1",
-                code: "1",
+                code: "ABCD12345",
                 discountedAmount: 10,
             },
         ],
@@ -38,9 +38,9 @@ FirstStory.args = {
         { name: "Privacy Policy" },
         { name: "Refund Policy" },
     ],
-    policiesLinksCallback: console.log("Click Policy Link"),
+    policiesLinksCallback: action(`Click Policy Link`),
     isDisplayedContinueShoppingBtn: true,
     isDisplayedCouponInput: true,
     applyCouponCode: action("Click Apply Coupon"),
-    withdrawCouponCode: action("Click Remove Coupon")
+    withdrawCouponCode: action("Click Remove Coupon"),
 }

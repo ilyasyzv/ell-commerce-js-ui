@@ -45,7 +45,6 @@ export const SecondaryButton = WithUiTag("SecondaryButton")(styled(
 export const TertiaryButton = WithUiTag("TertiaryButton")(
     styled(StyledButton)`
         color: #151515;
-        font-weight: 600;
         background: transparent;
         border: 2px solid #151515;
         &:hover,
